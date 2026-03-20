@@ -1,19 +1,139 @@
-<h1>Checkout</h1>
-<form id="checkout-form" style="max-width: 500px; margin: 2rem auto; background: white; padding: 2rem; border-radius: var(--border-radius);">
-  <label for="name">Full Name</label>
-  <input type="text" id="name" required>
-  <label for="address">Address</label>
-  <textarea id="address" required></textarea>
-  <label for="card">Card Number (simulated)</label>
-  <input type="text" id="card" placeholder="**** **** **** 1234" required>
-  <label for="expiry">Expiry</label>
-  <input type="text" id="expiry" placeholder="MM/YY" required>
-  <label for="cvv">CVV</label>
-  <input type="text" id="cvv" placeholder="123" required>
-  <button type="submit" class="btn" style="width: 100%;">Place Order</button>
-</form>
-<div id="order-confirmation" style="display:none; text-align: center; margin: 3rem;">
-  <h2>Thank you! Your order has been placed.</h2>
-  <p>A confirmation email has been sent (simulated).</p>
-  <a href="/products" class="btn" data-page="products">Continue Shopping</a>
+<!-- CHECKOUT PAGE -->
+<div class="page-hero" style="padding-bottom:2rem;">
+  <div class="page-hero-label">Almost There</div>
+  <h1 class="page-hero-title">Checkout</h1>
+</div>
+
+<div class="checkout-page">
+  <div class="checkout-layout">
+    <!-- LEFT: FORM -->
+    <div>
+      <form id="checkout-form">
+        <!-- CONTACT -->
+        <div class="checkout-section">
+          <div class="checkout-title">Contact Information</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">First & Last Name</label>
+              <input type="text" id="co-name" class="form-input" placeholder="Maria Santos" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email Address</label>
+              <input type="email" class="form-input" placeholder="maria@email.com" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Phone Number</label>
+            <input type="tel" class="form-input" placeholder="+63 9xx xxx xxxx" required>
+          </div>
+        </div>
+
+        <!-- SHIPPING -->
+        <div class="checkout-section">
+          <div class="checkout-title">Shipping Address</div>
+          <div class="form-group">
+            <label class="form-label">Street Address / Barangay</label>
+            <input type="text" class="form-input" placeholder="123 Main St., Brgy. Example" required>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">City / Municipality</label>
+              <input type="text" class="form-input" placeholder="Manila" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Province</label>
+              <input type="text" class="form-input" placeholder="Metro Manila" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Region</label>
+              <select class="form-input" style="appearance:none;">
+                <option value="">Select Region</option>
+                <option>NCR</option>
+                <option>Region I – Ilocos Region</option>
+                <option>Region II – Cagayan Valley</option>
+                <option>Region III – Central Luzon</option>
+                <option>Region IV-A – CALABARZON</option>
+                <option>Region IV-B – MIMAROPA</option>
+                <option>Region V – Bicol Region</option>
+                <option>Region VI – Western Visayas</option>
+                <option>Region VII – Central Visayas</option>
+                <option>Region VIII – Eastern Visayas</option>
+                <option>Region IX – Zamboanga Peninsula</option>
+                <option>Region X – Northern Mindanao</option>
+                <option>Region XI – Davao Region</option>
+                <option>Region XII – SOCCSKSARGEN</option>
+                <option>Region XIII – Caraga</option>
+                <option>BARMM</option>
+                <option>CAR</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">ZIP Code</label>
+              <input type="text" class="form-input" placeholder="1000" required>
+            </div>
+          </div>
+        </div>
+
+        <!-- PAYMENT -->
+        <div class="checkout-section">
+          <div class="checkout-title">Payment Details</div>
+          <div style="background:var(--bg-light);padding:1rem 1.5rem;margin-bottom:1.5rem;font-size:.78rem;color:var(--text-muted);border:1px solid var(--border);">
+            <i class="fas fa-lock" style="color:var(--accent);margin-right:.5rem;"></i>
+            This is a simulated checkout. No real payments are processed.
+          </div>
+          <div class="form-group">
+            <label class="form-label">Payment Method</label>
+            <select class="form-input" style="appearance:none;">
+              <option>Credit / Debit Card</option>
+              <option>GCash</option>
+              <option>Maya (PayMaya)</option>
+              <option>Bank Transfer</option>
+              <option>Cash on Delivery</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Card Number</label>
+            <input type="text" class="form-input" placeholder="•••• •••• •••• ••••" maxlength="19">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Expiry Date</label>
+              <input type="text" class="form-input" placeholder="MM / YY" maxlength="7">
+            </div>
+            <div class="form-group">
+              <label class="form-label">CVV</label>
+              <input type="text" class="form-input" placeholder="•••" maxlength="3">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Name on Card</label>
+            <input type="text" class="form-input" placeholder="Maria Santos">
+          </div>
+        </div>
+
+        <button type="submit" class="btn-primary" style="font-size:.85rem;padding:1.1rem 2rem;">
+          Place Order <i class="fas fa-arrow-right btn-arrow" style="margin-left:.5rem;"></i>
+        </button>
+      </form>
+    </div>
+
+    <!-- RIGHT: ORDER SUMMARY -->
+    <div class="checkout-order-summary">
+      <div class="checkout-title">Order Summary</div>
+      <div id="checkout-order-items">
+        <!-- Populated by JS -->
+      </div>
+      <div style="margin-top:1.5rem;border-top:1px solid var(--border);padding-top:1.2rem;">
+        <div class="cart-summary-row"><span>Subtotal</span><span id="checkout-subtotal">₱0</span></div>
+        <div class="cart-summary-row"><span>Shipping</span><span id="checkout-shipping">₱0</span></div>
+        <div class="cart-summary-row total"><span>Total</span><span id="checkout-total">₱0</span></div>
+      </div>
+      <div style="margin-top:1.5rem;font-size:.72rem;color:var(--text-muted);line-height:1.7;border-top:1px solid var(--border);padding-top:1.2rem;">
+        <i class="fas fa-shield-alt" style="color:var(--accent);margin-right:.4rem;"></i>
+        Your information is protected. All transactions are encrypted and secure.
+      </div>
+    </div>
+  </div>
 </div>

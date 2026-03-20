@@ -1,8 +1,27 @@
-<h1>Track Your Order</h1>
-<form id="track-form" style="max-width: 400px; margin: 2rem auto; display: flex; gap: 1rem;">
-  <input type="text" placeholder="Enter Order ID (e.g. #12345)" required>
-  <button type="submit" class="btn">Track</button>
-</form>
-<div id="track-result" style="display:none; text-align: center; margin: 2rem; padding: 1rem; background: white; border-radius: var(--border-radius);">
-  <p>Order #<span id="order-id"></span> is <strong>Out for Delivery</strong>.</p>
+<!-- ORDER STATUS PAGE -->
+<div class="page-hero">
+  <div class="page-hero-label">Track Your Package</div>
+  <h1 class="page-hero-title">Order Status</h1>
+  <p style="font-size:.9rem;color:var(--text-muted);max-width:480px;line-height:1.8;margin-top:1.5rem;">
+    Enter your Order ID to get real-time updates on your shipment.
+  </p>
+</div>
+
+<div class="order-status-page">
+  <div style="background:var(--surface);padding:1.5rem;margin-bottom:2rem;font-size:.8rem;color:var(--text-muted);border:1px solid var(--border);">
+    <strong style="color:var(--accent);">Demo Order IDs:</strong>
+    AM-2024-001, AM-2024-002, AM-2025-003, AM-2025-004
+  </div>
+  <form id="order-status-form" class="status-form">
+    <div class="form-group">
+      <label class="form-label" for="order-id-input">Order ID</label>
+      <input type="text" id="order-id-input" class="form-input" placeholder="e.g. AM-2025-003" required
+        style="letter-spacing:.1em;text-transform:uppercase;">
+    </div>
+    <button type="submit" class="btn-primary" style="width:auto;display:inline-flex;margin-top:.5rem;">
+      Track Order <i class="fas fa-search btn-arrow" style="margin-left:.5rem;"></i>
+    </button>
+  </form>
+
+  <div id="order-status-result"></div>
 </div>

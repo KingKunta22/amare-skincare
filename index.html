@@ -1,66 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Amare Skincare</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>amare. — skincare that loves you back</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
-  <header id="main-header">
-    <div class="logo">
-      <h1>AMARE</h1>
-    </div>
-    <nav>
-      <ul id="nav-menu">
-        <li><a href="/" data-page="home">Home</a></li>
-        <li><a href="/products" data-page="products">Products</a></li>
-        <li><a href="/about" data-page="about">About</a></li>
-        <li><a href="/contact" data-page="contact">Contact</a></li>
-        <li><a href="/team" data-page="team">Team</a></li>
+
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo" data-link>amare.</a>
+      <ul class="nav-links">
+        <li><a href="/" data-link class="nav-link">Home</a></li>
+        <li><a href="/products" data-link class="nav-link">Products</a></li>
+        <li><a href="/about" data-link class="nav-link">About</a></li>
+        <li><a href="/contact" data-link class="nav-link">Contact</a></li>
+        <li><a href="/team" data-link class="nav-link">Team</a></li>
       </ul>
-    </nav>
-    <div class="header-right">
-      <a href="/cart" class="cart-icon" data-page="cart">
-        <i class="fas fa-shopping-bag"></i>
-        <span id="cart-count">0</span>
-      </a>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-actions">
+        <a href="https://www.instagram.com" target="_blank" class="nav-icon" title="Follow us on Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <button class="nav-icon" id="cart-btn" title="Cart">
+          <i class="fas fa-shopping-bag"></i>
+          <span class="cart-count" id="cart-count">0</span>
+        </button>
+      </div>
     </div>
-  </header>
+  </nav>
 
-  <main id="app">
-    <!-- Dynamic content loads here -->
-  </main>
-
-  <!-- Mini Cart Slide-out -->
-  <div id="mini-cart" class="mini-cart">
+  <!-- MINI CART SLIDE-OUT -->
+  <div id="mini-cart-overlay"></div>
+  <aside id="mini-cart">
     <div class="mini-cart-header">
-      <h3>Your Cart</h3>
+      <span>Your Bag</span>
       <button id="close-mini-cart"><i class="fas fa-times"></i></button>
     </div>
     <div id="mini-cart-items"></div>
     <div class="mini-cart-footer">
-      <p>Total: ₱<span id="mini-cart-total">0</span></p>
-      <a href="/checkout" class="btn" data-page="checkout">Checkout</a>
+      <div class="mini-cart-total">
+        <span>Total</span>
+        <span id="mini-cart-total-price">₱0.00</span>
+      </div>
+      <a href="/cart" data-link class="btn-primary" id="view-cart-btn">View Cart</a>
+      <a href="/checkout" data-link class="btn-secondary">Checkout</a>
     </div>
-  </div>
-  <div id="overlay" class="overlay"></div>
+  </aside>
 
-  <!-- Back to Top Button -->
-  <button id="back-to-top" class="back-to-top"><i class="fas fa-arrow-up"></i></button>
+  <!-- TOAST -->
+  <div id="toast-container"></div>
 
-  <!-- Toast Notification -->
-  <div id="toast"></div>
+  <!-- BACK TO TOP -->
+  <button id="back-to-top" title="Back to top"><i class="fas fa-arrow-up"></i></button>
 
-  <footer>
-    <div class="footer-links">
-      <a href="/suppliers" data-page="suppliers">Suppliers</a>
-      <a href="/reviews" data-page="reviews">Reviews</a>
-      <a href="/order-status" data-page="order-status">Order Status</a>
+  <!-- MAIN APP CONTAINER -->
+  <main id="app"></main>
+
+  <!-- FOOTER -->
+  <footer id="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="footer-logo">amare.</span>
+        <p>Skincare that loves you back. Crafted with intention, rooted in nature.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="/" data-link>Home</a></li>
+          <li><a href="/products" data-link>Products</a></li>
+          <li><a href="/about" data-link>About</a></li>
+          <li><a href="/suppliers" data-link>Suppliers</a></li>
+          <li><a href="/reviews" data-link>Reviews</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="/contact" data-link>Contact</a></li>
+          <li><a href="/order-status" data-link>Order Status</a></li>
+          <li><a href="/cart" data-link>Your Cart</a></li>
+        </ul>
+      </div>
+      <div class="footer-social">
+        <h4>Follow Us</h4>
+        <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+      </div>
     </div>
-    <p>&copy; 2025 Amare Skincare. All rights reserved.</p>
+    <div class="footer-bottom">
+      <span>© 2025 Amare Skincare. All rights reserved. | BSBA Class Project</span>
+    </div>
   </footer>
 
   <script src="js/toast.js"></script>

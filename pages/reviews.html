@@ -1,15 +1,67 @@
-<h1>Customer Reviews</h1>
-<div id="reviews-list" style="max-width: 600px; margin: 2rem auto;"></div>
-<h2 style="text-align: center;">Leave a Review</h2>
-<form id="review-form" style="max-width: 500px; margin: 2rem auto; background: white; padding: 2rem; border-radius: var(--border-radius);">
-  <input type="text" id="review-name" placeholder="Your Name" required>
-  <select id="review-rating">
-    <option value="5">★★★★★</option>
-    <option value="4">★★★★☆</option>
-    <option value="3">★★★☆☆</option>
-    <option value="2">★★☆☆☆</option>
-    <option value="1">★☆☆☆☆</option>
-  </select>
-  <textarea id="review-text" placeholder="Your review..." required></textarea>
-  <button type="submit" class="btn">Submit Review</button>
-</form>
+<!-- REVIEWS PAGE -->
+<div class="page-hero">
+  <div class="page-hero-label">Community Voices</div>
+  <h1 class="page-hero-title">Reviews</h1>
+  <p style="font-size:.9rem;color:var(--text-muted);max-width:480px;line-height:1.8;margin-top:1.5rem;">
+    Real results from real people. Hear what our community has to say — and share your own Amare experience.
+  </p>
+</div>
+
+<div class="reviews-page">
+  <!-- SUMMARY STRIP -->
+  <div style="display:flex;gap:2px;margin-bottom:3rem;">
+    <div style="background:var(--accent);color:#fff;padding:2.5rem 3rem;flex:0 0 auto;">
+      <div style="font-size:4rem;font-weight:900;line-height:1;">4.9</div>
+      <div style="font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;opacity:.8;margin-top:.3rem;">Average Rating</div>
+      <div style="color:#f0a500;font-size:1.2rem;margin-top:.5rem;">★★★★★</div>
+    </div>
+    <div style="background:var(--surface);padding:2rem;flex:1;display:flex;align-items:center;">
+      <div>
+        <div class="section-label">Based on community reviews</div>
+        <p style="font-size:.85rem;color:var(--text-muted);line-height:1.8;max-width:500px;margin-top:.5rem;">
+          Our customers are our biggest advocates. Every review motivates us to keep improving, keep innovating, and keep loving what we do.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="reviews-layout">
+    <!-- REVIEW LIST -->
+    <div>
+      <div class="section-label">What People Are Saying</div>
+      <div id="review-list" class="review-list" style="margin-top:1.5rem;">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+
+    <!-- REVIEW FORM -->
+    <div>
+      <div class="review-form">
+        <div class="review-form-title">Share Your Experience</div>
+        <form id="review-form">
+          <div class="form-group">
+            <label class="form-label">Your Name</label>
+            <input type="text" id="review-name" class="form-input" placeholder="Maria Santos" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Rating</label>
+            <div class="star-rating">
+              <button type="button" class="star-btn" data-star="1">★</button>
+              <button type="button" class="star-btn" data-star="2">★</button>
+              <button type="button" class="star-btn" data-star="3">★</button>
+              <button type="button" class="star-btn" data-star="4">★</button>
+              <button type="button" class="star-btn" data-star="5">★</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Your Review</label>
+            <textarea id="review-text" class="form-textarea" placeholder="Tell us about your experience with Amare products..." required></textarea>
+          </div>
+          <button type="submit" class="btn-primary">
+            Submit Review <i class="fas fa-arrow-right btn-arrow" style="margin-left:.5rem;"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
