@@ -1,30 +1,31 @@
 <!-- SUPPLIERS PAGE -->
-<div class="page-hero">
-  <div class="page-hero-label">Transparency & Trust</div>
-  <h1 class="page-hero-title">Our Suppliers</h1>
-  <p style="font-size:.9rem;color:var(--text-muted);max-width:540px;line-height:1.8;margin-top:1.5rem;">
-    We're proud to work with verified, ethical partners who share our values of quality, sustainability, and responsibility. Knowing where our ingredients come from is central to everything we do.
-  </p>
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="section-label">Transparency</div>
+    <h1>Our Suppliers</h1>
+    <p>We work with verified, ethical partners who share our values of quality and responsibility.</p>
+  </div>
 </div>
 
-<div class="suppliers-page">
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;background:var(--surface);padding:2rem;margin-bottom:3rem;text-align:center;" class="fade-up">
-    <div>
-      <div style="font-size:2rem;font-weight:900;color:var(--accent);">8</div>
-      <div style="font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-muted);margin-top:.3rem;">Verified Partners</div>
-    </div>
-    <div>
-      <div style="font-size:2rem;font-weight:900;color:var(--accent);">100%</div>
-      <div style="font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-muted);margin-top:.3rem;">GMP Certified</div>
-    </div>
-    <div>
-      <div style="font-size:2rem;font-weight:900;color:var(--accent);">3+</div>
-      <div style="font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-muted);margin-top:.3rem;">Countries Sourced</div>
+<div class="section">
+  <div class="stats-row" style="margin-bottom:2.5rem;background:var(--white);border:1px solid var(--border);">
+    <div class="stats-row-inner">
+      <div class="stat-item"><div class="stat-num">8</div><div class="stat-label">Partners</div></div>
+      <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">GMP Certified</div></div>
+      <div class="stat-item"><div class="stat-num">3+</div><div class="stat-label">Countries</div></div>
+      <div class="stat-item"><div class="stat-num">PH</div><div class="stat-label">Proudly Local</div></div>
     </div>
   </div>
 
-  <div class="suppliers-grid" id="suppliers-list">
-    <!-- Rendered by JS inline below -->
+  <div class="suppliers-grid" id="suppliers-list"></div>
+
+  <div style="margin-top:3rem;background:var(--white);border:1px solid var(--border);padding:2rem;text-align:center;" class="fade-up">
+    <div class="section-label">Partner with Us</div>
+    <div class="section-title" style="font-size:1.3rem;margin-bottom:0.6rem;">Become an Amare Supplier</div>
+    <p class="section-desc" style="margin:0 auto 1.5rem;">
+      Are you a supplier of quality skincare ingredients or packaging? We'd love to talk.
+    </p>
+    <a href="/contact" data-link class="btn-main">Get in Touch</a>
   </div>
 </div>
 
@@ -33,29 +34,13 @@
   const el = document.getElementById('suppliers-list');
   if (!el || typeof SUPPLIERS === 'undefined') return;
   el.innerHTML = SUPPLIERS.map((s, i) => `
-    <div class="supplier-card fade-up" style="transition-delay:${i * 0.07}s">
-      <div class="supplier-logo">${s.category}</div>
+    <div class="supplier-card fade-up" style="transition-delay:${i * 0.06}s">
+      <div class="supplier-cat">${s.category}</div>
       <div class="supplier-name">${s.name}</div>
       <div class="supplier-desc">${s.description}</div>
-      <div style="display:flex;gap:.5rem;align-items:center;margin-top:.5rem;">
-        <i class="fas fa-map-marker-alt" style="font-size:.7rem;color:var(--accent);"></i>
-        <span class="supplier-tag">${s.location}</span>
-      </div>
+      <div class="supplier-location"><i class="fas fa-map-marker-alt"></i>${s.location}</div>
     </div>
   `).join('');
   if (typeof initFadeUps === 'function') initFadeUps();
 })();
 </script>
-
-<section style="padding:5rem 5%;background:var(--bg-light);text-align:center;" class="fade-up">
-  <div class="section-label">Partner with Us</div>
-  <h2 class="section-title" style="font-size:2rem;">Become an Amare Supplier</h2>
-  <p style="font-size:.9rem;color:var(--text-muted);max-width:480px;margin:1.5rem auto 2.5rem;line-height:1.8;">
-    Are you a supplier of quality skincare ingredients, packaging, or services? We'd love to explore a partnership built on mutual values and shared commitment to excellence.
-  </p>
-  <a href="/contact" data-link class="btn-hero-primary" style="width:auto;display:inline-flex;">
-    Get in Touch <i class="fas fa-arrow-right btn-arrow" style="margin-left:.5rem;"></i>
-  </a>
-</section>
-</script>
-</section>

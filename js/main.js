@@ -46,17 +46,14 @@ const TEAM = {
     { name: 'Mary Ann Dejoras', role: 'Chief Executive Officer', bio: 'A visionary leader with 10+ years in the beauty industry. Sophia founded Amare to make premium skincare accessible to all.', image: 'https://placehold.co/300x400/d4e0c5/a67c52?text=CEO' },
   ],
   management: [
-    { name: 'Marco Santos', role: 'Chief Marketing Officer', bio: 'Drives brand strategy and digital growth. Passionate about storytelling and authentic brand experiences.', image: 'https://placehold.co/300x400/c5d4e0/a67c52?text=CMO' },
-    { name: 'Elena Cruz', role: 'Head of Product Development', bio: 'Formulation chemist turned entrepreneur. Elena leads R&D to ensure every product is clinically validated and effective.', image: 'https://placehold.co/300x400/e0c5d4/a67c52?text=Head+Prod' },
-    { name: 'Rafael Lim', role: 'Finance Manager', bio: 'Keeps Amare financially healthy and sustainable. Rafael ensures resources are optimized for growth and social impact.', image: 'https://placehold.co/300x400/d4c5e0/a67c52?text=Finance' },
+    { name: 'Anarie Villarente', role: 'Chief Marketing Officer', bio: 'Drives brand strategy and digital growth. Passionate about storytelling and authentic brand experiences.', image: 'https://placehold.co/300x400/c5d4e0/a67c52?text=CMO' },
+    { name: 'Hacel C. Nadera', role: 'Head of Product Development', bio: 'Formulation chemist turned entrepreneur. Elena leads R&D to ensure every product is clinically validated and effective.', image: 'https://placehold.co/300x400/e0c5d4/a67c52?text=Head+Prod' },
+    { name: 'Mary Ann Dejoras', role: 'Finance Manager', bio: 'Keeps Amare financially healthy and sustainable. Rafael ensures resources are optimized for growth and social impact.', image: 'https://placehold.co/300x400/d4c5e0/a67c52?text=Finance' },
   ],
   staff: [
-    { name: 'Ana Villanueva', role: 'Social Media Manager', bio: 'Creates content that resonates and builds community. Ana turns customers into loyal brand advocates.', image: 'https://placehold.co/300x400/c5e0d4/a67c52?text=Social' },
-    { name: 'Luis Tan', role: 'E-Commerce Specialist', bio: 'Optimizes the online shopping experience from discovery to checkout. Data-driven and customer-obsessed.', image: 'https://placehold.co/300x400/e0d4c5/a67c52?text=Ecom' },
-    { name: 'Camille Bautista', role: 'Customer Experience Lead', bio: 'Ensures every customer interaction reflects Amare\'s values of care and warmth. Camille\'s team earns our 5-star reviews.', image: 'https://placehold.co/300x400/c5c5e0/a67c52?text=CX' },
-    { name: 'Diego Aquino', role: 'Logistics & Operations', bio: 'Makes sure orders arrive on time, every time. Diego manages our supply chain and warehouse operations with precision.', image: 'https://placehold.co/300x400/e0c5c5/a67c52?text=Ops' },
-    { name: 'Pia Navarro', role: 'Content & Brand Writer', bio: 'Crafts the words behind the brand. Pia writes everything from product descriptions to editorial features.', image: 'https://placehold.co/300x400/d4e0e0/a67c52?text=Writer' },
-    { name: 'Miguel Rivera', role: 'Graphic Designer', bio: 'Brings Amare\'s visual identity to life. Miguel designs everything from packaging to campaign visuals.', image: 'https://placehold.co/300x400/e0d4d4/a67c52?text=Design' },
+    { name: 'Hacel C. Nadera', role: 'Social Media Manager', bio: 'Creates content that resonates and builds community. Ana turns customers into loyal brand advocates.', image: 'https://placehold.co/300x400/c5e0d4/a67c52?text=Social' },
+    { name: 'Anarie Villarente', role: 'E-Commerce Specialist', bio: 'Optimizes the online shopping experience from discovery to checkout. Data-driven and customer-obsessed.', image: 'https://placehold.co/300x400/e0d4c5/a67c52?text=Ecom' },
+    { name: 'Mary Ann Dejoras', role: 'Customer Experience Lead', bio: 'Ensures every customer interaction reflects Amare\'s values of care and warmth. Camille\'s team earns our 5-star reviews.', image: 'https://placehold.co/300x400/c5c5e0/a67c52?text=CX' },
   ]
 };
 
@@ -173,7 +170,7 @@ function openQuickView(id) {
             <input type="number" class="qty-input" id="qv-qty" value="1" min="1">
             <button class="qty-btn" id="qv-plus">+</button>
           </div>
-          <button class="btn-primary" id="qv-add-btn">Add to Bag</button>
+          <button class="btn-main" id="qv-add-btn">Add to Bag</button>
         </div>
       </div>`;
     document.body.appendChild(overlay);
@@ -312,7 +309,7 @@ function renderCartPage() {
       <div class="cart-empty-state">
         <div class="cart-empty-icon"><i class="fas fa-shopping-bag"></i></div>
         <div class="cart-empty-text">Your bag is empty.<br>Time to treat yourself.</div>
-        <a href="/products" data-link class="btn-primary" style="width:auto;display:inline-flex;">Browse Products <i class="fas fa-arrow-right btn-arrow" style="margin-left:.5rem;"></i></a>
+        <a href="/products" data-link class="btn-main" style="width:auto;display:inline-flex;">Browse Products </a>
       </div>`;
     Router.bindLinks();
     return;
@@ -342,11 +339,11 @@ function renderCartPage() {
                   <div class="cart-item-name">${item.name}</div>
                   <div class="cart-item-cat">${item.category}</div>
                 </td>
-                <td class="cart-item-price">₱${item.price.toLocaleString()}</td>
+                <td class="cart-item-price-cell">₱${item.price.toLocaleString()}</td>
                 <td>
                   <input type="number" class="cart-qty-input" value="${item.qty}" min="1" max="${item.stock}" data-id="${item.id}">
                 </td>
-                <td class="cart-item-price">₱${(item.price * item.qty).toLocaleString()}</td>
+                <td class="cart-item-price-cell">₱${(item.price * item.qty).toLocaleString()}</td>
                 <td>
                   <button class="cart-remove-btn" data-id="${item.id}"><i class="fas fa-times"></i></button>
                 </td>
@@ -361,8 +358,8 @@ function renderCartPage() {
         <div class="cart-summary-row"><span>Shipping</span><span>${shipping === 0 ? 'FREE' : '₱' + shipping}</span></div>
         ${shipping > 0 ? `<div style="font-size:0.7rem;color:var(--accent);margin-bottom:.5rem;">Spend ₱${(2000-total).toLocaleString()} more for free shipping!</div>` : ''}
         <div class="cart-summary-row total"><span>Total</span><span>₱${(total + shipping).toLocaleString()}</span></div>
-        <a href="/checkout" data-link class="btn-primary cart-checkout-btn">Proceed to Checkout <i class="fas fa-arrow-right btn-arrow"></i></a>
-        <a href="/products" data-link class="btn-secondary" style="margin-top:.75rem;">Continue Shopping</a>
+        <a href="/checkout" data-link class="btn-main cart-checkout-btn">Proceed to Checkout </a>
+        <a href="/products" data-link class="btn-outline" style="margin-top:.75rem;">Continue Shopping</a>
       </div>
     </div>`;
 
@@ -434,7 +431,7 @@ function initCheckout() {
             <p style="color:var(--text-muted);font-size:.9rem;max-width:500px;margin:0 auto 2rem;">
               Your order has been placed. You'll receive a confirmation shortly. Use your order ID to track your shipment.
             </p>
-            <a href="/order-status" data-link class="btn-hero-primary" style="width:auto;display:inline-flex;">Track Order <i class="fas fa-arrow-right btn-arrow" style="margin-left:.5rem;"></i></a>
+            <a href="/order-status" data-link class="btn-main" style="width:auto;display:inline-flex;">Track Order </a>
           </div>`;
         Router.bindLinks();
       }

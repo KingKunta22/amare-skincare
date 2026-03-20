@@ -1,31 +1,34 @@
 <!-- HOME PAGE -->
 <section class="hero">
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <div class="hero-eyebrow">Amare Skincare — Where Skin Is Seen</div>
-    <h1 class="hero-title">SKIN<br>SEEN &amp;<br>KEEN.</h1>
-    <div class="hero-sub">Where skin is seen and always keen.</div>
-    <p class="hero-desc">
-      Amare Skincare is derived from the Italian word "amare," meaning to love. We are dedicated to creating gentle yet effective products that help you embrace your natural beauty — promoting confidence, radiance, and healthy skin every day.
-    </p>
-    <div class="hero-btns">
-      <a href="/products" data-link class="btn-hero-primary">
-        Shop Now <i class="fas fa-arrow-right btn-arrow"></i>
-      </a>
-      <a href="/about" data-link class="btn-hero-secondary">
-        Learn More
-      </a>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <span class="hero-tag">Skincare — Philippines</span>
+      <h1>Skin Seen.<br>Always Keen.</h1>
+      <div class="hero-sub">"Where skin is seen and always keen."</div>
+      <p>
+        Amare Skincare is derived from the Italian word "amare," meaning to love.
+        We create gentle, effective products that help you embrace your natural beauty
+        — promoting confidence, radiance, and healthy skin every day.
+      </p>
+      <div class="hero-btns">
+        <a href="/products" data-link class="btn-main">Shop Now</a>
+        <a href="/about" data-link class="btn-outline">Learn More</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="../images/glass-skin.jpg" alt="Amare Skincare">
     </div>
   </div>
 </section>
 
-<!-- FEATURES STRIP -->
-<div class="features-strip">
-  <div class="feature-item"><i class="fas fa-leaf"></i><span class="feature-item-text">Clean Ingredients</span></div>
-  <div class="feature-item"><i class="fas fa-flask"></i><span class="feature-item-text">Clinically Tested</span></div>
-  <div class="feature-item"><i class="fas fa-truck"></i><span class="feature-item-text">Nationwide Delivery</span></div>
-  <div class="feature-item"><i class="fas fa-recycle"></i><span class="feature-item-text">Eco Packaging</span></div>
-  <div class="feature-item"><i class="fas fa-heart"></i><span class="feature-item-text">Cruelty Free</span></div>
+<!-- FEATURES ROW -->
+<div class="features-row">
+  <div class="features-row-inner">
+    <div class="feature-item"><i class="fas fa-leaf"></i> Clean Ingredients</div>
+    <div class="feature-item"><i class="fas fa-flask"></i> Dermatologist Tested</div>
+    <div class="feature-item"><i class="fas fa-truck"></i> Nationwide Delivery</div>
+    <div class="feature-item"><i class="fas fa-heart"></i> Cruelty Free</div>
+  </div>
 </div>
 
 <!-- MARQUEE -->
@@ -39,7 +42,7 @@
     <span class="marquee-item">•</span>
     <span class="marquee-item">Embrace Your Natural Beauty</span>
     <span class="marquee-item">•</span>
-    <span class="marquee-item">Free Shipping on ₱2000+</span>
+    <span class="marquee-item">Free Shipping on ₱2,000+</span>
     <span class="marquee-item">•</span>
     <span class="marquee-item">Where Skin Is Seen</span>
     <span class="marquee-item">•</span>
@@ -49,82 +52,94 @@
     <span class="marquee-item">•</span>
     <span class="marquee-item">Embrace Your Natural Beauty</span>
     <span class="marquee-item">•</span>
-    <span class="marquee-item">Free Shipping on ₱2000+</span>
+    <span class="marquee-item">Free Shipping on ₱2,000+</span>
     <span class="marquee-item">•</span>
   </div>
 </div>
 
 <!-- FEATURED PRODUCTS -->
-<section class="section" style="background:var(--bg);">
-  <div class="fade-up">
+<div class="section">
+  <div class="section-header fade-up">
     <div class="section-label">Our Collection</div>
-    <h2 class="section-title">Best Sellers</h2>
-    <p class="section-desc">From cleansers to serums — each product is a commitment to healthier, more radiant skin.</p>
+    <div class="section-title">Best Sellers</div>
+    <p class="section-desc">From cleansers to serums — each product is crafted for healthier, more radiant skin.</p>
   </div>
-  <div style="margin-top:3rem;">
-    <div class="products-grid" id="featured-products">
-      <!-- Populated by JS -->
-    </div>
+  <div class="products-grid" id="featured-products">
+    <!-- Populated by JS -->
   </div>
-  <div style="text-align:center;margin-top:3rem;" class="fade-up">
-    <a href="/products" data-link class="btn-hero-primary" style="display:inline-flex;width:auto;">
-      View All Products <i class="fas fa-arrow-right btn-arrow"></i>
-    </a>
+  <div style="margin-top:2rem;text-align:center;" class="fade-up">
+    <a href="/products" data-link class="btn-main">View All Products</a>
   </div>
-</section>
+</div>
+
+<hr class="divider">
 
 <!-- EDITORIAL SPLIT -->
-<section style="display:grid;grid-template-columns:1fr 1fr;">
-  <div style="background:var(--text);padding:5rem;display:flex;flex-direction:column;justify-content:center;" class="fade-up">
-    <div class="section-label" style="color:var(--accent);">Our Philosophy</div>
-    <h2 class="section-title" style="color:#fff;">Skincare Is<br>Self-Love.</h2>
-    <p class="section-desc" style="color:rgba(255,255,255,0.7);max-width:400px;">
-      Amare Skincare is a reflection of our belief that skincare begins with self-love. We encourage you to embrace your skin with confidence, care for it with intention, and celebrate its unique glow.
+<div class="editorial-split">
+  <div class="editorial-text fade-up">
+    <div class="section-label">Our Philosophy</div>
+    <div class="section-title" style="margin-bottom:1rem;">Skincare Is<br>Self-Love.</div>
+    <p class="section-desc">
+      Amare Skincare is a reflection of our belief that skincare begins with self-love.
+      We encourage you to embrace your skin with confidence, care for it with intention,
+      and celebrate its unique glow.
     </p>
-    <a href="/about" data-link class="btn-hero-secondary" style="width:auto;display:inline-flex;margin-top:2rem;border-color:rgba(255,255,255,0.5);color:#fff;">
-      Our Story
-    </a>
+    <a href="/about" data-link class="btn-text" style="margin-top:1.5rem;">Read Our Story <i class="fas fa-arrow-right"></i></a>
   </div>
-  <div style="background:var(--bg-light);aspect-ratio:1;display:flex;align-items:center;justify-content:center;padding:3rem;">
-    <img src="https://placehold.co/500x500/e0d5c0/a67c52?text=amare." alt="Amare Brand" style="width:100%;height:100%;object-fit:cover;">
+  <div class="editorial-img">
+    <img src="../images/hero.jpg" alt="Amare brand">
   </div>
-</section>
+</div>
+
+<!-- STATS -->
+<div class="stats-row">
+  <div class="stats-row-inner">
+    <div class="stat-item fade-up"><div class="stat-num">18</div><div class="stat-label">Products</div></div>
+    <div class="stat-item fade-up" style="transition-delay:.07s"><div class="stat-num">10K+</div><div class="stat-label">Customers</div></div>
+    <div class="stat-item fade-up" style="transition-delay:.14s"><div class="stat-num">100%</div><div class="stat-label">Cruelty Free</div></div>
+    <div class="stat-item fade-up" style="transition-delay:.21s"><div class="stat-num">4.9★</div><div class="stat-label">Avg. Rating</div></div>
+  </div>
+</div>
 
 <!-- WHY AMARE -->
-<section class="section fade-up" style="background:var(--bg-light);">
-  <div class="section-label">Why Choose Us</div>
-  <h2 class="section-title">The Amare Difference</h2>
-  <div class="values-grid" style="margin-top:3rem;">
+<div class="section values-section">
+  <div class="section-header fade-up">
+    <div class="section-label">Why Choose Us</div>
+    <div class="section-title">The Amare Difference</div>
+  </div>
+  <div class="values-grid">
     <div class="value-card fade-up">
-      <div class="value-icon"><i class="fas fa-microscope"></i></div>
-      <div class="value-title">Research-First</div>
-      <div class="value-text">Every formula begins in the lab. We validate efficacy before claiming results.</div>
+      <div class="value-icon"><i class="fas fa-heart"></i></div>
+      <div class="value-title">Made with Love</div>
+      <div class="value-text">Every formula is crafted with genuine care because we believe what goes on your skin should come from the heart.</div>
     </div>
-    <div class="value-card fade-up" style="transition-delay:.1s">
+    <div class="value-card fade-up" style="transition-delay:.07s">
       <div class="value-icon"><i class="fas fa-seedling"></i></div>
-      <div class="value-title">Ethically Sourced</div>
-      <div class="value-text">Ingredients are traceable, sustainable, and responsibly harvested from verified suppliers.</div>
+      <div class="value-title">Gentle & Effective</div>
+      <div class="value-text">Powerful results don't have to be harsh. Formulas that are kind to your skin while delivering real, visible change.</div>
     </div>
-    <div class="value-card fade-up" style="transition-delay:.2s">
-      <div class="value-icon"><i class="fas fa-shield-alt"></i></div>
-      <div class="value-title">Safety First</div>
-      <div class="value-text">Dermatologist-tested formulas. No parabens, no sulfates, no harmful additives. Ever.</div>
+    <div class="value-card fade-up" style="transition-delay:.14s">
+      <div class="value-icon"><i class="fas fa-eye"></i></div>
+      <div class="value-title">Skin Is Seen</div>
+      <div class="value-text">We see every skin type, tone, and concern. Amare products are thoughtfully designed for everyone.</div>
     </div>
-    <div class="value-card fade-up" style="transition-delay:.3s">
-      <div class="value-icon"><i class="fas fa-users"></i></div>
-      <div class="value-title">For Everyone</div>
-      <div class="value-text">Designed for all skin types, tones, and concerns. Skincare without exclusion.</div>
+    <div class="value-card fade-up" style="transition-delay:.21s">
+      <div class="value-icon"><i class="fas fa-star"></i></div>
+      <div class="value-title">Confidence First</div>
+      <div class="value-text">Our goal isn't to change how you look — it's to help you feel fully confident in the skin you're in.</div>
     </div>
   </div>
-</section>
+</div>
 
 <!-- NEWSLETTER -->
-<section class="newsletter">
-  <div class="section-label" style="color:var(--accent);">Stay Connected</div>
-  <h2 class="section-title">Get Skincare Secrets<br>Straight to Your Inbox</h2>
-  <p class="section-desc">Join 10,000+ skincare lovers. Be the first to know about new launches, exclusive deals, and expert tips.</p>
-  <form id="newsletter-form" class="newsletter-form" style="margin-top:2rem;">
-    <input type="email" class="newsletter-input" placeholder="your@email.com" required>
-    <button type="submit" class="newsletter-btn">Subscribe</button>
-  </form>
-</section>
+<div class="newsletter-strip">
+  <div class="newsletter-inner">
+    <div class="section-label">Stay Connected</div>
+    <h2>Get Updates from Amare</h2>
+    <p>Be the first to know about new products, promos, and skincare tips.</p>
+    <form id="newsletter-form" class="newsletter-form">
+      <input type="email" class="newsletter-input" placeholder="your@email.com" required>
+      <button type="submit" class="newsletter-btn">Subscribe</button>
+    </form>
+  </div>
+</div>

@@ -1,43 +1,37 @@
 <!-- REVIEWS PAGE -->
-<div class="page-hero">
-  <div class="page-hero-label">Community Voices</div>
-  <h1 class="page-hero-title">Reviews</h1>
-  <p style="font-size:.9rem;color:var(--text-muted);max-width:480px;line-height:1.8;margin-top:1.5rem;">
-    Real results from real people. Hear what our community has to say — and share your own Amare experience.
-  </p>
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="section-label">Community</div>
+    <h1>Reviews</h1>
+    <p>Real results from real people. Share your Amare experience.</p>
+  </div>
 </div>
 
-<div class="reviews-page">
-  <!-- SUMMARY STRIP -->
-  <div style="display:flex;gap:2px;margin-bottom:3rem;">
-    <div style="background:var(--accent);color:#fff;padding:2.5rem 3rem;flex:0 0 auto;">
-      <div style="font-size:4rem;font-weight:900;line-height:1;">4.9</div>
-      <div style="font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;opacity:.8;margin-top:.3rem;">Average Rating</div>
-      <div style="color:#f0a500;font-size:1.2rem;margin-top:.5rem;">★★★★★</div>
+<div class="reviews-outer">
+  <!-- RATING SUMMARY -->
+  <div style="display:flex;align-items:center;gap:2rem;background:var(--white);border:1px solid var(--border);padding:1.5rem;margin-bottom:2.5rem;" class="fade-up">
+    <div style="text-align:center;flex-shrink:0;">
+      <div style="font-size:2.8rem;font-weight:800;color:var(--accent);line-height:1;">4.9</div>
+      <div style="color:#e6a817;font-size:1rem;margin:4px 0;">★★★★★</div>
+      <div style="font-size:0.7rem;color:var(--text-lt);">Average Rating</div>
     </div>
-    <div style="background:var(--surface);padding:2rem;flex:1;display:flex;align-items:center;">
-      <div>
-        <div class="section-label">Based on community reviews</div>
-        <p style="font-size:.85rem;color:var(--text-muted);line-height:1.8;max-width:500px;margin-top:.5rem;">
-          Our customers are our biggest advocates. Every review motivates us to keep improving, keep innovating, and keep loving what we do.
-        </p>
-      </div>
-    </div>
+    <div style="width:1px;height:60px;background:var(--border);flex-shrink:0;"></div>
+    <p style="font-size:0.83rem;color:var(--text-mid);line-height:1.8;">
+      Our customers are our biggest advocates. Every review motivates us to keep improving, innovating, and loving what we do.
+    </p>
   </div>
 
   <div class="reviews-layout">
-    <!-- REVIEW LIST -->
+    <!-- LIST -->
     <div>
-      <div class="section-label">What People Are Saying</div>
-      <div id="review-list" class="review-list" style="margin-top:1.5rem;">
-        <!-- Rendered by JS -->
-      </div>
+      <div class="section-label" style="margin-bottom:1rem;">What People Are Saying</div>
+      <div id="review-list"></div>
     </div>
 
-    <!-- REVIEW FORM -->
+    <!-- FORM -->
     <div>
-      <div class="review-form">
-        <div class="review-form-title">Share Your Experience</div>
+      <div class="review-form-box">
+        <div class="review-form-title">Write a Review</div>
         <form id="review-form">
           <div class="form-group">
             <label class="form-label">Your Name</label>
@@ -55,11 +49,9 @@
           </div>
           <div class="form-group">
             <label class="form-label">Your Review</label>
-            <textarea id="review-text" class="form-textarea" placeholder="Tell us about your experience with Amare products..." required></textarea>
+            <textarea id="review-text" class="form-textarea" placeholder="Tell us about your experience..." required></textarea>
           </div>
-          <button type="submit" class="btn-primary">
-            Submit Review <i class="fas fa-arrow-right btn-arrow" style="margin-left:.5rem;"></i>
-          </button>
+          <button type="submit" class="btn-main" style="width:100%;">Submit Review</button>
         </form>
       </div>
     </div>
