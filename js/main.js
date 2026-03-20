@@ -43,7 +43,7 @@ const PRODUCTS = [
 // ============================================================
 const TEAM = {
   executive: [
-    { name: 'Sophia Reyes', role: 'Chief Executive Officer', bio: 'A visionary leader with 10+ years in the beauty industry. Sophia founded Amare to make premium skincare accessible to all.', image: 'https://placehold.co/300x400/d4e0c5/a67c52?text=CEO' },
+    { name: 'Mary Ann Dejoras', role: 'Chief Executive Officer', bio: 'A visionary leader with 10+ years in the beauty industry. Sophia founded Amare to make premium skincare accessible to all.', image: 'https://placehold.co/300x400/d4e0c5/a67c52?text=CEO' },
   ],
   management: [
     { name: 'Marco Santos', role: 'Chief Marketing Officer', bio: 'Drives brand strategy and digital growth. Passionate about storytelling and authentic brand experiences.', image: 'https://placehold.co/300x400/c5d4e0/a67c52?text=CMO' },

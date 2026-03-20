@@ -309,17 +309,42 @@ input, textarea, select { font-family: var(--font); }
 /* ============================================================
    HERO
    ============================================================ */
+
+/* Hero background image fades in (pure opacity, no movement) */
+@keyframes heroBgFade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Hero text elements rise up from below and fade in, staggered */
+@keyframes heroRiseUp {
+  from { opacity: 0; transform: translateY(48px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 .hero {
   position: relative;
   min-height: calc(100vh - var(--nav-h));
   display: flex;
   align-items: center;
-  background: url('../images/hero.jpg') center/cover no-repeat;
   overflow: hidden;
+  /* The bg image itself fades in */
+  background: url('../images/hero.jpg') center/cover no-repeat;
+  animation: heroBgFade 1.4s ease forwards;
+}
+/* Fallback colour while the image loads / if no image placed */
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: var(--bg-light);
+  z-index: 0;
 }
 .hero-overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(105deg, rgba(236,222,193,0.92) 40%, rgba(236,222,193,0.5) 100%);
+  background: linear-gradient(105deg, rgba(236,222,193,0.93) 42%, rgba(236,222,193,0.55) 100%);
+  z-index: 1;
+  /* Also fade-in with the image */
+  animation: heroBgFade 1.4s ease forwards;
 }
 .hero-content {
   position: relative;
@@ -327,6 +352,8 @@ input, textarea, select { font-family: var(--font); }
   padding: 0 5%;
   max-width: 680px;
 }
+
+/* Staggered rise-up for each child element */
 .hero-eyebrow {
   font-size: 0.72rem;
   letter-spacing: 0.3em;
@@ -334,6 +361,8 @@ input, textarea, select { font-family: var(--font); }
   color: var(--accent);
   margin-bottom: 1.2rem;
   font-weight: 700;
+  opacity: 0;
+  animation: heroRiseUp 0.8s cubic-bezier(.22,.61,.36,1) 0.2s forwards;
 }
 .hero-title {
   font-size: clamp(3.5rem, 8vw, 7rem);
@@ -342,6 +371,8 @@ input, textarea, select { font-family: var(--font); }
   letter-spacing: -2px;
   color: var(--text);
   margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: heroRiseUp 0.9s cubic-bezier(.22,.61,.36,1) 0.45s forwards;
 }
 .hero-sub {
   font-size: 1.1rem;
@@ -349,6 +380,8 @@ input, textarea, select { font-family: var(--font); }
   color: var(--accent-dark);
   margin-bottom: 1.2rem;
   letter-spacing: 0.02em;
+  opacity: 0;
+  animation: heroRiseUp 0.8s cubic-bezier(.22,.61,.36,1) 0.65s forwards;
 }
 .hero-desc {
   font-size: 0.9rem;
@@ -356,8 +389,16 @@ input, textarea, select { font-family: var(--font); }
   color: var(--text-muted);
   max-width: 420px;
   margin-bottom: 2.5rem;
+  opacity: 0;
+  animation: heroRiseUp 0.8s cubic-bezier(.22,.61,.36,1) 0.8s forwards;
 }
-.hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+.hero-btns {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: heroRiseUp 0.8s cubic-bezier(.22,.61,.36,1) 0.95s forwards;
+}
 .btn-hero-primary {
   display: inline-flex;
   align-items: center;
