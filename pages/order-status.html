@@ -1,0 +1,8 @@
+<h1>Track Your Order</h1>
+<form id="track-form" style="max-width: 400px; margin: 2rem auto; display: flex; gap: 1rem;">
+  <input type="text" placeholder="Enter Order ID (e.g. #12345)" required>
+  <button type="submit" class="btn">Track</button>
+</form>
+<div id="track-result" style="display:none; text-align: center; margin: 2rem; padding: 1rem; background: white; border-radius: var(--border-radius);">
+  <p>Order #<span id="order-id"></span> is <strong>Out for Delivery</strong>.</p>
+</div>

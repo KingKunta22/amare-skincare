@@ -1,0 +1,19 @@
+<h1>Checkout</h1>
+<form id="checkout-form" style="max-width: 500px; margin: 2rem auto; background: white; padding: 2rem; border-radius: var(--border-radius);">
+  <label for="name">Full Name</label>
+  <input type="text" id="name" required>
+  <label for="address">Address</label>
+  <textarea id="address" required></textarea>
+  <label for="card">Card Number (simulated)</label>
+  <input type="text" id="card" placeholder="**** **** **** 1234" required>
+  <label for="expiry">Expiry</label>
+  <input type="text" id="expiry" placeholder="MM/YY" required>
+  <label for="cvv">CVV</label>
+  <input type="text" id="cvv" placeholder="123" required>
+  <button type="submit" class="btn" style="width: 100%;">Place Order</button>
+</form>
+<div id="order-confirmation" style="display:none; text-align: center; margin: 3rem;">
+  <h2>Thank you! Your order has been placed.</h2>
+  <p>A confirmation email has been sent (simulated).</p>
+  <a href="/products" class="btn" data-page="products">Continue Shopping</a>
+</div>

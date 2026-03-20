@@ -1,0 +1,15 @@
+<h1>Customer Reviews</h1>
+<div id="reviews-list" style="max-width: 600px; margin: 2rem auto;"></div>
+<h2 style="text-align: center;">Leave a Review</h2>
+<form id="review-form" style="max-width: 500px; margin: 2rem auto; background: white; padding: 2rem; border-radius: var(--border-radius);">
+  <input type="text" id="review-name" placeholder="Your Name" required>
+  <select id="review-rating">
+    <option value="5">★★★★★</option>
+    <option value="4">★★★★☆</option>
+    <option value="3">★★★☆☆</option>
+    <option value="2">★★☆☆☆</option>
+    <option value="1">★☆☆☆☆</option>
+  </select>
+  <textarea id="review-text" placeholder="Your review..." required></textarea>
+  <button type="submit" class="btn">Submit Review</button>
+</form>
