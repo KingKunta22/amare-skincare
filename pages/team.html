@@ -8,25 +8,87 @@
 </div>
 
 <div class="section">
-  <div class="team-section">
-    <div class="team-tier">
-      <div class="team-tier-label">Executive Leadership</div>
-      <div class="team-grid" id="team-executive" style="max-width:280px;"></div>
+
+  <!-- ORG CHART HIERARCHY -->
+  <div class="org-chart">
+
+    <!-- TIER 1: CEO -->
+    <div class="org-tier org-tier-1">
+      <div class="team-tier-label" style="text-align:center;margin-bottom:1.5rem;">Chief Executive Officer</div>
+      <div class="team-grid" id="team-executive" style="max-width:300px;margin:0 auto;"></div>
     </div>
-    <div class="team-tier">
-      <div class="team-tier-label">Management</div>
-      <div class="team-grid" id="team-management"></div>
+
+    <!-- CONNECTOR -->
+    <div class="org-connector">
+      <div class="org-line-v"></div>
     </div>
-    <div class="team-tier">
-      <div class="team-tier-label">Team Members</div>
-      <div class="team-grid" id="team-staff"></div>
+
+    <!-- TIER 2: GM -->
+    <div class="org-tier org-tier-2">
+      <div class="team-tier-label" style="text-align:center;margin-bottom:1.5rem;">General Manager</div>
+      <div class="team-grid" id="team-management" style="max-width:300px;margin:0 auto;"></div>
     </div>
+
+    <!-- CONNECTOR -->
+    <div class="org-connector">
+      <div class="org-line-v"></div>
+    </div>
+
+    <!-- TIER 3: Admin -->
+    <div class="org-tier org-tier-3">
+      <div class="team-tier-label" style="text-align:center;margin-bottom:1.5rem;">Administration</div>
+      <div class="team-grid" id="team-staff" style="max-width:300px;margin:0 auto;"></div>
+    </div>
+
   </div>
 
-  <div style="margin-top:3rem;background:#fff;border:1px solid var(--border);padding:2rem;text-align:center;" class="fade-up">
-    <div class="section-label">Careers</div>
-    <div class="section-title" style="font-size:1.4rem;margin-bottom:0.6rem;">Want to Join the Team?</div>
+  <!-- CAREERS CTA -->
+  <div style="margin-top:4rem;background:var(--white);border:1px solid var(--border);padding:2.5rem;text-align:center;" class="fade-up">
+    <div class="section-label">Work with Us</div>
+    <div class="section-title" style="margin-bottom:0.6rem;">Want to Join the Team?</div>
     <p class="section-desc" style="margin:0 auto 1.5rem;">We're always looking for people who believe in the power of self-love and great skincare.</p>
     <a href="/contact" data-link class="btn-main">Get in Touch</a>
   </div>
 </div>
+
+<style>
+  /* Org chart layout */
+  .org-chart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+  .org-tier {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .org-connector {
+    display: flex;
+    justify-content: center;
+    padding: 0.6rem 0;
+  }
+  .org-line-v {
+    width: 2px;
+    height: 40px;
+    background: var(--border);
+  }
+
+  /* Make cards wider and more prominent for TV display */
+  #team-executive .team-card,
+  #team-management .team-card,
+  #team-staff .team-card {
+    width: 280px;
+  }
+
+  /* CEO card gets a highlighted border */
+  #team-executive .team-card {
+    border: 2px solid var(--accent);
+    box-shadow: 0 4px 20px rgba(107,143,113,0.18);
+  }
+  #team-management .team-card {
+    border: 1px solid var(--accent-lt);
+  }
+</style>

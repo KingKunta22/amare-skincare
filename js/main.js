@@ -8,34 +8,34 @@
 // ============================================================
 const PRODUCTS = [
   // --- CLEANSERS ---
-  { id: 'c1', name: 'Gentle Foam Cleanser', category: 'Cleansers', price: 650, stock: 42, image: 'https://placehold.co/400x500/e8dbc5/a67c52?text=Foam+Cleanser', description: 'A gentle, sulfate-free foaming cleanser that removes impurities without stripping the skin\'s natural moisture barrier. Enriched with aloe vera and green tea extract.' },
-  { id: 'c2', name: 'Micellar Cleansing Water', category: 'Cleansers', price: 550, stock: 5, image: 'https://placehold.co/400x500/dde8c5/a67c52?text=Micellar+Water', description: 'Effortlessly dissolves makeup and sunscreen. Infused with rose water and chamomile for a soothing, residue-free cleanse. Dermatologist-tested.' },
-  { id: 'c3', name: 'Exfoliating Clay Cleanser', category: 'Cleansers', price: 720, stock: 18, image: 'https://placehold.co/400x500/c5d8e8/a67c52?text=Clay+Cleanser', description: 'A gentle clay-based cleanser with fine walnut shell powder that buffs away dead skin cells while absorbing excess oil. Leaves skin radiant and smooth.' },
+  { id: 'c1', name: 'Gentle Foam Cleanser', category: 'Cleansers', price: 650, stock: 42, image: 'https://placehold.co/400x500/dce8dc/6b8f71?text=Foam+Cleanser', description: 'A gentle, sulfate-free foaming cleanser that removes impurities without stripping the skin\'s natural moisture barrier. Enriched with aloe vera and green tea extract.' },
+  { id: 'c2', name: 'Micellar Cleansing Water', category: 'Cleansers', price: 550, stock: 5, image: 'https://placehold.co/400x500/d4e8d4/6b8f71?text=Micellar+Water', description: 'Effortlessly dissolves makeup and sunscreen. Infused with rose water and chamomile for a soothing, residue-free cleanse. Dermatologist-tested.' },
+  { id: 'c3', name: 'Exfoliating Clay Cleanser', category: 'Cleansers', price: 720, stock: 18, image: 'https://placehold.co/400x500/c5ddc8/6b8f71?text=Clay+Cleanser', description: 'A gentle clay-based cleanser with fine walnut shell powder that buffs away dead skin cells while absorbing excess oil. Leaves skin radiant and smooth.' },
 
   // --- TONERS ---
-  { id: 't1', name: 'Hydrating Rose Toner', category: 'Toners', price: 580, stock: 30, image: 'https://placehold.co/400x500/e8c5d8/a67c52?text=Rose+Toner', description: 'Alcohol-free formula infused with Bulgarian rose water and hyaluronic acid. Restores pH balance, hydrates deeply, and preps skin for serums.' },
-  { id: 't2', name: 'Pore-Refining BHA Toner', category: 'Toners', price: 850, stock: 3, image: 'https://placehold.co/400x500/c5e8d8/a67c52?text=BHA+Toner', description: 'Contains 2% salicylic acid to unclog pores, reduce blackheads, and smooth skin texture. Niacinamide brightens and controls shine throughout the day.' },
-  { id: 't3', name: 'Soothing Green Tea Toner', category: 'Toners', price: 620, stock: 25, image: 'https://placehold.co/400x500/d8e8c5/a67c52?text=Green+Tea+Toner', description: 'Calms redness and irritation with a concentrated blend of green tea polyphenols and centella asiatica. Ideal for sensitive and reactive skin types.' },
+  { id: 't1', name: 'Hydrating Rose Toner', category: 'Toners', price: 580, stock: 30, image: 'https://placehold.co/400x500/d4e4d4/6b8f71?text=Rose+Toner', description: 'Alcohol-free formula infused with Bulgarian rose water and hyaluronic acid. Restores pH balance, hydrates deeply, and preps skin for serums.' },
+  { id: 't2', name: 'Pore-Refining BHA Toner', category: 'Toners', price: 850, stock: 3, image: 'https://placehold.co/400x500/c8e4cc/6b8f71?text=BHA+Toner', description: 'Contains 2% salicylic acid to unclog pores, reduce blackheads, and smooth skin texture. Niacinamide brightens and controls shine throughout the day.' },
+  { id: 't3', name: 'Soothing Green Tea Toner', category: 'Toners', price: 620, stock: 25, image: 'https://placehold.co/400x500/cce4cc/6b8f71?text=Green+Tea+Toner', description: 'Calms redness and irritation with a concentrated blend of green tea polyphenols and centella asiatica. Ideal for sensitive and reactive skin types.' },
 
   // --- MOISTURIZERS ---
-  { id: 'm1', name: 'Luminous Glow Cream', category: 'Moisturizers', price: 1200, stock: 22, image: 'https://placehold.co/400x500/e8e2c5/a67c52?text=Glow+Cream', description: 'Lightweight, non-greasy moisturizer with ceramides and niacinamide. Provides 48-hour hydration and gives skin a luminous, lit-from-within glow.' },
-  { id: 'm2', name: 'Ultra-Rich Night Butter', category: 'Moisturizers', price: 1450, stock: 14, image: 'https://placehold.co/400x500/e8c5c5/a67c52?text=Night+Butter', description: 'Deeply nourishing overnight treatment with shea butter, squalane, and retinol. Wake up to visibly softer, plumper, more youthful-looking skin.' },
-  { id: 'm3', name: 'Oil-Free Matte Gel', category: 'Moisturizers', price: 980, stock: 0, image: 'https://placehold.co/400x500/c5c5e8/a67c52?text=Matte+Gel', description: 'A water-gel formula that hydrates without clogging pores. Controls oil production for up to 12 hours. Perfect under makeup for a flawless, matte base.' },
+  { id: 'm1', name: 'Luminous Glow Cream', category: 'Moisturizers', price: 1200, stock: 22, image: 'https://placehold.co/400x500/d8e8d8/6b8f71?text=Glow+Cream', description: 'Lightweight, non-greasy moisturizer with ceramides and niacinamide. Provides 48-hour hydration and gives skin a luminous, lit-from-within glow.' },
+  { id: 'm2', name: 'Ultra-Rich Night Butter', category: 'Moisturizers', price: 1450, stock: 14, image: 'https://placehold.co/400x500/c5dcc5/6b8f71?text=Night+Butter', description: 'Deeply nourishing overnight treatment with shea butter, squalane, and retinol. Wake up to visibly softer, plumper, more youthful-looking skin.' },
+  { id: 'm3', name: 'Oil-Free Matte Gel', category: 'Moisturizers', price: 980, stock: 0, image: 'https://placehold.co/400x500/b8d4b8/6b8f71?text=Matte+Gel', description: 'A water-gel formula that hydrates without clogging pores. Controls oil production for up to 12 hours. Perfect under makeup for a flawless, matte base.' },
 
   // --- SERUMS ---
-  { id: 's1', name: 'Vitamin C Brightening Serum', category: 'Serums', price: 1800, stock: 19, image: 'https://placehold.co/400x500/e8d4c5/a67c52?text=Vit+C+Serum', description: '20% stabilized Vitamin C with ferulic acid and vitamin E. Fades dark spots, boosts collagen, and shields skin from free radical damage.' },
-  { id: 's2', name: 'Hyaluronic Acid Plumping Serum', category: 'Serums', price: 1350, stock: 31, image: 'https://placehold.co/400x500/c5e8e8/a67c52?text=HA+Serum', description: 'Three molecular weights of hyaluronic acid penetrate different layers of skin for multi-depth hydration. Visibly plumps and reduces the appearance of fine lines.' },
-  { id: 's3', name: 'Retinol Renewal Serum', category: 'Serums', price: 2200, stock: 8, image: 'https://placehold.co/400x500/d4c5e8/a67c52?text=Retinol+Serum', description: '0.5% encapsulated retinol with bakuchiol for a gentler approach to anti-aging. Smooths texture, minimizes pores, and evens skin tone overnight.' },
-  { id: 's4', name: 'Niacinamide 10% Serum', category: 'Serums', price: 890, stock: 45, image: 'https://placehold.co/400x500/e8e8c5/a67c52?text=Niacinamide', description: 'High-strength niacinamide serum that targets enlarged pores, uneven skin tone, and excessive sebum production. Pairs well with any moisturizer.' },
+  { id: 's1', name: 'Vitamin C Brightening Serum', category: 'Serums', price: 1800, stock: 19, image: 'https://placehold.co/400x500/d0e4d0/6b8f71?text=Vit+C+Serum', description: '20% stabilized Vitamin C with ferulic acid and vitamin E. Fades dark spots, boosts collagen, and shields skin from free radical damage.' },
+  { id: 's2', name: 'Hyaluronic Acid Plumping Serum', category: 'Serums', price: 1350, stock: 31, image: 'https://placehold.co/400x500/bcdcbc/6b8f71?text=HA+Serum', description: 'Three molecular weights of hyaluronic acid penetrate different layers of skin for multi-depth hydration. Visibly plumps and reduces the appearance of fine lines.' },
+  { id: 's3', name: 'Retinol Renewal Serum', category: 'Serums', price: 2200, stock: 8, image: 'https://placehold.co/400x500/c4dcc4/6b8f71?text=Retinol+Serum', description: '0.5% encapsulated retinol with bakuchiol for a gentler approach to anti-aging. Smooths texture, minimizes pores, and evens skin tone overnight.' },
+  { id: 's4', name: 'Niacinamide 10% Serum', category: 'Serums', price: 890, stock: 45, image: 'https://placehold.co/400x500/d4e8d4/6b8f71?text=Niacinamide', description: 'High-strength niacinamide serum that targets enlarged pores, uneven skin tone, and excessive sebum production. Pairs well with any moisturizer.' },
 
   // --- MASKS ---
-  { id: 'k1', name: 'Kaolin Purifying Clay Mask', category: 'Masks', price: 750, stock: 27, image: 'https://placehold.co/400x500/e8c5e0/a67c52?text=Clay+Mask', description: 'Deep-cleansing kaolin and bentonite clay mask that draws out impurities, tightens pores, and leaves skin feeling impossibly smooth.' },
-  { id: 'k2', name: 'Honey & Oat Soothing Mask', category: 'Masks', price: 820, stock: 16, image: 'https://placehold.co/400x500/e8dac5/a67c52?text=Honey+Mask', description: 'A creamy, leave-on or wash-off treatment mask with raw manuka honey and colloidal oatmeal. Calms inflammation and restores suppleness to stressed skin.' },
-  { id: 'k3', name: 'Sheet Mask Collection (5pcs)', category: 'Masks', price: 450, stock: 60, image: 'https://placehold.co/400x500/c5e8c5/a67c52?text=Sheet+Masks', description: 'Set of 5 essence-soaked sheet masks in different formulas: Brightening, Hydrating, Firming, Soothing, and Anti-Aging. One for every skin concern.' },
+  { id: 'k1', name: 'Kaolin Purifying Clay Mask', category: 'Masks', price: 750, stock: 27, image: 'https://placehold.co/400x500/c8e0c8/6b8f71?text=Clay+Mask', description: 'Deep-cleansing kaolin and bentonite clay mask that draws out impurities, tightens pores, and leaves skin feeling impossibly smooth.' },
+  { id: 'k2', name: 'Honey & Oat Soothing Mask', category: 'Masks', price: 820, stock: 16, image: 'https://placehold.co/400x500/d0e8d0/6b8f71?text=Honey+Mask', description: 'A creamy, leave-on or wash-off treatment mask with raw manuka honey and colloidal oatmeal. Calms inflammation and restores suppleness to stressed skin.' },
+  { id: 'k3', name: 'Sheet Mask Collection (5pcs)', category: 'Masks', price: 450, stock: 60, image: 'https://placehold.co/400x500/b4dcb4/6b8f71?text=Sheet+Masks', description: 'Set of 5 essence-soaked sheet masks in different formulas: Brightening, Hydrating, Firming, Soothing, and Anti-Aging. One for every skin concern.' },
 
   // --- SUNSCREEN ---
-  { id: 'p1', name: 'Invisible Shield SPF 50+', category: 'Sunscreen', price: 1100, stock: 38, image: 'https://placehold.co/400x500/e8e8d4/a67c52?text=SPF+50', description: 'Lightweight, invisible, broad-spectrum sunscreen that leaves zero white cast. Water-resistant for 4 hours. Enriched with antioxidants for extra defense.' },
-  { id: 'p2', name: 'Dewy Tinted SPF 40', category: 'Sunscreen', price: 950, stock: 12, image: 'https://placehold.co/400x500/d4e8e0/a67c52?text=Tinted+SPF', description: 'A hybrid sunscreen and sheer tinted moisturizer with SPF 40. Evens skin tone, provides protection, and gives a natural dewy finish. Available in 3 shades.' },
+  { id: 'p1', name: 'Invisible Shield SPF 50+', category: 'Sunscreen', price: 1100, stock: 38, image: 'https://placehold.co/400x500/d8ecd8/6b8f71?text=SPF+50', description: 'Lightweight, invisible, broad-spectrum sunscreen that leaves zero white cast. Water-resistant for 4 hours. Enriched with antioxidants for extra defense.' },
+  { id: 'p2', name: 'Dewy Tinted SPF 40', category: 'Sunscreen', price: 950, stock: 12, image: 'https://placehold.co/400x500/c4e0c4/6b8f71?text=Tinted+SPF', description: 'A hybrid sunscreen and sheer tinted moisturizer with SPF 40. Evens skin tone, provides protection, and gives a natural dewy finish. Available in 3 shades.' },
 ];
 
 // ============================================================
@@ -43,17 +43,13 @@ const PRODUCTS = [
 // ============================================================
 const TEAM = {
   executive: [
-    { name: 'Mary Ann Dejoras', role: 'Chief Executive Officer', bio: 'A visionary leader with 10+ years in the beauty industry. Sophia founded Amare to make premium skincare accessible to all.', image: 'https://placehold.co/300x400/d4e0c5/a67c52?text=CEO' },
+    { name: 'Dejoras', role: 'Chief Executive Officer', bio: 'Leads Amare Skincare with vision and passion. Dedicated to building a brand rooted in self-love and genuine care for every customer.', image: 'https://placehold.co/300x400/d4e8d4/6b8f71?text=CEO' },
   ],
   management: [
-    { name: 'Anarie Villarente', role: 'Chief Marketing Officer', bio: 'Drives brand strategy and digital growth. Passionate about storytelling and authentic brand experiences.', image: 'https://placehold.co/300x400/c5d4e0/a67c52?text=CMO' },
-    { name: 'Hacel C. Nadera', role: 'Head of Product Development', bio: 'Formulation chemist turned entrepreneur. Elena leads R&D to ensure every product is clinically validated and effective.', image: 'https://placehold.co/300x400/e0c5d4/a67c52?text=Head+Prod' },
-    { name: 'Mary Ann Dejoras', role: 'Finance Manager', bio: 'Keeps Amare financially healthy and sustainable. Rafael ensures resources are optimized for growth and social impact.', image: 'https://placehold.co/300x400/d4c5e0/a67c52?text=Finance' },
+    { name: 'Anarie', role: 'General Manager', bio: 'Oversees day-to-day operations and ensures every part of the business reflects Amare\'s commitment to quality and excellence.', image: 'https://placehold.co/300x400/c5ddc5/6b8f71?text=GM' },
   ],
   staff: [
-    { name: 'Hacel C. Nadera', role: 'Social Media Manager', bio: 'Creates content that resonates and builds community. Ana turns customers into loyal brand advocates.', image: 'https://placehold.co/300x400/c5e0d4/a67c52?text=Social' },
-    { name: 'Anarie Villarente', role: 'E-Commerce Specialist', bio: 'Optimizes the online shopping experience from discovery to checkout. Data-driven and customer-obsessed.', image: 'https://placehold.co/300x400/e0d4c5/a67c52?text=Ecom' },
-    { name: 'Mary Ann Dejoras', role: 'Customer Experience Lead', bio: 'Ensures every customer interaction reflects Amare\'s values of care and warmth. Camille\'s team earns our 5-star reviews.', image: 'https://placehold.co/300x400/c5c5e0/a67c52?text=CX' },
+    { name: 'Hacel', role: 'Administration Manager', bio: 'Keeps the team organized and running smoothly. Hacel handles administrative processes and supports all departments with precision and care.', image: 'https://placehold.co/300x400/b8d4b8/6b8f71?text=Admin' },
   ]
 };
 
@@ -92,7 +88,7 @@ function renderProductCard(p, index = 0) {
   return `
     <div class="product-card fade-up" style="transition-delay:${index * 0.05}s">
       <div class="product-card-img">
-        <img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.src='https://placehold.co/400x500/ecdec1/a67c52?text=A'">
+        <img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.src='https://placehold.co/400x500/e4f0e4/6b8f71?text=A'">
         <span class="product-badge ${badgeClass}">${badgeText}</span>
         <div class="product-card-actions">
           <button class="card-action-btn wishlist-btn ${wishlisted ? 'wishlisted' : ''}" data-id="${p.id}" title="Wishlist">
@@ -334,7 +330,7 @@ function renderCartPage() {
           <tbody id="cart-rows">
             ${items.map(item => `
               <tr>
-                <td><img class="cart-item-img" src="${item.image}" alt="${item.name}" onerror="this.src='https://placehold.co/80x80/ecdec1/a67c52?text=A'"></td>
+                <td><img class="cart-item-img" src="${item.image}" alt="${item.name}" onerror="this.src='https://placehold.co/80x80/e4f0e4/6b8f71?text=A'"></td>
                 <td>
                   <div class="cart-item-name">${item.name}</div>
                   <div class="cart-item-cat">${item.category}</div>
@@ -399,7 +395,7 @@ function initCheckout() {
   if (summaryEl) {
     summaryEl.innerHTML = items.map(item => `
       <div class="order-item">
-        <img src="${item.image}" alt="${item.name}" onerror="this.src='https://placehold.co/60x60/ecdec1/a67c52?text=A'">
+        <img src="${item.image}" alt="${item.name}" onerror="this.src='https://placehold.co/60x60/e4f0e4/6b8f71?text=A'">
         <div>
           <div class="order-item-name">${item.name}</div>
           <div class="order-item-detail">Qty: ${item.qty}</div>
@@ -568,7 +564,7 @@ function initTeam() {
 }
 function teamCard(m, i) {
   return `<div class="team-card fade-up" style="transition-delay:${i * 0.07}s">
-    <div class="team-card-img"><img src="${m.image}" alt="${m.name}" loading="lazy" onerror="this.src='https://placehold.co/300x400/ecdec1/a67c52?text=A'"></div>
+    <div class="team-card-img"><img src="${m.image}" alt="${m.name}" loading="lazy" onerror="this.src='https://placehold.co/300x400/e4f0e4/6b8f71?text=A'"></div>
     <div class="team-card-info">
       <div class="team-role">${m.role}</div>
       <div class="team-name">${m.name}</div>
