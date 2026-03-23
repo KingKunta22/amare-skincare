@@ -250,42 +250,63 @@ const ORDER_STATUSES = {
 // ============================================================
 // RENDER HELPERS
 // ============================================================
+function getImage2(img) {
+  // centella-sunscreen.jpg → centella-sunscreen2.jpg
+  return img.replace(/(\.[^.]+)$/, '2$1');
+}
+
+function parseDescription(desc) {
+  // Split "A mild cleanser. Key Ingredients: X, Y. Effects: A, B."
+  const ingMatch = desc.match(/Key Ingredients?:\s*([^.]+)\./i);
+  const effMatch = desc.match(/Effects?:\s*([^.]+)\./i);
+  const mainDesc = desc.split(/Key Ingredients?:/i)[0].trim();
+  return {
+    main: mainDesc,
+    ingredients: ingMatch ? ingMatch[1].trim() : '',
+    effects: effMatch ? effMatch[1].trim() : ''
+  };
+}
+
 function renderProductCard(p, index = 0) {
   const wishlisted = Wishlist.has(p.id);
   const stockLabel = p.stock === 0 ? 'Out of Stock' : p.stock <= 5 ? `Only ${p.stock} left` : 'In Stock';
   const badgeClass = p.stock === 0 ? 'badge-out' : p.stock <= 5 ? 'badge-low' : '';
   const badgeText = p.stock === 0 ? 'Sold Out' : p.stock <= 5 ? 'Low Stock' : 'New';
+  const img2 = getImage2(p.image);
+  const parsed = parseDescription(p.description);
   return `
     <div class="product-card fade-up" style="transition-delay:${index * 0.05}s">
-      <div class="product-card-img">
-        <img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.src='https://placehold.co/400x500/dce8dc/6b8f71?text=A'">
+      <div class="product-card-img"
+           data-img1="${p.image}"
+           data-img2="${img2}">
+        <img src="${p.image}" alt="${p.name}" loading="lazy"
+             onerror="this.src='https://placehold.co/400x500/dce8dc/6b8f71?text=A'">
         <span class="product-badge ${badgeClass}">${badgeText}</span>
-        <div class="product-card-actions">
-          <button class="card-action-btn wishlist-btn ${wishlisted ? 'wishlisted' : ''}" data-id="${p.id}" title="Wishlist">
-            <i class="${wishlisted ? 'fas' : 'far'} fa-heart"></i>
-          </button>
-          <button class="card-action-btn quick-view-btn" data-id="${p.id}" title="Quick View">
-            <i class="fas fa-eye"></i>
-          </button>
-        </div>
+        <button class="wishlist-btn card-action-btn ${wishlisted ? 'wishlisted' : ''}"
+                data-id="${p.id}" title="Wishlist" style="position:absolute;top:8px;right:8px;opacity:0;">
+          <i class="${wishlisted ? 'fas' : 'far'} fa-heart"></i>
+        </button>
       </div>
       <div class="product-card-body">
         <div class="product-category">${p.category}</div>
         <div class="product-name">${p.name}</div>
-        <div class="product-desc-short">${p.description}</div>
         <div class="product-footer">
           <div class="product-price">₱${p.price.toLocaleString()}</div>
           <div class="product-stock ${p.stock === 0 ? 'stock-out' : p.stock <= 5 ? 'stock-low' : ''}">${stockLabel}</div>
         </div>
-        <button class="add-to-cart-btn" data-id="${p.id}" ${p.stock === 0 ? 'disabled' : ''}>
-          ${p.stock === 0 ? 'Out of Stock' : 'Add to Bag'}
-        </button>
+        <div class="product-card-btns">
+          <button class="view-details-btn" data-id="${p.id}">View Details</button>
+          <button class="add-to-cart-btn" data-id="${p.id}" ${p.stock === 0 ? 'disabled' : ''}>
+            ${p.stock === 0 ? 'Out of Stock' : 'Add to Bag'}
+          </button>
+        </div>
       </div>
     </div>
   `;
 }
 
 function bindProductCardEvents() {
+  // Add to cart
   document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
     if (btn.disabled) return;
     btn.addEventListener('click', (e) => {
@@ -294,6 +315,8 @@ function bindProductCardEvents() {
       if (product) Cart.addItem(product, 1);
     });
   });
+
+  // Wishlist
   document.querySelectorAll('.wishlist-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -302,71 +325,166 @@ function bindProductCardEvents() {
       btn.querySelector('i').className = isNow ? 'fas fa-heart' : 'far fa-heart';
     });
   });
-  document.querySelectorAll('.quick-view-btn').forEach(btn => {
+
+  // View Details → rich modal
+  document.querySelectorAll('.view-details-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
-      openQuickView(btn.dataset.id);
+      openProductModal(btn.dataset.id);
+    });
+  });
+
+  // Hover: swap to image2, show wishlist heart
+  document.querySelectorAll('.product-card-img').forEach(imgBox => {
+    const img = imgBox.querySelector('img');
+    const heart = imgBox.querySelector('.wishlist-btn');
+    const img1 = imgBox.dataset.img1;
+    const img2 = imgBox.dataset.img2;
+
+    imgBox.closest('.product-card').addEventListener('mouseenter', () => {
+      if (img2) {
+        const testImg = new Image();
+        testImg.onload = () => { img.src = img2; };
+        testImg.onerror = () => {}; // silently keep img1 if img2 missing
+        testImg.src = img2;
+      }
+      if (heart) heart.style.opacity = '1';
+    });
+    imgBox.closest('.product-card').addEventListener('mouseleave', () => {
+      img.src = img1;
+      if (heart) heart.style.opacity = '0';
     });
   });
 }
 
 // ============================================================
-// QUICK VIEW MODAL
+// PRODUCT DETAIL MODAL (rich — ingredients, effects, images)
 // ============================================================
-function openQuickView(id) {
+function openProductModal(id) {
   const p = PRODUCTS.find(p => p.id === id);
   if (!p) return;
 
-  let overlay = document.getElementById('quick-view-overlay');
-  if (!overlay) {
-    overlay = document.createElement('div');
-    overlay.id = 'quick-view-overlay';
-    overlay.innerHTML = `
-      <div id="quick-view-modal">
-        <div class="qv-image"><img id="qv-img" src="" alt=""></div>
-        <div class="qv-info">
-          <button id="qv-close"><i class="fas fa-times"></i></button>
-          <div id="qv-cat" class="qv-category"></div>
-          <div id="qv-name" class="qv-name"></div>
-          <div id="qv-price" class="qv-price"></div>
-          <div id="qv-desc" class="qv-desc"></div>
-          <div id="qv-stock" class="qv-stock"></div>
-          <div class="qty-selector">
-            <button class="qty-btn" id="qv-minus">−</button>
-            <input type="number" class="qty-input" id="qv-qty" value="1" min="1">
-            <button class="qty-btn" id="qv-plus">+</button>
-          </div>
-          <button class="btn-main" id="qv-add-btn">Add to Bag</button>
+  const parsed = parseDescription(p.description);
+  const img2 = getImage2(p.image);
+  const stockLabel = p.stock === 0 ? 'Out of Stock' : p.stock <= 5 ? `Only ${p.stock} left` : 'In Stock';
+  const stockClass = p.stock === 0 ? 'stock-out' : p.stock <= 5 ? 'stock-low' : '';
+
+  // Build ingredient tags
+  const ingTags = parsed.ingredients
+    ? parsed.ingredients.split(',').map(i =>
+        `<span class="pm-tag">${i.trim()}</span>`).join('')
+    : '';
+
+  // Build effect tags
+  const effTags = parsed.effects
+    ? parsed.effects.split(',').map(e =>
+        `<span class="pm-effect-tag"><i class="fas fa-check"></i> ${e.trim()}</span>`).join('')
+    : '';
+
+  // Remove old modal if exists
+  const old = document.getElementById('product-modal-overlay');
+  if (old) old.remove();
+
+  const overlay = document.createElement('div');
+  overlay.id = 'product-modal-overlay';
+  overlay.innerHTML = `
+    <div class="pm-modal" role="dialog" aria-modal="true">
+      <button class="pm-close" id="pm-close-btn" aria-label="Close">
+        <i class="fas fa-times"></i>
+      </button>
+
+      <!-- IMAGE PANEL -->
+      <div class="pm-images">
+        <img class="pm-img-main" id="pm-main-img"
+             src="${p.image}"
+             alt="${p.name}"
+             onerror="this.src='https://placehold.co/500x600/dce8dc/6b8f71?text=Amare'">
+        <div class="pm-img-thumbs">
+          <img class="pm-thumb pm-thumb-active"
+               src="${p.image}"
+               alt="${p.name} view 1"
+               data-full="${p.image}"
+               onerror="this.style.display='none'">
+          <img class="pm-thumb"
+               src="${img2}"
+               alt="${p.name} view 2"
+               data-full="${img2}"
+               onerror="this.style.display='none'">
         </div>
-      </div>`;
-    document.body.appendChild(overlay);
-  }
+      </div>
 
-  document.getElementById('qv-img').src = p.image;
-  document.getElementById('qv-img').alt = p.name;
-  document.getElementById('qv-cat').textContent = p.category;
-  document.getElementById('qv-name').textContent = p.name;
-  document.getElementById('qv-price').textContent = `₱${p.price.toLocaleString()}`;
-  document.getElementById('qv-desc').textContent = p.description;
-  document.getElementById('qv-stock').textContent = `Stock: ${p.stock > 0 ? p.stock + ' available' : 'Out of stock'}`;
-  const qtyInput = document.getElementById('qv-qty');
-  qtyInput.value = 1;
-  qtyInput.max = p.stock;
+      <!-- INFO PANEL -->
+      <div class="pm-info">
+        <div class="pm-category">${p.category}</div>
+        <h2 class="pm-name">${p.name}</h2>
+        <div class="pm-price">₱${p.price.toLocaleString()}</div>
+        <div class="pm-stock-row">
+          <span class="product-stock ${stockClass}">${stockLabel}</span>
+        </div>
 
-  const addBtn = document.getElementById('qv-add-btn');
-  addBtn.disabled = p.stock === 0;
-  addBtn.onclick = () => {
+        <p class="pm-desc">${parsed.main}</p>
+
+        ${ingTags ? `
+        <div class="pm-section">
+          <div class="pm-section-label"><i class="fas fa-flask"></i> Key Ingredients</div>
+          <div class="pm-tags">${ingTags}</div>
+        </div>` : ''}
+
+        ${effTags ? `
+        <div class="pm-section">
+          <div class="pm-section-label"><i class="fas fa-star"></i> Effects & Benefits</div>
+          <div class="pm-effects">${effTags}</div>
+        </div>` : ''}
+
+        <div class="pm-actions">
+          <div class="qty-selector">
+            <button class="qty-btn" id="pm-minus">−</button>
+            <input type="number" class="qty-input" id="pm-qty" value="1" min="1" max="${p.stock}">
+            <button class="qty-btn" id="pm-plus">+</button>
+          </div>
+          <button class="btn-main pm-add-btn" id="pm-add-btn" ${p.stock === 0 ? 'disabled' : ''}>
+            <i class="fas fa-shopping-bag"></i>
+            ${p.stock === 0 ? 'Out of Stock' : 'Add to Bag'}
+          </button>
+        </div>
+      </div>
+    </div>`;
+
+  document.body.appendChild(overlay);
+
+  // Thumb switching
+  overlay.querySelectorAll('.pm-thumb').forEach(thumb => {
+    thumb.addEventListener('click', () => {
+      overlay.querySelectorAll('.pm-thumb').forEach(t => t.classList.remove('pm-thumb-active'));
+      thumb.classList.add('pm-thumb-active');
+      document.getElementById('pm-main-img').src = thumb.dataset.full;
+    });
+  });
+
+  // Qty
+  const qtyInput = document.getElementById('pm-qty');
+  document.getElementById('pm-minus').onclick = () => { if (+qtyInput.value > 1) qtyInput.value--; };
+  document.getElementById('pm-plus').onclick  = () => { if (+qtyInput.value < p.stock) qtyInput.value++; };
+
+  // Add to bag
+  document.getElementById('pm-add-btn').onclick = () => {
     Cart.addItem(p, parseInt(qtyInput.value) || 1);
     overlay.classList.remove('visible');
   };
 
-  document.getElementById('qv-minus').onclick = () => { if (+qtyInput.value > 1) qtyInput.value--; };
-  document.getElementById('qv-plus').onclick = () => { if (+qtyInput.value < p.stock) qtyInput.value++; };
-  document.getElementById('qv-close').onclick = () => overlay.classList.remove('visible');
-  overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.classList.remove('visible'); });
+  // Close
+  document.getElementById('pm-close-btn').onclick = () => overlay.classList.remove('visible');
+  overlay.addEventListener('click', e => { if (e.target === overlay) overlay.classList.remove('visible'); });
+  document.addEventListener('keydown', function esc(e) {
+    if (e.key === 'Escape') { overlay.classList.remove('visible'); document.removeEventListener('keydown', esc); }
+  });
 
-  setTimeout(() => overlay.classList.add('visible'), 10);
+  // Animate in
+  requestAnimationFrame(() => overlay.classList.add('visible'));
 }
+
+// Keep openQuickView as alias so nothing breaks
+function openQuickView(id) { openProductModal(id); }
 
 // ============================================================
 // PAGE INIT

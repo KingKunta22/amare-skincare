@@ -8,51 +8,47 @@
 </div>
 
 <div class="section">
-  
-  <!-- ORG CHART HIERARCHY -->
-  <div class="org-chart">
 
-    <!-- TIER 1: CEO -->
-    <div class="org-tier">
-      <div class="team-tier-label" style="text-align:center;margin-bottom:1.5rem;">Chief Executive Officer</div>
-      <div class="team-grid" id="team-executive" style="max-width:320px;margin:0 auto;"></div>
+  <!-- IMAGE NOTICE -->
+  <div style="background:var(--bg-soft);border:1px solid var(--border);padding:1rem 1.5rem;margin-bottom:2.5rem;font-size:0.85rem;color:var(--text-mid);display:flex;align-items:center;gap:0.7rem;flex-wrap:wrap;">
+    <i class="fas fa-image" style="color:var(--accent);flex-shrink:0;"></i>
+    <span>Place team photos in <strong>images/team/</strong> named <strong>dejoras.jpg</strong>, <strong>villarente.jpg</strong>, <strong>nadera.jpg</strong> — they will appear automatically.</span>
+  </div>
+
+  <!-- HORIZONTAL ORG CHART -->
+  <div class="org-horizontal">
+
+    <!-- CEO -->
+    <div class="org-h-col">
+      <div class="org-h-label">Chief Executive Officer</div>
+      <div id="team-executive"></div>
     </div>
 
-    <div class="org-connector"><div class="org-line-v"></div></div>
+    <!-- Arrow -->
+    <div class="org-h-arrow"><i class="fas fa-arrow-right"></i></div>
 
-    <!-- TIER 2: General Manager -->
-    <div class="org-tier">
-      <div class="team-tier-label" style="text-align:center;margin-bottom:1.5rem;">General Manager</div>
-      <div class="team-grid" id="team-management" style="max-width:320px;margin:0 auto;"></div>
+    <!-- GM -->
+    <div class="org-h-col">
+      <div class="org-h-label">General Manager</div>
+      <div id="team-management"></div>
     </div>
 
-    <div class="org-connector"><div class="org-line-v"></div></div>
+    <!-- Arrow -->
+    <div class="org-h-arrow"><i class="fas fa-arrow-right"></i></div>
 
-    <!-- TIER 3: Administration Manager -->
-    <div class="org-tier">
-      <div class="team-tier-label" style="text-align:center;margin-bottom:1.5rem;">Administration Manager</div>
-      <div class="team-grid" id="team-staff" style="max-width:320px;margin:0 auto;"></div>
+    <!-- Admin -->
+    <div class="org-h-col">
+      <div class="org-h-label">Administration Manager</div>
+      <div id="team-staff"></div>
     </div>
 
   </div>
 
   <!-- CAREERS CTA -->
-  <div style="margin-top:4rem;background:var(--white);border:1px solid var(--border);padding:2.5rem;text-align:center;" class="fade-up">
+  <div style="margin-top:3.5rem;background:var(--white);border:1px solid var(--border);padding:2.5rem;text-align:center;" class="fade-up">
     <div class="section-label">Work with Us</div>
     <div class="section-title" style="margin-bottom:0.6rem;">Want to Join the Team?</div>
     <p class="section-desc" style="margin:0 auto 1.5rem;">We're always looking for people who believe in the power of self-love and great skincare.</p>
     <a href="/contact" data-link class="btn-main">Get in Touch</a>
   </div>
 </div>
-
-<style>
-  .org-chart { display:flex; flex-direction:column; align-items:center; }
-  .org-tier { width:100%; display:flex; flex-direction:column; align-items:center; }
-  .org-connector { display:flex; justify-content:center; padding:0.5rem 0; }
-  .org-line-v { width:2px; height:36px; background:var(--border); }
-  #team-executive .team-card { border:2px solid var(--accent); box-shadow:0 4px 18px rgba(107,143,113,0.15); }
-  #team-management .team-card { border:1px solid var(--accent-lt); }
-  #team-executive .team-card,
-  #team-management .team-card,
-  #team-staff .team-card { width:300px; }
-</style>
