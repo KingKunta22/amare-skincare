@@ -16,44 +16,57 @@ const Router = {
     '/reviews':      'pages/reviews.html',
   },
 
-  async navigate(path) {
-    const app = document.getElementById('app');
-    if (!app) return;
+async navigate(path) {
+  const app = document.getElementById('app');
+  if (!app) return;
 
-    // Fade out
-    app.style.opacity = '0';
-    app.style.transition = 'opacity 0.2s ease';
+  app.style.opacity = '0';
+  app.style.transition = 'opacity 0.2s ease';
 
-    const file = this.routes[path] || this.routes['/'];
+  const file = this.routes[path] || this.routes['/'];
 
-    try {
+  try {
+
+    let html = "";
+
+    // detect file protocol
+    if (window.location.protocol === "file:") {
+
+      // fallback: use iframe loading
+      html = `<iframe src="${file}" 
+              style="width:100%;height:100vh;border:none;"></iframe>`;
+
+    } else {
+
       const res = await fetch(file);
       if (!res.ok) throw new Error(`Failed to load ${file}`);
-      const html = await res.text();
+      html = await res.text();
 
-      setTimeout(async () => {
-        app.innerHTML = html;
-        window.history.pushState({}, '', path);
-        this.updateNav(path);
-        this.bindLinks();
-        app.style.opacity = '1';
-        app.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        window.scrollTo(0, 0);
-
-        // Run page init after render
-        if (typeof PageInit === 'function') PageInit(path);
-        initFadeUps();
-      }, 200);
-
-    } catch (err) {
-      console.error('Router error:', err);
-      app.innerHTML = `<div style="padding:5rem 5%;text-align:center;">
-        <h2>Page not found</h2>
-        <p style="margin-top:1rem;color:var(--text-muted);">Could not load: ${file}</p>
-      </div>`;
-      app.style.opacity = '1';
     }
-  },
+
+    setTimeout(() => {
+      app.innerHTML = html;
+      window.history.pushState({}, '', path);
+      this.updateNav(path);
+      this.bindLinks();
+      app.style.opacity = '1';
+      window.scrollTo(0, 0);
+
+      if (typeof PageInit === 'function') PageInit(path);
+      initFadeUps();
+
+    }, 200);
+
+  } catch (err) {
+    console.error('Router error:', err);
+    app.innerHTML = `
+      <div style="padding:5rem;text-align:center;">
+        <h2>Page not found</h2>
+        <p>${file}</p>
+      </div>`;
+    app.style.opacity = '1';
+  }
+},
 
   updateNav(path) {
     document.querySelectorAll('.nav-link').forEach(link => {
