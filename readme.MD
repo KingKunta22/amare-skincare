@@ -124,3 +124,62 @@ npx http-server .
 - Place a `hero.jpg` in `/images/` for the hero background
 - Placeholder images auto-generate via `placehold.co` (requires internet)
 - The font falls back to Futura/Century Gothic if the TTF is not present
+
+
+AMARE SKINCARE — Images Folder
+================================
+
+PRODUCT IMAGES
+Place product photos in: images/products/
+Required filenames (exactly as listed):
+
+CLEANSERS:
+  pureveil-cleanser.jpg
+  hydrofresh-cleanser.jpg
+  clearbalance-cleanser.jpg
+  lowph-cleanser.jpg
+
+TONERS:
+  aqualift-toner.jpg
+  glowrefine-toner.jpg
+  calmessence-toner.jpg
+  poretight-toner.jpg
+
+MOISTURIZERS:
+  hydrocloud-moisturizer.jpg
+  ceramide-cream.jpg
+  aloe-gel-moisturizer.jpg
+  dewglow-moisturizer.jpg
+
+SERUMS:
+  radiance-serum.jpg
+  niacinamide-serum.jpg
+  snail-serum.jpg
+  glowrenew-serum.jpg
+
+MASKS:
+  brightpeel-mask.jpg
+  volcanic-clay-mask.jpg
+  hydrasheet-mask.jpg
+  charcoal-mask.jpg
+  calmskin-mask.jpg
+
+SUNSCREEN:
+  sunshield-spf50.jpg
+  aqualight-uv.jpg
+  brightdefense-sunscreen.jpg
+  centella-sunscreen.jpg
+
+TEAM PHOTOS
+Place team photos in: images/team/
+Required filenames:
+  dejoras.jpg       (Mary Ann B. Dejoras — CEO)
+  villarente.jpg    (Anarie V. Villarente — General Manager)
+  nadera.jpg        (Hacel C. Nadera — Administration Manager)
+
+HERO IMAGE
+Place in: images/
+  hero.jpg          (Background image for the home hero section)
+
+NOTE: If images are missing, the site will show a sage-colored placeholder
+automatically. Add images anytime and they will appear on refresh.

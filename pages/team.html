@@ -3,41 +3,35 @@
   <div class="page-header-inner">
     <div class="section-label">The People Behind Amare</div>
     <h1>Our Team</h1>
-    <p>A passionate group of people united by a love for great skincare.</p>
+    <p>Meet the dedicated individuals who lead Amare Skincare with passion, vision, and care.</p>
   </div>
 </div>
 
 <div class="section">
-
+  
   <!-- ORG CHART HIERARCHY -->
   <div class="org-chart">
 
     <!-- TIER 1: CEO -->
-    <div class="org-tier org-tier-1">
+    <div class="org-tier">
       <div class="team-tier-label" style="text-align:center;margin-bottom:1.5rem;">Chief Executive Officer</div>
-      <div class="team-grid" id="team-executive" style="max-width:300px;margin:0 auto;"></div>
+      <div class="team-grid" id="team-executive" style="max-width:320px;margin:0 auto;"></div>
     </div>
 
-    <!-- CONNECTOR -->
-    <div class="org-connector">
-      <div class="org-line-v"></div>
-    </div>
+    <div class="org-connector"><div class="org-line-v"></div></div>
 
-    <!-- TIER 2: GM -->
-    <div class="org-tier org-tier-2">
+    <!-- TIER 2: General Manager -->
+    <div class="org-tier">
       <div class="team-tier-label" style="text-align:center;margin-bottom:1.5rem;">General Manager</div>
-      <div class="team-grid" id="team-management" style="max-width:300px;margin:0 auto;"></div>
+      <div class="team-grid" id="team-management" style="max-width:320px;margin:0 auto;"></div>
     </div>
 
-    <!-- CONNECTOR -->
-    <div class="org-connector">
-      <div class="org-line-v"></div>
-    </div>
+    <div class="org-connector"><div class="org-line-v"></div></div>
 
-    <!-- TIER 3: Admin -->
-    <div class="org-tier org-tier-3">
-      <div class="team-tier-label" style="text-align:center;margin-bottom:1.5rem;">Administration</div>
-      <div class="team-grid" id="team-staff" style="max-width:300px;margin:0 auto;"></div>
+    <!-- TIER 3: Administration Manager -->
+    <div class="org-tier">
+      <div class="team-tier-label" style="text-align:center;margin-bottom:1.5rem;">Administration Manager</div>
+      <div class="team-grid" id="team-staff" style="max-width:320px;margin:0 auto;"></div>
     </div>
 
   </div>
@@ -52,43 +46,13 @@
 </div>
 
 <style>
-  /* Org chart layout */
-  .org-chart {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0;
-  }
-  .org-tier {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .org-connector {
-    display: flex;
-    justify-content: center;
-    padding: 0.6rem 0;
-  }
-  .org-line-v {
-    width: 2px;
-    height: 40px;
-    background: var(--border);
-  }
-
-  /* Make cards wider and more prominent for TV display */
+  .org-chart { display:flex; flex-direction:column; align-items:center; }
+  .org-tier { width:100%; display:flex; flex-direction:column; align-items:center; }
+  .org-connector { display:flex; justify-content:center; padding:0.5rem 0; }
+  .org-line-v { width:2px; height:36px; background:var(--border); }
+  #team-executive .team-card { border:2px solid var(--accent); box-shadow:0 4px 18px rgba(107,143,113,0.15); }
+  #team-management .team-card { border:1px solid var(--accent-lt); }
   #team-executive .team-card,
   #team-management .team-card,
-  #team-staff .team-card {
-    width: 280px;
-  }
-
-  /* CEO card gets a highlighted border */
-  #team-executive .team-card {
-    border: 2px solid var(--accent);
-    box-shadow: 0 4px 20px rgba(107,143,113,0.18);
-  }
-  #team-management .team-card {
-    border: 1px solid var(--accent-lt);
-  }
+  #team-staff .team-card { width:300px; }
 </style>

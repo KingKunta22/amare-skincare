@@ -8,51 +8,221 @@
 // ============================================================
 const PRODUCTS = [
   // --- CLEANSERS ---
-  { id: 'c1', name: 'Gentle Foam Cleanser', category: 'Cleansers', price: 650, stock: 42, image: 'https://placehold.co/400x500/dce8dc/6b8f71?text=Foam+Cleanser', description: 'A gentle, sulfate-free foaming cleanser that removes impurities without stripping the skin\'s natural moisture barrier. Enriched with aloe vera and green tea extract.' },
-  { id: 'c2', name: 'Micellar Cleansing Water', category: 'Cleansers', price: 550, stock: 5, image: 'https://placehold.co/400x500/d4e8d4/6b8f71?text=Micellar+Water', description: 'Effortlessly dissolves makeup and sunscreen. Infused with rose water and chamomile for a soothing, residue-free cleanse. Dermatologist-tested.' },
-  { id: 'c3', name: 'Exfoliating Clay Cleanser', category: 'Cleansers', price: 720, stock: 18, image: 'https://placehold.co/400x500/c5ddc8/6b8f71?text=Clay+Cleanser', description: 'A gentle clay-based cleanser with fine walnut shell powder that buffs away dead skin cells while absorbing excess oil. Leaves skin radiant and smooth.' },
+  {
+    id: 'c1', category: 'Cleansers', stock: 40,
+    name: 'Amare PureVeil Gentle Cleanser',
+    price: 399,
+    image: 'images/products/pureveil-cleanser.jpg',
+    description: 'A mild, non-irritating cleanser that gently removes dirt while keeping skin soft and hydrated. Key Ingredients: Glycerin, Panthenol, Chamomile Extract. Effects: Hydrates skin, prevents dryness, suitable for sensitive skin.'
+  },
+  {
+    id: 'c2', category: 'Cleansers', stock: 35,
+    name: 'Amare HydroFresh Daily Cleanser',
+    price: 249,
+    image: 'images/products/hydrofresh-cleanser.jpg',
+    description: 'A refreshing gel cleanser that cleanses and hydrates without stripping natural moisture. Key Ingredients: Hyaluronic Acid, Aloe Vera, Vitamin B5. Effects: Boosts hydration, refreshes skin, maintains moisture balance.'
+  },
+  {
+    id: 'c3', category: 'Cleansers', stock: 28,
+    name: 'Amare ClearBalance Acne Cleanser',
+    price: 329,
+    image: 'images/products/clearbalance-cleanser.jpg',
+    description: 'An acne-fighting cleanser that helps reduce breakouts and unclog pores. Key Ingredients: Salicylic Acid, Tea Tree Oil, Niacinamide. Effects: Controls oil, reduces acne, clears pores.'
+  },
+  {
+    id: 'c4', category: 'Cleansers', stock: 22,
+    name: 'Amare Low pH Morning Cleanser',
+    price: 349,
+    image: 'images/products/lowph-cleanser.jpg',
+    description: 'A gentle low pH cleanser that protects the skin barrier while cleansing impurities. Key Ingredients: Green Tea Extract, Centella Asiatica, Mild Surfactants. Effects: Maintains skin barrier, soothes skin, prevents irritation.'
+  },
 
   // --- TONERS ---
-  { id: 't1', name: 'Hydrating Rose Toner', category: 'Toners', price: 580, stock: 30, image: 'https://placehold.co/400x500/d4e4d4/6b8f71?text=Rose+Toner', description: 'Alcohol-free formula infused with Bulgarian rose water and hyaluronic acid. Restores pH balance, hydrates deeply, and preps skin for serums.' },
-  { id: 't2', name: 'Pore-Refining BHA Toner', category: 'Toners', price: 850, stock: 3, image: 'https://placehold.co/400x500/c8e4cc/6b8f71?text=BHA+Toner', description: 'Contains 2% salicylic acid to unclog pores, reduce blackheads, and smooth skin texture. Niacinamide brightens and controls shine throughout the day.' },
-  { id: 't3', name: 'Soothing Green Tea Toner', category: 'Toners', price: 620, stock: 25, image: 'https://placehold.co/400x500/cce4cc/6b8f71?text=Green+Tea+Toner', description: 'Calms redness and irritation with a concentrated blend of green tea polyphenols and centella asiatica. Ideal for sensitive and reactive skin types.' },
+  {
+    id: 't1', category: 'Toners', stock: 30,
+    name: 'Amare AquaLift Hydrating Toner',
+    price: 299,
+    image: 'images/products/aqualift-toner.jpg',
+    description: 'A hydrating toner that preps the skin and enhances absorption of skincare products. Key Ingredients: Hyaluronic Acid, Glycerin, Rice Extract. Effects: Deep hydration, smoother skin, improved absorption.'
+  },
+  {
+    id: 't2', category: 'Toners', stock: 5,
+    name: 'Amare GlowRefine Exfoliating Toner',
+    price: 399,
+    image: 'images/products/glowrefine-toner.jpg',
+    description: 'A gentle exfoliating toner that brightens and smoothens skin texture. Key Ingredients: Glycolic Acid, Lactic Acid, Witch Hazel. Effects: Removes dead skin cells, brightens complexion, smooths texture.'
+  },
+  {
+    id: 't3', category: 'Toners', stock: 25,
+    name: 'Amare CalmEssence Soothing Toner',
+    price: 329,
+    image: 'images/products/calmessence-toner.jpg',
+    description: 'A calming toner that reduces redness and restores skin balance. Key Ingredients: Centella Asiatica, Aloe Vera, Allantoin. Effects: Soothes irritation, reduces redness, strengthens skin.'
+  },
+  {
+    id: 't4', category: 'Toners', stock: 18,
+    name: 'Amare PoreTight Clarifying Toner',
+    price: 349,
+    image: 'images/products/poretight-toner.jpg',
+    description: 'A clarifying toner that tightens pores and controls excess oil. Key Ingredients: Niacinamide, Witch Hazel, Zinc PCA. Effects: Minimizes pores, controls oil, refines skin.'
+  },
 
   // --- MOISTURIZERS ---
-  { id: 'm1', name: 'Luminous Glow Cream', category: 'Moisturizers', price: 1200, stock: 22, image: 'https://placehold.co/400x500/d8e8d8/6b8f71?text=Glow+Cream', description: 'Lightweight, non-greasy moisturizer with ceramides and niacinamide. Provides 48-hour hydration and gives skin a luminous, lit-from-within glow.' },
-  { id: 'm2', name: 'Ultra-Rich Night Butter', category: 'Moisturizers', price: 1450, stock: 14, image: 'https://placehold.co/400x500/c5dcc5/6b8f71?text=Night+Butter', description: 'Deeply nourishing overnight treatment with shea butter, squalane, and retinol. Wake up to visibly softer, plumper, more youthful-looking skin.' },
-  { id: 'm3', name: 'Oil-Free Matte Gel', category: 'Moisturizers', price: 980, stock: 0, image: 'https://placehold.co/400x500/b8d4b8/6b8f71?text=Matte+Gel', description: 'A water-gel formula that hydrates without clogging pores. Controls oil production for up to 12 hours. Perfect under makeup for a flawless, matte base.' },
+  {
+    id: 'm1', category: 'Moisturizers', stock: 32,
+    name: 'Amare HydroCloud Water Gel Moisturizer',
+    price: 499,
+    image: 'images/products/hydrocloud-moisturizer.jpg',
+    description: 'A lightweight gel moisturizer that delivers deep hydration without heaviness. Key Ingredients: Hyaluronic Acid, Marine Extracts, Glycerin. Effects: Hydrates deeply, lightweight feel, non-greasy.'
+  },
+  {
+    id: 'm2', category: 'Moisturizers', stock: 20,
+    name: 'Amare Ceramide Barrier Cream',
+    price: 499,
+    image: 'images/products/ceramide-cream.jpg',
+    description: 'A rich cream that strengthens the skin barrier and locks in moisture. Key Ingredients: Ceramides, Shea Butter, Cholesterol. Effects: Repairs barrier, prevents dryness, long-lasting hydration.'
+  },
+  {
+    id: 'm3', category: 'Moisturizers', stock: 40,
+    name: 'Amare Aloe Soothing Gel Moisturizer',
+    price: 249,
+    image: 'images/products/aloe-gel-moisturizer.jpg',
+    description: 'A cooling gel that soothes and hydrates irritated or sun-exposed skin. Key Ingredients: Aloe Vera, Cucumber Extract, Vitamin E. Effects: Soothes skin, reduces redness, cooling effect.'
+  },
+  {
+    id: 'm4', category: 'Moisturizers', stock: 15,
+    name: 'Amare DewGlow Daily Moisturizer',
+    price: 399,
+    image: 'images/products/dewglow-moisturizer.jpg',
+    description: 'A daily moisturizer that enhances natural glow while keeping skin hydrated. Key Ingredients: Niacinamide, Vitamin C, Peptides. Effects: Brightens skin, improves texture, gives radiant glow.'
+  },
 
   // --- SERUMS ---
-  { id: 's1', name: 'Vitamin C Brightening Serum', category: 'Serums', price: 1800, stock: 19, image: 'https://placehold.co/400x500/d0e4d0/6b8f71?text=Vit+C+Serum', description: '20% stabilized Vitamin C with ferulic acid and vitamin E. Fades dark spots, boosts collagen, and shields skin from free radical damage.' },
-  { id: 's2', name: 'Hyaluronic Acid Plumping Serum', category: 'Serums', price: 1350, stock: 31, image: 'https://placehold.co/400x500/bcdcbc/6b8f71?text=HA+Serum', description: 'Three molecular weights of hyaluronic acid penetrate different layers of skin for multi-depth hydration. Visibly plumps and reduces the appearance of fine lines.' },
-  { id: 's3', name: 'Retinol Renewal Serum', category: 'Serums', price: 2200, stock: 8, image: 'https://placehold.co/400x500/c4dcc4/6b8f71?text=Retinol+Serum', description: '0.5% encapsulated retinol with bakuchiol for a gentler approach to anti-aging. Smooths texture, minimizes pores, and evens skin tone overnight.' },
-  { id: 's4', name: 'Niacinamide 10% Serum', category: 'Serums', price: 890, stock: 45, image: 'https://placehold.co/400x500/d4e8d4/6b8f71?text=Niacinamide', description: 'High-strength niacinamide serum that targets enlarged pores, uneven skin tone, and excessive sebum production. Pairs well with any moisturizer.' },
+  {
+    id: 's1', category: 'Serums', stock: 24,
+    name: 'Amare Radiance Boost Serum',
+    price: 599,
+    image: 'images/products/radiance-serum.jpg',
+    description: 'A brightening serum that evens out skin tone and boosts radiance. Key Ingredients: Vitamin C, Ferulic Acid, Niacinamide. Effects: Brightens skin, reduces dark spots, evens tone.'
+  },
+  {
+    id: 's2', category: 'Serums', stock: 38,
+    name: 'Amare Niacinamide Balance Serum',
+    price: 499,
+    image: 'images/products/niacinamide-serum.jpg',
+    description: 'A balancing serum that controls oil and reduces blemishes. Key Ingredients: Niacinamide, Zinc PCA, Hyaluronic Acid. Effects: Controls oil, minimizes pores, reduces acne marks.'
+  },
+  {
+    id: 's3', category: 'Serums', stock: 12,
+    name: 'Amare Snail Repair Essence Serum',
+    price: 649,
+    image: 'images/products/snail-serum.jpg',
+    description: 'A repairing serum that deeply hydrates and restores damaged skin. Key Ingredients: Snail Mucin, Panthenol, Allantoin. Effects: Repairs skin, improves elasticity, hydrates deeply.'
+  },
+  {
+    id: 's4', category: 'Serums', stock: 19,
+    name: 'Amare GlowRenew Glycolic Serum',
+    price: 549,
+    image: 'images/products/glowrenew-serum.jpg',
+    description: 'An exfoliating serum that improves skin texture and promotes renewal. Key Ingredients: Glycolic Acid, Lactic Acid, Aloe Vera. Effects: Smoothens skin, promotes cell renewal, brightens complexion.'
+  },
 
   // --- MASKS ---
-  { id: 'k1', name: 'Kaolin Purifying Clay Mask', category: 'Masks', price: 750, stock: 27, image: 'https://placehold.co/400x500/c8e0c8/6b8f71?text=Clay+Mask', description: 'Deep-cleansing kaolin and bentonite clay mask that draws out impurities, tightens pores, and leaves skin feeling impossibly smooth.' },
-  { id: 'k2', name: 'Honey & Oat Soothing Mask', category: 'Masks', price: 820, stock: 16, image: 'https://placehold.co/400x500/d0e8d0/6b8f71?text=Honey+Mask', description: 'A creamy, leave-on or wash-off treatment mask with raw manuka honey and colloidal oatmeal. Calms inflammation and restores suppleness to stressed skin.' },
-  { id: 'k3', name: 'Sheet Mask Collection (5pcs)', category: 'Masks', price: 450, stock: 60, image: 'https://placehold.co/400x500/b4dcb4/6b8f71?text=Sheet+Masks', description: 'Set of 5 essence-soaked sheet masks in different formulas: Brightening, Hydrating, Firming, Soothing, and Anti-Aging. One for every skin concern.' },
+  {
+    id: 'k1', category: 'Masks', stock: 50,
+    name: 'Amare BrightPeel Glow Mask',
+    price: 199,
+    image: 'images/products/brightpeel-mask.jpg',
+    description: 'A peel-off mask that brightens and removes impurities. Key Ingredients: Vitamin C, Fruit Extracts, Collagen. Effects: Brightens skin, removes dirt, smoothens texture.'
+  },
+  {
+    id: 'k2', category: 'Masks', stock: 30,
+    name: 'Amare Volcanic Clay Detox Mask',
+    price: 399,
+    image: 'images/products/volcanic-clay-mask.jpg',
+    description: 'A clay mask that deeply cleans pores and removes excess oil. Key Ingredients: Volcanic Ash, Kaolin Clay, Charcoal. Effects: Detoxifies skin, unclogs pores, controls oil.'
+  },
+  {
+    id: 'k3', category: 'Masks', stock: 60,
+    name: 'Amare HydraSheet Essence Mask',
+    price: 99,
+    image: 'images/products/hydrasheet-mask.jpg',
+    description: 'A hydrating sheet mask that revitalizes and refreshes the skin. Key Ingredients: Hyaluronic Acid, Aloe Vera, Vitamin E. Effects: Instant hydration, plumps skin, refreshes complexion.'
+  },
+  {
+    id: 'k4', category: 'Masks', stock: 45,
+    name: 'Amare Charcoal Purify Mask',
+    price: 249,
+    image: 'images/products/charcoal-mask.jpg',
+    description: 'A detox mask that removes impurities and excess oil. Key Ingredients: Activated Charcoal, Tea Tree Oil, Clay. Effects: Purifies skin, reduces oil, clears pores.'
+  },
+  {
+    id: 'k5', category: 'Masks', stock: 3,
+    name: 'Amare CalmSkin Recovery Mask',
+    price: 299,
+    image: 'images/products/calmskin-mask.jpg',
+    description: 'A soothing mask that calms irritated skin and restores moisture. Key Ingredients: Centella Asiatica, Chamomile, Aloe Vera. Effects: Reduces redness, soothes skin, repairs barrier.'
+  },
 
   // --- SUNSCREEN ---
-  { id: 'p1', name: 'Invisible Shield SPF 50+', category: 'Sunscreen', price: 1100, stock: 38, image: 'https://placehold.co/400x500/d8ecd8/6b8f71?text=SPF+50', description: 'Lightweight, invisible, broad-spectrum sunscreen that leaves zero white cast. Water-resistant for 4 hours. Enriched with antioxidants for extra defense.' },
-  { id: 'p2', name: 'Dewy Tinted SPF 40', category: 'Sunscreen', price: 950, stock: 12, image: 'https://placehold.co/400x500/c4e0c4/6b8f71?text=Tinted+SPF', description: 'A hybrid sunscreen and sheer tinted moisturizer with SPF 40. Evens skin tone, provides protection, and gives a natural dewy finish. Available in 3 shades.' },
+  {
+    id: 'p1', category: 'Sunscreen', stock: 35,
+    name: 'Amare SunShield SPF50+ Daily Protection',
+    price: 399,
+    image: 'images/products/sunshield-spf50.jpg',
+    description: 'A daily sunscreen that protects against harmful UV rays. Key Ingredients: Zinc Oxide, Titanium Dioxide, Vitamin E. Effects: UV protection, prevents sun damage, protects skin.'
+  },
+  {
+    id: 'p2', category: 'Sunscreen', stock: 22,
+    name: 'Amare AquaLight UV Essence',
+    price: 449,
+    image: 'images/products/aqualight-uv.jpg',
+    description: 'A lightweight sunscreen that absorbs quickly without stickiness. Key Ingredients: Chemical UV Filters, Hyaluronic Acid, Green Tea. Effects: Lightweight feel, no white cast, hydrating.'
+  },
+  {
+    id: 'p3', category: 'Sunscreen', stock: 18,
+    name: 'Amare BrightDefense Tone-Up Sunscreen',
+    price: 499,
+    image: 'images/products/brightdefense-sunscreen.jpg',
+    description: 'A sunscreen that protects while giving a natural brightening effect. Key Ingredients: Niacinamide, UV Filters, Pearl Extract. Effects: Brightens skin, evens tone, protects from UV.'
+  },
+  {
+    id: 'p4', category: 'Sunscreen', stock: 4,
+    name: 'Amare Centella Calm Sunscreen',
+    price: 429,
+    image: 'images/products/centella-sunscreen.jpg',
+    description: 'A gentle sunscreen designed for sensitive skin. Key Ingredients: Centella Asiatica, Madecassoside, Zinc Oxide. Effects: Soothes skin, reduces irritation, provides UV protection.'
+  },
 ];
-
 // ============================================================
 // TEAM DATA
 // ============================================================
 const TEAM = {
   executive: [
-    { name: 'Dejoras', role: 'Chief Executive Officer', bio: 'Leads Amare Skincare with vision and passion. Dedicated to building a brand rooted in self-love and genuine care for every customer.', image: 'https://placehold.co/300x400/d4e8d4/6b8f71?text=CEO' },
+    {
+      name: 'Mary Ann B. Dejoras',
+      role: 'Chief Executive Officer (CEO)',
+      bio: 'A results-driven leader with a strong background in business management and strategic planning. Equipped with proven experience in decision-making and brand development, she leads the company with clear vision and direction. Her expertise ensures that the business remains competitive and continuously growing in the skincare industry.',
+      image: 'images/team/dejoras.jpg'
+    },
   ],
   management: [
-    { name: 'Anarie', role: 'General Manager', bio: 'Oversees day-to-day operations and ensures every part of the business reflects Amare\'s commitment to quality and excellence.', image: 'https://placehold.co/300x400/c5ddc5/6b8f71?text=GM' },
+    {
+      name: 'Anarie V. Villarente',
+      role: 'General Manager',
+      bio: `An experienced professional in operations management and team coordination. She is skilled in executing business strategies, managing workflows, and ensuring efficiency across all departments. Her ability to maintain consistency and high standards supports the company's daily performance.`,
+      image: 'images/team/villarente.jpg'
+    },
   ],
   staff: [
-    { name: 'Hacel', role: 'Administration Manager', bio: 'Keeps the team organized and running smoothly. Hacel handles administrative processes and supports all departments with precision and care.', image: 'https://placehold.co/300x400/b8d4b8/6b8f71?text=Admin' },
+    {
+      name: 'Hacel C. Nadera',
+      role: 'Administration Manager',
+      bio: 'A highly organized professional with a strong background in administrative management. She is responsible for handling documentation, coordination, and internal processes with accuracy and efficiency. Her attention to detail ensures that operations remain structured and well-managed.',
+      image: 'images/team/nadera.jpg'
+    },
   ]
 };
-
 // ============================================================
 // SUPPLIERS DATA
 // ============================================================
@@ -88,7 +258,7 @@ function renderProductCard(p, index = 0) {
   return `
     <div class="product-card fade-up" style="transition-delay:${index * 0.05}s">
       <div class="product-card-img">
-        <img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.src='https://placehold.co/400x500/e4f0e4/6b8f71?text=A'">
+        <img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.src='https://placehold.co/400x500/dce8dc/6b8f71?text=A'">
         <span class="product-badge ${badgeClass}">${badgeText}</span>
         <div class="product-card-actions">
           <button class="card-action-btn wishlist-btn ${wishlisted ? 'wishlisted' : ''}" data-id="${p.id}" title="Wishlist">
@@ -243,7 +413,7 @@ function initProducts() {
 
   let currentSearch = '';
   let currentCategory = '';
-  let currentMaxPrice = 5000;
+  let currentMaxPrice = 650;
 
   function render() {
     let filtered = PRODUCTS.filter(p => {
@@ -277,7 +447,7 @@ function initProducts() {
   if (clearBtn) clearBtn.addEventListener('click', () => {
     currentSearch = '';
     currentCategory = '';
-    currentMaxPrice = 5000;
+    currentMaxPrice = 650;
     if (searchInput) searchInput.value = '';
     if (categoryFilter) categoryFilter.value = '';
     if (priceRange) priceRange.value = 5000;

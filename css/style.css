@@ -1310,51 +1310,277 @@ table.cart-table { width: 100%; border-collapse: collapse; }
 }
 
 /* ============================================================
-   RESPONSIVE
+   RESPONSIVE — comprehensive mobile-first overrides
    ============================================================ */
+
+/* ---- 1024px and below (tablet landscape / small laptops) ---- */
 @media (max-width: 1024px) {
-  .cart-layout { grid-template-columns: 1fr; }
-  .checkout-layout { grid-template-columns: 1fr; }
-  .reviews-layout { grid-template-columns: 1fr; }
-  .about-hero-inner { grid-template-columns: 1fr; gap: 2rem; }
-  .vision-mission-inner { grid-template-columns: 1fr; }
-  .editorial-split { grid-template-columns: 1fr; }
-  .footer-inner { grid-template-columns: 1fr 1fr; }
-  .contact-layout { grid-template-columns: 1fr; }
-  .hero-inner { grid-template-columns: 1fr; }
-  .hero-image { display: none; }
-  .stats-row-inner { grid-template-columns: repeat(2,1fr); }
-  .features-row-inner { grid-template-columns: repeat(2,1fr); }
+
+  /* Layouts that need to collapse */
+  .cart-layout            { grid-template-columns: 1fr; }
+  .checkout-layout        { grid-template-columns: 1fr; }
+  .reviews-layout         { grid-template-columns: 1fr; }
+  .about-hero-inner       { grid-template-columns: 1fr; gap: 2rem; }
+  .vision-mission-inner   { grid-template-columns: 1fr; }
+  .editorial-split        { grid-template-columns: 1fr; }
+  .footer-inner           { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .contact-layout         { grid-template-columns: 1fr; }
+  .hero-inner             { grid-template-columns: 1fr; }
+  .hero-image             { display: none; }
+  .stats-row-inner        { grid-template-columns: repeat(2, 1fr); }
+  .features-row-inner     { grid-template-columns: repeat(2, 1fr); }
+
+  /* Sticky sidebars become normal flow */
+  .cart-summary           { position: static; }
+  .checkout-order-box     { position: static; }
+  .review-form-box        { position: static; }
+
+  /* Sections get less padding */
+  .section                { padding: 48px 20px; }
+  .section-full           { padding: 48px 20px; }
+  .about-hero-inner,
+  .vision-mission-inner   { padding: 48px 20px; }
+  .contact-layout         { padding: 48px 20px; }
+  .checkout-outer,
+  .cart-layout-outer,
+  .reviews-outer          { padding: 32px 20px 48px; }
+
+  /* Quick view modal — hide product image on smaller screens */
+  .qv-image               { display: none; }
+  #quick-view-modal       { max-width: 480px; }
+
+  /* Org chart team cards widen */
+  #team-executive .team-card,
+  #team-management .team-card,
+  #team-staff .team-card  { width: auto; }
 }
 
+/* ---- 768px and below (tablet portrait / large phones) ---- */
 @media (max-width: 768px) {
+
+  /* --- NAV --- */
   .nav-links {
     display: none;
     position: absolute;
     top: var(--nav-h); left: 0; right: 0;
     background: var(--white);
     flex-direction: column;
-    padding: 1.5rem 24px;
-    gap: 1.2rem;
+    padding: 1.2rem 20px;
+    gap: 1rem;
     border-bottom: 1px solid var(--border);
     z-index: 800;
+    box-shadow: var(--shadow);
   }
-  .nav-links.open { display: flex; }
-  .hamburger { display: flex; }
-  #mini-cart { width: 100%; right: -100%; }
-  .products-grid { grid-template-columns: repeat(2,1fr); gap: 1rem; }
-  .team-grid { grid-template-columns: repeat(2,1fr); }
-  .footer-inner { grid-template-columns: 1fr; }
-  .form-row { grid-template-columns: 1fr; }
-  .stats-row-inner { grid-template-columns: repeat(2,1fr); }
-  .editorial-text { padding: 40px 24px; }
+  .nav-links.open         { display: flex; }
+  .hamburger              { display: flex; }
+  .nav-inner              { gap: 0.8rem; }
+  .nav-logo               { font-size: 1.1rem; }
+
+  /* --- MINI CART --- */
+  #mini-cart              { width: 100%; right: -100%; }
+
+  /* --- HERO --- */
+  .hero                   { padding: 60px 20px 48px; min-height: auto; }
+  .hero h1                { font-size: clamp(1.8rem, 8vw, 2.6rem); }
+  .hero-sub               { font-size: 0.95rem; }
+  .hero p                 { font-size: 0.9rem; }
+  .hero-btns              { flex-direction: column; gap: 0.6rem; }
+  .hero-btns .btn-main,
+  .hero-btns .btn-outline { width: 100%; text-align: center; padding: 0.85rem 1rem; }
+
+  /* --- FEATURES ROW --- */
+  .features-row-inner     { grid-template-columns: 1fr 1fr; }
+  .feature-item           { padding: 1rem 0.8rem; font-size: 0.85rem; }
+
+  /* --- PRODUCTS GRID --- */
+  .products-grid          { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+
+  /* --- FILTERS BAR --- */
+  .filters-bar-inner      { flex-direction: column; gap: 0.8rem; }
+  .filter-input,
+  .filter-select          { min-width: 0; width: 100%; }
+  input[type=range]       { min-width: 0; width: 100%; }
+  .filter-clear-btn       { width: 100%; text-align: center; }
+
+  /* --- PAGE HEADER --- */
+  .page-header            { padding: 2rem 20px 1.5rem; }
+  .page-header h1         { font-size: clamp(1.6rem, 6vw, 2.2rem); }
+
+  /* --- SECTION TITLES --- */
+  .section-title          { font-size: clamp(1.4rem, 5vw, 2rem); }
+
+  /* --- ABOUT --- */
+  .about-img              { max-height: 320px; aspect-ratio: 16/9; }
+
+  /* --- VISION / MISSION --- */
+  .vision-mission-inner   { grid-template-columns: 1fr; gap: 1.2rem; padding: 36px 20px; }
+
+  /* --- VALUES --- */
+  .values-grid            { grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  /* --- TEAM --- */
+  .team-grid              { grid-template-columns: 1fr; max-width: 320px; margin: 0 auto; }
+  #team-executive .team-card,
+  #team-management .team-card,
+  #team-staff .team-card  { width: auto; max-width: 320px; }
+
+  /* --- STATS --- */
+  .stats-row-inner        { grid-template-columns: repeat(2, 1fr); }
+  .stat-item              { padding: 1.5rem 1rem; }
+  .stat-num               { font-size: 1.6rem; }
+
+  /* --- CONTACT --- */
+  .contact-layout         { padding: 36px 20px; gap: 2rem; }
+  .contact-info-box h2    { font-size: 1.5rem; }
+  .contact-form-box       { padding: 1.5rem; }
+
+  /* --- FORMS --- */
+  .form-row               { grid-template-columns: 1fr; }
+
+  /* --- CART TABLE → card layout on mobile --- */
+  .cart-table thead       { display: none; }
+  .cart-table,
+  .cart-table tbody,
+  .cart-table tr,
+  .cart-table td          { display: block; width: 100%; }
+  .cart-table tr          { border-bottom: 1px solid var(--border); padding: 1rem 0; position: relative; }
+  .cart-table td          { padding: 0.25rem 0; border-bottom: none; }
+  .cart-item-img          { float: left; margin-right: 1rem; margin-bottom: 0.5rem; }
+  .cart-remove-btn        { position: absolute; top: 1rem; right: 0; }
+  .cart-qty-input         { width: 50px; }
+
+  /* Cart summary stacks cleanly */
+  .cart-layout            { gap: 2rem; }
+  .cart-summary           { margin-top: 0; }
+
+  /* --- CHECKOUT --- */
+  .checkout-outer         { padding: 24px 20px 48px; }
+  .checkout-order-box     { margin-top: 0; }
+
+  /* --- ORDER STATUS --- */
+  .order-status-outer     { padding: 40px 20px; }
+  .status-demo-note       { font-size: 0.9rem; }
+
+  /* --- REVIEWS --- */
+  .reviews-outer          { padding: 32px 20px 48px; }
+  .review-form-box        { margin-top: 2rem; }
+
+  /* --- SUPPLIERS --- */
+  .suppliers-grid         { grid-template-columns: 1fr; }
+
+  /* --- EDITORIAL SPLIT --- */
+  .editorial-split        { grid-template-columns: 1fr; }
+  .editorial-text         { padding: 36px 20px; }
+  .editorial-img img      { min-height: 240px; }
+
+  /* --- NEWSLETTER --- */
+  .newsletter-form        { flex-direction: column; }
+  .newsletter-input,
+  .newsletter-btn         { width: 100%; }
+
+  /* --- FOOTER --- */
+  .footer-inner           { grid-template-columns: 1fr; gap: 1.5rem; padding: 36px 20px 24px; }
+  .footer-bottom          { padding: 1rem 20px; font-size: 0.8rem; }
+
+  /* --- TOAST & BACK TO TOP --- */
+  #toast-container        { left: 1rem; right: 1rem; bottom: 1rem; }
+  .toast                  { min-width: 0; width: 100%; max-width: 100%; }
+  #back-to-top            { bottom: 1rem; right: 1rem; }
+
+  /* --- MINI CART FOOTER BUTTONS --- */
+  .mini-cart-footer .btn-main,
+  .mini-cart-footer .btn-outline { padding: 0.8rem 1rem; font-size: 0.9rem; }
 }
 
+/* ---- 480px and below (phones) ---- */
 @media (max-width: 480px) {
-  .products-grid { grid-template-columns: 1fr; }
-  .team-grid { grid-template-columns: 1fr; }
-  .hero h1 { font-size: 2.34rem; }
-  .newsletter-form { flex-direction: column; }
-  .stats-row-inner { grid-template-columns: 1fr 1fr; }
-  .features-row-inner { grid-template-columns: 1fr 1fr; }
+
+  /* --- NAV --- */
+  .nav-logo               { font-size: 1rem; }
+  .nav-actions            { gap: 0.7rem; }
+  .nav-icon               { font-size: 1.1rem; }
+
+  /* --- HERO --- */
+  .hero                   { padding: 48px 16px 40px; }
+  .hero h1                { font-size: clamp(1.6rem, 9vw, 2.2rem); line-height: 1.1; }
+  .hero-tag               { font-size: 0.62rem; }
+
+  /* --- PRODUCTS --- */
+  .products-grid          { grid-template-columns: 1fr; }
+  .product-card-img       { aspect-ratio: 4/3; }
+
+  /* --- FEATURES --- */
+  .features-row-inner     { grid-template-columns: 1fr 1fr; }
+  .feature-item           { padding: 0.9rem 0.6rem; font-size: 0.78rem; gap: 0.4rem; }
+  .feature-item i         { font-size: 0.8rem; }
+
+  /* --- VALUES --- */
+  .values-grid            { grid-template-columns: 1fr; }
+
+  /* --- STATS --- */
+  .stats-row-inner        { grid-template-columns: repeat(2, 1fr); }
+  .stat-num               { font-size: 1.4rem; }
+  .stat-label             { font-size: 0.62rem; }
+
+  /* --- TEAM --- */
+  .team-grid              { max-width: 100%; }
+
+  /* --- PAGE HEADERS --- */
+  .page-header            { padding: 1.5rem 16px 1.2rem; }
+  .page-header h1         { font-size: clamp(1.4rem, 7vw, 1.8rem); }
+  .page-header p          { font-size: 0.88rem; }
+
+  /* --- SECTION TITLE / DESC --- */
+  .section-title          { font-size: clamp(1.2rem, 6vw, 1.7rem); }
+  .section-desc           { font-size: 0.88rem; }
+  .section                { padding: 36px 16px; }
+
+  /* --- CART --- */
+  .cart-layout-outer      { padding: 20px 16px 40px; }
+  .cart-item-img          { width: 54px; height: 54px; }
+
+  /* --- CHECKOUT --- */
+  .checkout-outer         { padding: 20px 16px 40px; }
+
+  /* --- CONTACT --- */
+  .contact-layout         { padding: 24px 16px; }
+
+  /* --- ORDER STATUS --- */
+  .order-status-outer     { padding: 28px 16px; }
+
+  /* --- REVIEWS --- */
+  .reviews-outer          { padding: 24px 16px 40px; }
+
+  /* --- SUPPLIERS --- */
+  .suppliers-grid         { gap: 0.8rem; }
+  .supplier-card          { padding: 1.2rem; }
+
+  /* --- NEWSLETTER --- */
+  .newsletter-strip       { padding: 40px 16px; }
+
+  /* --- FOOTER --- */
+  .footer-inner           { padding: 28px 16px 20px; }
+
+  /* --- QUICK VIEW --- */
+  #quick-view-overlay     { padding: 16px; }
+  .qv-info                { padding: 1.2rem; }
+  .qv-name                { font-size: 1.2rem; }
+  .qv-price               { font-size: 1.1rem; }
+
+  /* --- MINI CART --- */
+  .mini-cart-header       { padding: 1rem 1.2rem; }
+  #mini-cart-items        { padding: 0.8rem 1.2rem; }
+  .mini-cart-footer       { padding: 1rem 1.2rem; }
+
+  /* --- BUTTONS --- */
+  .btn-main, .btn-outline { padding: 0.75rem 1.2rem; font-size: 0.9rem; }
+
+  /* --- VM CARDS --- */
+  .vm-card                { padding: 1.5rem; }
+
+  /* --- EDITORIAL --- */
+  .editorial-text         { padding: 28px 16px; }
+
+  /* --- ORG CHART CONNECTORS --- */
+  .org-line-v             { height: 28px; }
 }
