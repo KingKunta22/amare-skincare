@@ -79,11 +79,7 @@ const Cart = {
     if (!container) return;
 
     if (items.length === 0) {
-      container.innerHTML = `<p class="mini-cart-empty">Your bag is empty.<br><a href="/products" data-link style="color:var(--accent);">Browse products →</a></p>`;
-      // Re-bind links
-      container.querySelectorAll('[data-link]').forEach(el => {
-        el.addEventListener('click', e => { e.preventDefault(); Router.navigate(el.getAttribute('href')); });
-      });
+      container.innerHTML = `<p class="mini-cart-empty">Your bag is empty.<br><a href="products.html" style="color:var(--accent);">Browse products →</a></p>`;
     } else {
       container.innerHTML = items.map(item => `
         <div class="mini-cart-item">
@@ -151,12 +147,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const overlay = document.getElementById('mini-cart-overlay');
   if (overlay) overlay.addEventListener('click', () => Cart.closeMiniCart());
-
-  // View cart button inside mini cart
-  const vcBtn = document.getElementById('view-cart-btn');
-  if (vcBtn) vcBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    Cart.closeMiniCart();
-    Router.navigate('/cart');
-  });
 });

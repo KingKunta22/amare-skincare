@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amare Skincare – Products</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Amare Skincare</a>
+
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="products.html" class="nav-link active">Products</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+        <li><a href="team.html" class="nav-link">Team</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="https://www.instagram.com/amare_skincare" target="_blank" class="nav-icon" title="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <button class="nav-icon cart-icon-btn" id="cart-btn" title="Cart">
+          <i class="fas fa-shopping-bag"></i>
+          <span class="cart-count" id="cart-count">0</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div id="mini-cart-overlay"></div>
+  <aside id="mini-cart">
+    <div class="mini-cart-header">
+      <span>Your Bag</span>
+      <button id="close-mini-cart"><i class="fas fa-times"></i></button>
+    </div>
+    <div id="mini-cart-items"></div>
+    <div class="mini-cart-footer">
+      <div class="mini-cart-total">
+        <span>Total</span>
+        <span id="mini-cart-total-price">₱0.00</span>
+      </div>
+      <a href="cart.html" class="btn-main" id="view-cart-btn">View Cart</a>
+      <a href="checkout.html" class="btn-outline">Checkout</a>
+    </div>
+  </aside>
+
+  <div id="toast-container"></div>
+  <button id="back-to-top" title="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+  <main id="app">
+    <div class="page-header">
+      <div class="page-header-inner">
+        <div class="section-label">Browse</div>
+        <h1>Our Products</h1>
+        <p>23 gentle, effective skincare products across 6 categories — crafted with love for every skin type.</p>
+      </div>
+    </div>
+
+    <div class="filters-bar">
+      <div class="filters-bar-inner">
+        <div class="filter-group">
+          <label class="filter-label">Search</label>
+          <input type="text" class="filter-input" id="search-input" placeholder="Search by name or ingredient...">
+        </div>
+        <div class="filter-group">
+          <label class="filter-label">Category</label>
+          <select class="filter-select" id="category-filter">
+            <option value="">All Categories</option>
+            <option value="Cleansers">Cleansers</option>
+            <option value="Toners">Toners</option>
+            <option value="Moisturizers">Moisturizers</option>
+            <option value="Serums">Serums</option>
+            <option value="Masks">Masks</option>
+            <option value="Sunscreen">Sunscreen</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label class="filter-label">Max Price</label>
+          <div class="range-labels"><span>₱99</span><span id="price-range-val">₱650</span></div>
+          <input type="range" id="price-range" min="99" max="650" step="10" value="650">
+        </div>
+        <button class="filter-clear-btn" id="filter-clear">Clear</button>
+      </div>
+    </div>
+
+    <div class="products-count" id="products-count">Loading...</div>
+
+    <div style="padding:0 24px 60px;max-width:1200px;margin:0 auto;">
+      <div class="products-grid" id="products-grid"></div>
+    </div>
+  </main>
+
+  <footer id="site-footer">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <div class="footer-logo">Amare Skincare</div>
+        <p>Where skin is seen and always keen.</p>
+        <p style="margin-top:0.5rem;"><a href="mailto:amareskincare@gmail.com">amareskincare@gmail.com</a></p>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="team.html">Team</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>More</h4>
+        <ul>
+          <li><a href="suppliers.html">Suppliers</a></li>
+          <li><a href="reviews.html">Reviews</a></li>
+          <li><a href="order-status.html">Order Status</a></li>
+          <li><a href="cart.html">Cart</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Follow Us</h4>
+        <ul>
+          <li><a href="https://www.instagram.com/amare_skincare" target="_blank"><i class="fab fa-instagram"></i> @amare_skincare</a></li>
+          <li><a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook"></i> Amare Skincare Main</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Amare Skincare. All rights reserved. | BSBA Class Project</p>
+    </div>
+  </footer>
+
+  <script src="js/toast.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

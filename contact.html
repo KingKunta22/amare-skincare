@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amare Skincare – Contact</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Amare Skincare</a>
+
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="products.html" class="nav-link">Products</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="contact.html" class="nav-link active">Contact</a></li>
+        <li><a href="team.html" class="nav-link">Team</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="https://www.instagram.com/amare_skincare" target="_blank" class="nav-icon" title="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <button class="nav-icon cart-icon-btn" id="cart-btn" title="Cart">
+          <i class="fas fa-shopping-bag"></i>
+          <span class="cart-count" id="cart-count">0</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div id="mini-cart-overlay"></div>
+  <aside id="mini-cart">
+    <div class="mini-cart-header">
+      <span>Your Bag</span>
+      <button id="close-mini-cart"><i class="fas fa-times"></i></button>
+    </div>
+    <div id="mini-cart-items"></div>
+    <div class="mini-cart-footer">
+      <div class="mini-cart-total">
+        <span>Total</span>
+        <span id="mini-cart-total-price">₱0.00</span>
+      </div>
+      <a href="cart.html" class="btn-main" id="view-cart-btn">View Cart</a>
+      <a href="checkout.html" class="btn-outline">Checkout</a>
+    </div>
+  </aside>
+
+  <div id="toast-container"></div>
+  <button id="back-to-top" title="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+  <main id="app">
+    <div class="page-header">
+      <div class="page-header-inner">
+        <div class="section-label">Get in Touch</div>
+        <h1>Contact Us</h1>
+        <p>We'd love to hear from you. Send us a message below.</p>
+      </div>
+    </div>
+
+    <div class="contact-layout">
+      <div class="contact-info-box fade-up">
+        <h2>Let's Talk</h2>
+        <p>
+          Whether you have a question about a product, an order, or just want to say hi —
+          we're here and happy to help. We typically reply within 24 hours.
+        </p>
+        <div class="contact-detail-list">
+          <div class="contact-detail-item">
+            <i class="fas fa-envelope"></i>
+            <div>
+              <div class="contact-detail-label">Email</div>
+              <div class="contact-detail-value">
+                <a href="mailto:amareskincare@gmail.com">amareskincare@gmail.com</a>
+              </div>
+            </div>
+          </div>
+          <div class="contact-detail-item">
+            <i class="fab fa-instagram"></i>
+            <div>
+              <div class="contact-detail-label">Instagram</div>
+              <div class="contact-detail-value">
+                <a href="https://www.instagram.com/amare_skincare" target="_blank">@amare_skincare</a>
+              </div>
+            </div>
+          </div>
+          <div class="contact-detail-item">
+            <i class="fab fa-facebook"></i>
+            <div>
+              <div class="contact-detail-label">Facebook</div>
+              <div class="contact-detail-value">
+                <a href="https://www.facebook.com" target="_blank">Amare Skincare Main</a>
+              </div>
+            </div>
+          </div>
+          <div class="contact-detail-item">
+            <i class="fas fa-clock"></i>
+            <div>
+              <div class="contact-detail-label">Response Time</div>
+              <div class="contact-detail-value">Mon – Sat, 9AM – 6PM<br>We reply within 24 hours.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form-box fade-up" style="transition-delay:.1s;">
+        <h3>Send a Message</h3>
+        <form id="contact-form" onsubmit="handleContactForm(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Full Name</label>
+              <input type="text" class="form-input" placeholder="Your name" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-input" placeholder="your@email.com" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Subject</label>
+            <select class="form-select">
+              <option value="">Select a topic</option>
+              <option>Order Inquiry</option>
+              <option>Product Question</option>
+              <option>Returns &amp; Exchanges</option>
+              <option>General Feedback</option>
+              <option>Wholesale Inquiry</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Message</label>
+            <textarea class="form-textarea" placeholder="Tell us how we can help..." required></textarea>
+          </div>
+          <button type="submit" class="btn-main">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer id="site-footer">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <div class="footer-logo">Amare Skincare</div>
+        <p>Where skin is seen and always keen.</p>
+        <p style="margin-top:0.5rem;"><a href="mailto:amareskincare@gmail.com">amareskincare@gmail.com</a></p>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="team.html">Team</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>More</h4>
+        <ul>
+          <li><a href="suppliers.html">Suppliers</a></li>
+          <li><a href="reviews.html">Reviews</a></li>
+          <li><a href="order-status.html">Order Status</a></li>
+          <li><a href="cart.html">Cart</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Follow Us</h4>
+        <ul>
+          <li><a href="https://www.instagram.com/amare_skincare" target="_blank"><i class="fab fa-instagram"></i> @amare_skincare</a></li>
+          <li><a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook"></i> Amare Skincare Main</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Amare Skincare. All rights reserved. | BSBA Class Project</p>
+    </div>
+  </footer>
+
+  <script src="js/toast.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    function handleContactForm(e) {
+      e.preventDefault();
+      showToast("Message sent! We'll get back to you within 24 hours.", 'fas fa-paper-plane');
+      e.target.reset();
+    }
+  </script>
+</body>
+</html>

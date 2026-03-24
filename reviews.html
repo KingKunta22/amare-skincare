@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amare Skincare – Reviews</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Amare Skincare</a>
+
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="products.html" class="nav-link">Products</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+        <li><a href="team.html" class="nav-link">Team</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="https://www.instagram.com/amare_skincare" target="_blank" class="nav-icon" title="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <button class="nav-icon cart-icon-btn" id="cart-btn" title="Cart">
+          <i class="fas fa-shopping-bag"></i>
+          <span class="cart-count" id="cart-count">0</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div id="mini-cart-overlay"></div>
+  <aside id="mini-cart">
+    <div class="mini-cart-header">
+      <span>Your Bag</span>
+      <button id="close-mini-cart"><i class="fas fa-times"></i></button>
+    </div>
+    <div id="mini-cart-items"></div>
+    <div class="mini-cart-footer">
+      <div class="mini-cart-total">
+        <span>Total</span>
+        <span id="mini-cart-total-price">₱0.00</span>
+      </div>
+      <a href="cart.html" class="btn-main" id="view-cart-btn">View Cart</a>
+      <a href="checkout.html" class="btn-outline">Checkout</a>
+    </div>
+  </aside>
+
+  <div id="toast-container"></div>
+  <button id="back-to-top" title="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+  <main id="app">
+    <div class="page-header">
+      <div class="page-header-inner">
+        <div class="section-label">Community</div>
+        <h1>Reviews</h1>
+        <p>Real results from real people. Share your Amare experience.</p>
+      </div>
+    </div>
+
+    <div class="reviews-outer">
+      <div style="display:flex;align-items:center;gap:2rem;background:var(--white);border:1px solid var(--border);padding:1.5rem;margin-bottom:2.5rem;" class="fade-up">
+        <div style="text-align:center;flex-shrink:0;">
+          <div style="font-size:2.8rem;font-weight:800;color:var(--accent);line-height:1;">4.9</div>
+          <div style="color:#e6a817;font-size:1rem;margin:4px 0;">★★★★★</div>
+          <div style="font-size:0.7rem;color:var(--text-lt);">Average Rating</div>
+        </div>
+        <div style="width:1px;height:60px;background:var(--border);flex-shrink:0;"></div>
+        <p style="font-size:0.83rem;color:var(--text-mid);line-height:1.8;">
+          Our customers are our biggest advocates. Every review motivates us to keep improving, innovating, and loving what we do.
+        </p>
+      </div>
+
+      <div class="reviews-layout">
+        <div>
+          <div class="section-label" style="margin-bottom:1rem;">What People Are Saying</div>
+          <div id="review-list"></div>
+        </div>
+
+        <div>
+          <div class="review-form-box">
+            <div class="review-form-title">Write a Review</div>
+            <form id="review-form">
+              <div class="form-group">
+                <label class="form-label">Your Name</label>
+                <input type="text" id="review-name" class="form-input" placeholder="Maria Santos" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Rating</label>
+                <div class="star-rating">
+                  <button type="button" class="star-btn" data-star="1">★</button>
+                  <button type="button" class="star-btn" data-star="2">★</button>
+                  <button type="button" class="star-btn" data-star="3">★</button>
+                  <button type="button" class="star-btn" data-star="4">★</button>
+                  <button type="button" class="star-btn" data-star="5">★</button>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Your Review</label>
+                <textarea id="review-text" class="form-textarea" placeholder="Tell us about your experience..." required></textarea>
+              </div>
+              <button type="submit" class="btn-main" style="width:100%;">Submit Review</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer id="site-footer">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <div class="footer-logo">Amare Skincare</div>
+        <p>Where skin is seen and always keen.</p>
+        <p style="margin-top:0.5rem;"><a href="mailto:amareskincare@gmail.com">amareskincare@gmail.com</a></p>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="team.html">Team</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>More</h4>
+        <ul>
+          <li><a href="suppliers.html">Suppliers</a></li>
+          <li><a href="reviews.html">Reviews</a></li>
+          <li><a href="order-status.html">Order Status</a></li>
+          <li><a href="cart.html">Cart</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Follow Us</h4>
+        <ul>
+          <li><a href="https://www.instagram.com/amare_skincare" target="_blank"><i class="fab fa-instagram"></i> @amare_skincare</a></li>
+          <li><a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook"></i> Amare Skincare Main</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Amare Skincare. All rights reserved. | BSBA Class Project</p>
+    </div>
+  </footer>
+
+  <script src="js/toast.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

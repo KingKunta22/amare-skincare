@@ -1,26 +1,22 @@
 /* ============================================================
-   toast.js — Amare Skincare
+   toast.js — Amare Skincare Toast Notifications
    ============================================================ */
 
-/**
- * showToast(message, icon)
- * icon: FontAwesome class string e.g. 'fas fa-check'
- */
-function showToast(message, icon = 'fas fa-check') {
+function showToast(message, icon = 'fas fa-info-circle') {
   const container = document.getElementById('toast-container');
   if (!container) return;
 
   const toast = document.createElement('div');
   toast.className = 'toast';
   toast.innerHTML = `
-    <i class="${icon} toast-icon"></i>
-    <span>${message}</span>
+    <div class="toast-icon"><i class="${icon}"></i></div>
+    <div class="toast-message">${message}</div>
   `;
   container.appendChild(toast);
 
-  // Auto-remove after 3s
+  // Auto-remove after 3 seconds
   setTimeout(() => {
     toast.classList.add('removing');
-    toast.addEventListener('animationend', () => toast.remove());
+    setTimeout(() => toast.remove(), 300);
   }, 3000);
 }

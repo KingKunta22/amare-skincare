@@ -1,10 +1,9 @@
 /* ============================================================
-   main.js — Amare Skincare
-   Page initialization, product data, all page scripts
+   main.js — Amare Skincare (Multi‑page version)
    ============================================================ */
 
 // ============================================================
-// PRODUCT DATA
+// PRODUCT DATA (unchanged)
 // ============================================================
 const PRODUCTS = [
   // --- CLEANSERS ---
@@ -194,6 +193,7 @@ const PRODUCTS = [
     description: 'A gentle sunscreen designed for sensitive skin. Key Ingredients: Centella Asiatica, Madecassoside, Zinc Oxide. Effects: Soothes skin, reduces irritation, provides UV protection.'
   },
 ];
+
 // ============================================================
 // TEAM DATA
 // ============================================================
@@ -223,6 +223,7 @@ const TEAM = {
     },
   ]
 };
+
 // ============================================================
 // SUPPLIERS DATA
 // ============================================================
@@ -248,15 +249,13 @@ const ORDER_STATUSES = {
 };
 
 // ============================================================
-// RENDER HELPERS
+// RENDER HELPERS (unchanged)
 // ============================================================
 function getImage2(img) {
-  // centella-sunscreen.jpg → centella-sunscreen2.jpg
   return img.replace(/(\.[^.]+)$/, '2$1');
 }
 
 function parseDescription(desc) {
-  // Split "A mild cleanser. Key Ingredients: X, Y. Effects: A, B."
   const ingMatch = desc.match(/Key Ingredients?:\s*([^.]+)\./i);
   const effMatch = desc.match(/Effects?:\s*([^.]+)\./i);
   const mainDesc = desc.split(/Key Ingredients?:/i)[0].trim();
@@ -273,7 +272,6 @@ function renderProductCard(p, index = 0) {
   const badgeClass = p.stock === 0 ? 'badge-out' : p.stock <= 5 ? 'badge-low' : '';
   const badgeText = p.stock === 0 ? 'Sold Out' : p.stock <= 5 ? 'Low Stock' : 'New';
   const img2 = getImage2(p.image);
-  const parsed = parseDescription(p.description);
   return `
     <div class="product-card fade-up" style="transition-delay:${index * 0.05}s">
       <div class="product-card-img"
@@ -345,7 +343,7 @@ function bindProductCardEvents() {
       if (img2) {
         const testImg = new Image();
         testImg.onload = () => { img.src = img2; };
-        testImg.onerror = () => {}; // silently keep img1 if img2 missing
+        testImg.onerror = () => {};
         testImg.src = img2;
       }
       if (heart) heart.style.opacity = '1';
@@ -358,7 +356,7 @@ function bindProductCardEvents() {
 }
 
 // ============================================================
-// PRODUCT DETAIL MODAL (rich — ingredients, effects, images)
+// PRODUCT DETAIL MODAL (unchanged)
 // ============================================================
 function openProductModal(id) {
   const p = PRODUCTS.find(p => p.id === id);
@@ -369,19 +367,14 @@ function openProductModal(id) {
   const stockLabel = p.stock === 0 ? 'Out of Stock' : p.stock <= 5 ? `Only ${p.stock} left` : 'In Stock';
   const stockClass = p.stock === 0 ? 'stock-out' : p.stock <= 5 ? 'stock-low' : '';
 
-  // Build ingredient tags
   const ingTags = parsed.ingredients
-    ? parsed.ingredients.split(',').map(i =>
-        `<span class="pm-tag">${i.trim()}</span>`).join('')
+    ? parsed.ingredients.split(',').map(i => `<span class="pm-tag">${i.trim()}</span>`).join('')
     : '';
 
-  // Build effect tags
   const effTags = parsed.effects
-    ? parsed.effects.split(',').map(e =>
-        `<span class="pm-effect-tag"><i class="fas fa-check"></i> ${e.trim()}</span>`).join('')
+    ? parsed.effects.split(',').map(e => `<span class="pm-effect-tag"><i class="fas fa-check"></i> ${e.trim()}</span>`).join('')
     : '';
 
-  // Remove old modal if exists
   const old = document.getElementById('product-modal-overlay');
   if (old) old.remove();
 
@@ -393,7 +386,6 @@ function openProductModal(id) {
         <i class="fas fa-times"></i>
       </button>
 
-      <!-- IMAGE PANEL -->
       <div class="pm-images">
         <img class="pm-img-main" id="pm-main-img"
              src="${p.image}"
@@ -413,7 +405,6 @@ function openProductModal(id) {
         </div>
       </div>
 
-      <!-- INFO PANEL -->
       <div class="pm-info">
         <div class="pm-category">${p.category}</div>
         <h2 class="pm-name">${p.name}</h2>
@@ -452,7 +443,6 @@ function openProductModal(id) {
 
   document.body.appendChild(overlay);
 
-  // Thumb switching
   overlay.querySelectorAll('.pm-thumb').forEach(thumb => {
     thumb.addEventListener('click', () => {
       overlay.querySelectorAll('.pm-thumb').forEach(t => t.classList.remove('pm-thumb-active'));
@@ -461,54 +451,30 @@ function openProductModal(id) {
     });
   });
 
-  // Qty
   const qtyInput = document.getElementById('pm-qty');
   document.getElementById('pm-minus').onclick = () => { if (+qtyInput.value > 1) qtyInput.value--; };
   document.getElementById('pm-plus').onclick  = () => { if (+qtyInput.value < p.stock) qtyInput.value++; };
 
-  // Add to bag
   document.getElementById('pm-add-btn').onclick = () => {
     Cart.addItem(p, parseInt(qtyInput.value) || 1);
     overlay.classList.remove('visible');
   };
 
-  // Close
   document.getElementById('pm-close-btn').onclick = () => overlay.classList.remove('visible');
   overlay.addEventListener('click', e => { if (e.target === overlay) overlay.classList.remove('visible'); });
   document.addEventListener('keydown', function esc(e) {
     if (e.key === 'Escape') { overlay.classList.remove('visible'); document.removeEventListener('keydown', esc); }
   });
 
-  // Animate in
   requestAnimationFrame(() => overlay.classList.add('visible'));
 }
 
-// Keep openQuickView as alias so nothing breaks
 function openQuickView(id) { openProductModal(id); }
 
 // ============================================================
-// PAGE INIT
-// ============================================================
-function PageInit(path) {
-  // Bind nav links inside loaded content
-  Router.bindLinks();
-
-  switch (path) {
-    case '/': initHome(); break;
-    case '/products': initProducts(); break;
-    case '/cart': initCart(); break;
-    case '/checkout': initCheckout(); break;
-    case '/order-status': initOrderStatus(); break;
-    case '/reviews': initReviews(); break;
-    case '/team': initTeam(); break;
-  }
-}
-
-// ============================================================
-// HOME PAGE
+// PAGE INITIALISATION FUNCTIONS (updated to use normal links)
 // ============================================================
 function initHome() {
-  // Render featured products (first 8)
   const grid = document.getElementById('featured-products');
   if (grid) {
     grid.innerHTML = PRODUCTS.slice(0, 8).map((p, i) => renderProductCard(p, i)).join('');
@@ -517,9 +483,6 @@ function initHome() {
   }
 }
 
-// ============================================================
-// PRODUCTS PAGE
-// ============================================================
 function initProducts() {
   const grid = document.getElementById('products-grid');
   const searchInput = document.getElementById('search-input');
@@ -576,9 +539,6 @@ function initProducts() {
   render();
 }
 
-// ============================================================
-// CART PAGE
-// ============================================================
 function initCart() {
   renderCartPage();
 }
@@ -593,9 +553,8 @@ function renderCartPage() {
       <div class="cart-empty-state">
         <div class="cart-empty-icon"><i class="fas fa-shopping-bag"></i></div>
         <div class="cart-empty-text">Your bag is empty.<br>Time to treat yourself.</div>
-        <a href="/products" data-link class="btn-main" style="width:auto;display:inline-flex;">Browse Products </a>
+        <a href="products.html" class="btn-main" style="width:auto;display:inline-flex;">Browse Products</a>
       </div>`;
-    Router.bindLinks();
     return;
   }
 
@@ -607,31 +566,18 @@ function renderCartPage() {
       <div>
         <table class="cart-table">
           <thead>
-            <tr>
-              <th colspan="2">Product</th>
-              <th>Price</th>
-              <th>Qty</th>
-              <th>Total</th>
-              <th></th>
-            </tr>
+            <tr><th colspan="2">Product</th><th>Price</th><th>Qty</th><th>Total</th><th></th></tr>
           </thead>
           <tbody id="cart-rows">
             ${items.map(item => `
               <tr>
                 <td><img class="cart-item-img" src="${item.image}" alt="${item.name}" onerror="this.src='https://placehold.co/80x80/e4f0e4/6b8f71?text=A'"></td>
-                <td>
-                  <div class="cart-item-name">${item.name}</div>
-                  <div class="cart-item-cat">${item.category}</div>
-                </td>
+                <td><div class="cart-item-name">${item.name}</div><div class="cart-item-cat">${item.category}</div></td>
                 <td class="cart-item-price-cell">₱${item.price.toLocaleString()}</td>
-                <td>
-                  <input type="number" class="cart-qty-input" value="${item.qty}" min="1" max="${item.stock}" data-id="${item.id}">
-                </td>
+                <td><input type="number" class="cart-qty-input" value="${item.qty}" min="1" max="${item.stock}" data-id="${item.id}"></td>
                 <td class="cart-item-price-cell">₱${(item.price * item.qty).toLocaleString()}</td>
-                <td>
-                  <button class="cart-remove-btn" data-id="${item.id}"><i class="fas fa-times"></i></button>
-                </td>
-              </tr>
+                <td><button class="cart-remove-btn" data-id="${item.id}"><i class="fas fa-times"></i></button></td>
+               </tr>
             `).join('')}
           </tbody>
         </table>
@@ -642,31 +588,25 @@ function renderCartPage() {
         <div class="cart-summary-row"><span>Shipping</span><span>${shipping === 0 ? 'FREE' : '₱' + shipping}</span></div>
         ${shipping > 0 ? `<div style="font-size:0.7rem;color:var(--accent);margin-bottom:.5rem;">Spend ₱${(2000-total).toLocaleString()} more for free shipping!</div>` : ''}
         <div class="cart-summary-row total"><span>Total</span><span>₱${(total + shipping).toLocaleString()}</span></div>
-        <a href="/checkout" data-link class="btn-main cart-checkout-btn">Proceed to Checkout </a>
-        <a href="/products" data-link class="btn-outline" style="margin-top:.75rem;">Continue Shopping</a>
+        <a href="checkout.html" class="btn-main cart-checkout-btn">Proceed to Checkout</a>
+        <a href="products.html" class="btn-outline" style="margin-top:.75rem;">Continue Shopping</a>
       </div>
     </div>`;
 
-  // Bind qty inputs
   container.querySelectorAll('.cart-qty-input').forEach(input => {
     input.addEventListener('change', () => {
       Cart.updateQty(input.dataset.id, parseInt(input.value));
       setTimeout(() => renderCartPage(), 50);
     });
   });
-  // Bind remove buttons
   container.querySelectorAll('.cart-remove-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       Cart.removeItem(btn.dataset.id);
       setTimeout(() => renderCartPage(), 50);
     });
   });
-  Router.bindLinks();
 }
 
-// ============================================================
-// CHECKOUT PAGE
-// ============================================================
 function initCheckout() {
   const items = Cart.getItems();
   const summaryEl = document.getElementById('checkout-order-items');
@@ -676,8 +616,7 @@ function initCheckout() {
   const shippingEl = document.getElementById('checkout-shipping');
 
   if (items.length === 0 && summaryEl) {
-    summaryEl.innerHTML = `<p style="color:var(--text-muted);font-size:.85rem;">Your cart is empty. <a href="/products" data-link style="color:var(--accent)">Shop now →</a></p>`;
-    Router.bindLinks();
+    summaryEl.innerHTML = `<p style="color:var(--text-muted);font-size:.85rem;">Your cart is empty. <a href="products.html" style="color:var(--accent)">Shop now →</a></p>`;
   }
 
   if (summaryEl) {
@@ -715,17 +654,13 @@ function initCheckout() {
             <p style="color:var(--text-muted);font-size:.9rem;max-width:500px;margin:0 auto 2rem;">
               Your order has been placed. You'll receive a confirmation shortly. Use your order ID to track your shipment.
             </p>
-            <a href="/order-status" data-link class="btn-main" style="width:auto;display:inline-flex;">Track Order </a>
+            <a href="order-status.html" class="btn-main" style="width:auto;display:inline-flex;">Track Order</a>
           </div>`;
-        Router.bindLinks();
       }
     });
   }
 }
 
-// ============================================================
-// ORDER STATUS PAGE
-// ============================================================
 function initOrderStatus() {
   const form = document.getElementById('order-status-form');
   const result = document.getElementById('order-status-result');
@@ -771,9 +706,6 @@ function initOrderStatus() {
   }
 }
 
-// ============================================================
-// REVIEWS PAGE
-// ============================================================
 function initReviews() {
   let selectedRating = 0;
   const starBtns = document.querySelectorAll('.star-btn');
@@ -838,9 +770,6 @@ function renderReviews() {
   initFadeUps();
 }
 
-// ============================================================
-// TEAM PAGE
-// ============================================================
 function initTeam() {
   const exec = document.getElementById('team-executive');
   const mgmt = document.getElementById('team-management');
@@ -850,6 +779,7 @@ function initTeam() {
   if (staff) staff.innerHTML = TEAM.staff.map((m, i) => teamCard(m, i)).join('');
   initFadeUps();
 }
+
 function teamCard(m, i) {
   return `<div class="team-card fade-up" style="transition-delay:${i * 0.07}s">
     <div class="team-card-img"><img src="${m.image}" alt="${m.name}" loading="lazy" onerror="this.src='https://placehold.co/300x400/e4f0e4/6b8f71?text=A'"></div>
@@ -862,15 +792,23 @@ function teamCard(m, i) {
 }
 
 // ============================================================
-// NAVBAR SHRINK ON SCROLL
+// GLOBAL UTILITIES
 // ============================================================
-window.addEventListener('scroll', () => {
-  const navbar = document.getElementById('navbar');
-  if (navbar) navbar.classList.toggle('shrunk', window.scrollY > 60);
-  const backTop = document.getElementById('back-to-top');
-  if (backTop) backTop.classList.toggle('visible', window.scrollY > 400);
-});
+function initFadeUps() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+}
 
+// ============================================================
+// PAGE LOAD HANDLER – call appropriate init based on page
+// ============================================================
 document.addEventListener('DOMContentLoaded', () => {
   // Back to top
   const backTop = document.getElementById('back-to-top');
@@ -890,5 +828,26 @@ document.addEventListener('DOMContentLoaded', () => {
       showToast('Subscribed! Thank you.', 'fas fa-envelope');
       e.target.reset();
     }
+  });
+
+  // Determine current page and call appropriate init
+  const path = window.location.pathname;
+  if (path === '/' || path === '/index.html') initHome();
+  else if (path === '/products.html') initProducts();
+  else if (path === '/cart.html') initCart();
+  else if (path === '/checkout.html') initCheckout();
+  else if (path === '/order-status.html') initOrderStatus();
+  else if (path === '/reviews.html') initReviews();
+  else if (path === '/team.html') initTeam();
+  // About, Contact, Suppliers have no specific init (fade-ups already covered)
+
+  // Initial fade-ups
+  initFadeUps();
+
+  // Set active nav link
+  const currentPage = path.split('/').pop() || 'index.html';
+  document.querySelectorAll('.nav-link').forEach(link => {
+    const href = link.getAttribute('href');
+    if (href === currentPage) link.classList.add('active');
   });
 });

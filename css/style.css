@@ -1,5 +1,5 @@
 /* ============================================================
-   AMARE SKINCARE — style.css (v2 — Simple & Clean)
+   AMARE SKINCARE — style.css (v3 — mobile enhancements)
    ============================================================ */
 
 @font-face {
@@ -1539,15 +1539,55 @@ table.cart-table { width: 100%; border-collapse: collapse; }
   .features-row-inner     { grid-template-columns: 1fr 1fr; }
   .feature-item           { padding: 1rem 0.8rem; font-size: 0.85rem; }
 
-  /* --- PRODUCTS GRID --- */
-  .products-grid          { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+  /* --- PRODUCTS GRID (two columns, adjust card) --- */
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+  }
+  .product-card-img {
+    aspect-ratio: 3/4;
+  }
+  .product-name {
+    font-size: 0.95rem;
+  }
+  .product-price {
+    font-size: 1rem;
+  }
+  .product-stock {
+    font-size: 0.7rem;
+  }
+  .add-to-cart-btn {
+    font-size: 0.8rem;
+    padding: 0.5rem;
+  }
+  .product-card-body {
+    padding: 0.7rem;
+  }
+  .product-category {
+    font-size: 0.7rem;
+  }
 
-  /* --- FILTERS BAR --- */
-  .filters-bar-inner      { flex-direction: column; gap: 0.8rem; }
+  /* --- FILTERS BAR (stack with full width) --- */
+  .filters-bar-inner {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  .filter-group {
+    width: 100%;
+  }
   .filter-input,
-  .filter-select          { min-width: 0; width: 100%; }
-  input[type=range]       { min-width: 0; width: 100%; }
-  .filter-clear-btn       { width: 100%; text-align: center; }
+  .filter-select {
+    min-width: 0;
+    width: 100%;
+  }
+  input[type=range] {
+    min-width: 0;
+    width: 100%;
+  }
+  .filter-clear-btn {
+    width: 100%;
+    text-align: center;
+  }
 
   /* --- PAGE HEADER --- */
   .page-header            { padding: 2rem 20px 1.5rem; }
@@ -1625,9 +1665,24 @@ table.cart-table { width: 100%; border-collapse: collapse; }
   .newsletter-input,
   .newsletter-btn         { width: 100%; }
 
-  /* --- FOOTER --- */
-  .footer-inner           { grid-template-columns: 1fr; gap: 1.5rem; padding: 36px 20px 24px; }
-  .footer-bottom          { padding: 1rem 20px; font-size: 0.8rem; }
+  /* --- FOOTER (smaller text) --- */
+  .footer-inner {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 36px 20px 24px;
+  }
+  .footer-col p,
+  .footer-col a,
+  .footer-bottom {
+    font-size: 0.8rem;
+  }
+  .footer-logo {
+    font-size: 1.2rem;
+  }
+  .footer-bottom {
+    padding: 1rem 20px;
+    font-size: 0.7rem;
+  }
 
   /* --- TOAST & BACK TO TOP --- */
   #toast-container        { left: 1rem; right: 1rem; bottom: 1rem; }
@@ -1637,6 +1692,21 @@ table.cart-table { width: 100%; border-collapse: collapse; }
   /* --- MINI CART FOOTER BUTTONS --- */
   .mini-cart-footer .btn-main,
   .mini-cart-footer .btn-outline { padding: 0.8rem 1rem; font-size: 0.9rem; }
+
+  /* --- About & Contact text adjustments --- */
+  .about-hero-inner p,
+  .vm-card p,
+  .value-text,
+  .contact-info-box p,
+  .contact-detail-value {
+    font-size: 0.85rem;
+  }
+  .vm-card h3 {
+    font-size: 1.2rem;
+  }
+  .section-desc {
+    font-size: 0.9rem;
+  }
 }
 
 /* ---- 480px and below (phones) ---- */
@@ -1653,8 +1723,13 @@ table.cart-table { width: 100%; border-collapse: collapse; }
   .hero-tag               { font-size: 0.62rem; }
 
   /* --- PRODUCTS --- */
-  .products-grid          { grid-template-columns: 1fr; }
-  .product-card-img       { aspect-ratio: 4/3; }
+  .products-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .product-card-img {
+    aspect-ratio: 3/4;
+  }
 
   /* --- FEATURES --- */
   .features-row-inner     { grid-template-columns: 1fr 1fr; }
@@ -1731,7 +1806,8 @@ table.cart-table { width: 100%; border-collapse: collapse; }
   /* --- ORG CHART CONNECTORS --- */
   .org-line-v             { height: 28px; }
 }
-/* Very small phones — single column products */
+
+/* Very small phones — single column products (already handled above) */
 @media (max-width: 400px) {
   .products-grid { grid-template-columns: 1fr; }
   .product-card-btns { flex-direction: column; gap: 0.3rem; }

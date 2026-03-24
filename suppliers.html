@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amare Skincare – Suppliers</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Amare Skincare</a>
+
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="products.html" class="nav-link">Products</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+        <li><a href="team.html" class="nav-link">Team</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="https://www.instagram.com/amare_skincare" target="_blank" class="nav-icon" title="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <button class="nav-icon cart-icon-btn" id="cart-btn" title="Cart">
+          <i class="fas fa-shopping-bag"></i>
+          <span class="cart-count" id="cart-count">0</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div id="mini-cart-overlay"></div>
+  <aside id="mini-cart">
+    <div class="mini-cart-header">
+      <span>Your Bag</span>
+      <button id="close-mini-cart"><i class="fas fa-times"></i></button>
+    </div>
+    <div id="mini-cart-items"></div>
+    <div class="mini-cart-footer">
+      <div class="mini-cart-total">
+        <span>Total</span>
+        <span id="mini-cart-total-price">₱0.00</span>
+      </div>
+      <a href="cart.html" class="btn-main" id="view-cart-btn">View Cart</a>
+      <a href="checkout.html" class="btn-outline">Checkout</a>
+    </div>
+  </aside>
+
+  <div id="toast-container"></div>
+  <button id="back-to-top" title="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+  <main id="app">
+    <div class="page-header">
+      <div class="page-header-inner">
+        <div class="section-label">Transparency</div>
+        <h1>Our Suppliers</h1>
+        <p>We work with verified, ethical partners who share our values of quality and responsibility.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="stats-row" style="margin-bottom:2.5rem;background:var(--white);border:1px solid var(--border);">
+        <div class="stats-row-inner">
+          <div class="stat-item"><div class="stat-num">8</div><div class="stat-label">Partners</div></div>
+          <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">GMP Certified</div></div>
+          <div class="stat-item"><div class="stat-num">3+</div><div class="stat-label">Countries</div></div>
+          <div class="stat-item"><div class="stat-num">PH</div><div class="stat-label">Proudly Local</div></div>
+        </div>
+      </div>
+
+      <div class="suppliers-grid" id="suppliers-list"></div>
+
+      <div style="margin-top:3rem;background:var(--white);border:1px solid var(--border);padding:2rem;text-align:center;" class="fade-up">
+        <div class="section-label">Partner with Us</div>
+        <div class="section-title" style="font-size:1.3rem;margin-bottom:0.6rem;">Become an Amare Supplier</div>
+        <p class="section-desc" style="margin:0 auto 1.5rem;">
+          Are you a supplier of quality skincare ingredients or packaging? We'd love to talk.
+        </p>
+        <a href="contact.html" class="btn-main">Get in Touch</a>
+      </div>
+    </div>
+  </main>
+
+  <footer id="site-footer">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <div class="footer-logo">Amare Skincare</div>
+        <p>Where skin is seen and always keen.</p>
+        <p style="margin-top:0.5rem;"><a href="mailto:amareskincare@gmail.com">amareskincare@gmail.com</a></p>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="team.html">Team</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>More</h4>
+        <ul>
+          <li><a href="suppliers.html">Suppliers</a></li>
+          <li><a href="reviews.html">Reviews</a></li>
+          <li><a href="order-status.html">Order Status</a></li>
+          <li><a href="cart.html">Cart</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Follow Us</h4>
+        <ul>
+          <li><a href="https://www.instagram.com/amare_skincare" target="_blank"><i class="fab fa-instagram"></i> @amare_skincare</a></li>
+          <li><a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook"></i> Amare Skincare Main</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Amare Skincare. All rights reserved. | BSBA Class Project</p>
+    </div>
+  </footer>
+
+  <script src="js/toast.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    (function() {
+      const el = document.getElementById('suppliers-list');
+      if (!el || typeof SUPPLIERS === 'undefined') return;
+      el.innerHTML = SUPPLIERS.map((s, i) => `
+        <div class="supplier-card fade-up" style="transition-delay:${i * 0.06}s">
+          <div class="supplier-cat">${s.category}</div>
+          <div class="supplier-name">${s.name}</div>
+          <div class="supplier-desc">${s.description}</div>
+          <div class="supplier-location"><i class="fas fa-map-marker-alt"></i>${s.location}</div>
+        </div>
+      `).join('');
+      if (typeof initFadeUps === 'function') initFadeUps();
+    })();
+  </script>
+</body>
+</html>

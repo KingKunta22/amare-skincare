@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amare Skincare – About</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Amare Skincare</a>
+
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="products.html" class="nav-link">Products</a></li>
+        <li><a href="about.html" class="nav-link active">About</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+        <li><a href="team.html" class="nav-link">Team</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="https://www.instagram.com/amare_skincare" target="_blank" class="nav-icon" title="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <button class="nav-icon cart-icon-btn" id="cart-btn" title="Cart">
+          <i class="fas fa-shopping-bag"></i>
+          <span class="cart-count" id="cart-count">0</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div id="mini-cart-overlay"></div>
+  <aside id="mini-cart">
+    <div class="mini-cart-header">
+      <span>Your Bag</span>
+      <button id="close-mini-cart"><i class="fas fa-times"></i></button>
+    </div>
+    <div id="mini-cart-items"></div>
+    <div class="mini-cart-footer">
+      <div class="mini-cart-total">
+        <span>Total</span>
+        <span id="mini-cart-total-price">₱0.00</span>
+      </div>
+      <a href="cart.html" class="btn-main" id="view-cart-btn">View Cart</a>
+      <a href="checkout.html" class="btn-outline">Checkout</a>
+    </div>
+  </aside>
+
+  <div id="toast-container"></div>
+  <button id="back-to-top" title="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+  <main id="app">
+    <!-- About content -->
+    <div class="page-header">
+      <div class="page-header-inner">
+        <div class="section-label">Our Story</div>
+        <h1>About Amare Skincare</h1>
+        <p>Love is at the heart of everything we create.</p>
+      </div>
+    </div>
+
+    <div class="about-hero-section">
+      <div class="about-hero-inner">
+        <div class="fade-up">
+          <div class="section-label">Background</div>
+          <div class="section-title" style="margin-bottom:1.2rem;">Born from a Love<br>of Skin.</div>
+          <p style="font-size:0.88rem;color:#555;line-height:1.85;margin-bottom:1rem;">
+            At Amare Skincare, love is at the heart of everything we create. Derived from the Italian
+            word <em>"amare,"</em> meaning to love, our brand is inspired by the belief that skincare is
+            more than a routine — it is an act of self-love.
+          </p>
+          <p style="font-size:0.88rem;color:#555;line-height:1.85;margin-bottom:1rem;">
+            We are dedicated to creating gentle, effective, and thoughtfully crafted products that nurture
+            your skin and enhance its natural beauty. Amare Skincare encourages you to embrace your skin
+            with confidence, care for it with intention, and celebrate its unique glow.
+          </p>
+          <p style="font-size:0.88rem;color:#555;line-height:1.85;">
+            Guided by our tagline, <strong style="color:#222;">"Where skin is seen and always keen,"</strong>
+            we aim to make skincare a meaningful daily ritual — where your skin is not only cared for, but truly loved.
+          </p>
+        </div>
+        <div class="about-img fade-up" style="transition-delay:.15s;">
+          <img src="https://placehold.co/520x650/ede7d9/a67c52?text=Our+Story" alt="About Amare">
+        </div>
+      </div>
+    </div>
+
+    <div class="vision-mission">
+      <div class="vision-mission-inner">
+        <div class="vm-card fade-up">
+          <div class="vm-card-label">Vision</div>
+          <h3>Our Vision</h3>
+          <p>
+            To inspire individuals to embrace their natural beauty by promoting confidence,
+            self-love, and healthy, radiant skin.
+          </p>
+        </div>
+        <div class="vm-card fade-up" style="transition-delay:.1s;">
+          <div class="vm-card-label">Mission</div>
+          <h3>Our Mission</h3>
+          <p>
+            To create skincare products that are gentle, effective, and made with love —
+            empowering individuals to care for their skin, embrace their uniqueness, and
+            glow with confidence every day.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section values-section">
+      <div class="section-header fade-up">
+        <div class="section-label">What We Stand For</div>
+        <div class="section-title">Our Values</div>
+      </div>
+      <div class="values-grid">
+        <div class="value-card fade-up">
+          <div class="value-icon"><i class="fas fa-heart"></i></div>
+          <div class="value-title">Made with Love</div>
+          <div class="value-text">Every formula is crafted with genuine care and intention — because we believe that what goes on your skin should come from the heart.</div>
+        </div>
+        <div class="value-card fade-up" style="transition-delay:.07s;">
+          <div class="value-icon"><i class="fas fa-eye"></i></div>
+          <div class="value-title">Skin Is Seen</div>
+          <div class="value-text">We see every skin type, tone, and concern. No skin is overlooked — Amare products are thoughtfully designed for everyone.</div>
+        </div>
+        <div class="value-card fade-up" style="transition-delay:.14s;">
+          <div class="value-icon"><i class="fas fa-seedling"></i></div>
+          <div class="value-title">Gentle & Effective</div>
+          <div class="value-text">Powerful results don't have to be harsh. We believe in formulas that are kind to your skin while delivering real, visible change.</div>
+        </div>
+        <div class="value-card fade-up" style="transition-delay:.21s;">
+          <div class="value-icon"><i class="fas fa-star"></i></div>
+          <div class="value-title">Confidence First</div>
+          <div class="value-text">Our goal isn't to change how you look — it's to help you feel fully confident in the skin you're already in.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stats-row">
+      <div class="stats-row-inner">
+        <div class="stat-item fade-up"><div class="stat-num">18</div><div class="stat-label">Products</div></div>
+        <div class="stat-item fade-up"><div class="stat-num">10K+</div><div class="stat-label">Customers</div></div>
+        <div class="stat-item fade-up"><div class="stat-num">100%</div><div class="stat-label">Cruelty Free</div></div>
+        <div class="stat-item fade-up"><div class="stat-num">4.9★</div><div class="stat-label">Avg Rating</div></div>
+      </div>
+    </div>
+
+    <div class="section" style="text-align:center;" class="fade-up">
+      <div class="section-label">Ready?</div>
+      <div class="section-title" style="margin-bottom:0.8rem;">Explore Our Products</div>
+      <p class="section-desc" style="margin:0 auto 1.8rem;">Find the perfect routine for your skin. Each product is crafted to work beautifully on its own or as part of a full routine.</p>
+      <a href="products.html" class="btn-main">Shop Now</a>
+    </div>
+  </main>
+
+  <footer id="site-footer">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <div class="footer-logo">Amare Skincare</div>
+        <p>Where skin is seen and always keen.</p>
+        <p style="margin-top:0.5rem;"><a href="mailto:amareskincare@gmail.com">amareskincare@gmail.com</a></p>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="team.html">Team</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>More</h4>
+        <ul>
+          <li><a href="suppliers.html">Suppliers</a></li>
+          <li><a href="reviews.html">Reviews</a></li>
+          <li><a href="order-status.html">Order Status</a></li>
+          <li><a href="cart.html">Cart</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Follow Us</h4>
+        <ul>
+          <li><a href="https://www.instagram.com/amare_skincare" target="_blank"><i class="fab fa-instagram"></i> @amare_skincare</a></li>
+          <li><a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook"></i> Amare Skincare Main</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Amare Skincare. All rights reserved. | BSBA Class Project</p>
+    </div>
+  </footer>
+
+  <script src="js/toast.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amare Skincare – Checkout</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Amare Skincare</a>
+
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="products.html" class="nav-link">Products</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+        <li><a href="team.html" class="nav-link">Team</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="https://www.instagram.com/amare_skincare" target="_blank" class="nav-icon" title="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <button class="nav-icon cart-icon-btn" id="cart-btn" title="Cart">
+          <i class="fas fa-shopping-bag"></i>
+          <span class="cart-count" id="cart-count">0</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div id="mini-cart-overlay"></div>
+  <aside id="mini-cart">
+    <div class="mini-cart-header">
+      <span>Your Bag</span>
+      <button id="close-mini-cart"><i class="fas fa-times"></i></button>
+    </div>
+    <div id="mini-cart-items"></div>
+    <div class="mini-cart-footer">
+      <div class="mini-cart-total">
+        <span>Total</span>
+        <span id="mini-cart-total-price">₱0.00</span>
+      </div>
+      <a href="cart.html" class="btn-main" id="view-cart-btn">View Cart</a>
+      <a href="checkout.html" class="btn-outline">Checkout</a>
+    </div>
+  </aside>
+
+  <div id="toast-container"></div>
+  <button id="back-to-top" title="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+  <main id="app">
+    <div class="page-header">
+      <div class="page-header-inner">
+        <div class="section-label">Almost There</div>
+        <h1>Checkout</h1>
+      </div>
+    </div>
+
+    <div class="checkout-outer">
+      <div class="checkout-layout">
+        <div>
+          <form id="checkout-form">
+            <div class="checkout-section">
+              <div class="checkout-section-title">Contact Information</div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Full Name</label>
+                  <input type="text" id="co-name" class="form-input" placeholder="Maria Santos" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Email</label>
+                  <input type="email" class="form-input" placeholder="maria@email.com" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Phone Number</label>
+                <input type="tel" class="form-input" placeholder="+63 9xx xxx xxxx" required>
+              </div>
+            </div>
+
+            <div class="checkout-section">
+              <div class="checkout-section-title">Shipping Address</div>
+              <div class="form-group">
+                <label class="form-label">Street Address / Barangay</label>
+                <input type="text" class="form-input" placeholder="123 Main St., Brgy. Example" required>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">City / Municipality</label>
+                  <input type="text" class="form-input" placeholder="Manila" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Province</label>
+                  <input type="text" class="form-input" placeholder="Metro Manila" required>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Region</label>
+                  <select class="form-select">
+                    <option value="">Select Region</option>
+                    <option>NCR</option>
+                    <option>Region I – Ilocos Region</option>
+                    <option>Region II – Cagayan Valley</option>
+                    <option>Region III – Central Luzon</option>
+                    <option>Region IV-A – CALABARZON</option>
+                    <option>Region IV-B – MIMAROPA</option>
+                    <option>Region V – Bicol Region</option>
+                    <option>Region VI – Western Visayas</option>
+                    <option>Region VII – Central Visayas</option>
+                    <option>Region VIII – Eastern Visayas</option>
+                    <option>Region IX – Zamboanga Peninsula</option>
+                    <option>Region X – Northern Mindanao</option>
+                    <option>Region XI – Davao Region</option>
+                    <option>Region XII – SOCCSKSARGEN</option>
+                    <option>Region XIII – Caraga</option>
+                    <option>BARMM</option>
+                    <option>CAR</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">ZIP Code</label>
+                  <input type="text" class="form-input" placeholder="1000" required>
+                </div>
+              </div>
+            </div>
+
+            <div class="checkout-section">
+              <div class="checkout-section-title">Payment Details</div>
+              <div style="background:var(--bg-soft);border:1px solid var(--border);padding:0.8rem 1rem;margin-bottom:1.2rem;font-size:0.76rem;color:var(--text-lt);">
+                <i class="fas fa-lock" style="color:var(--accent);margin-right:0.4rem;"></i>
+                Simulated checkout — no real payments are processed.
+              </div>
+              <div class="form-group">
+                <label class="form-label">Payment Method</label>
+                <select class="form-select">
+                  <option>Credit / Debit Card</option>
+                  <option>GCash</option>
+                  <option>Maya (PayMaya)</option>
+                  <option>Bank Transfer</option>
+                  <option>Cash on Delivery</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Card Number</label>
+                <input type="text" class="form-input" placeholder="•••• •••• •••• ••••" maxlength="19">
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Expiry</label>
+                  <input type="text" class="form-input" placeholder="MM / YY" maxlength="7">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">CVV</label>
+                  <input type="text" class="form-input" placeholder="•••" maxlength="3">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Name on Card</label>
+                <input type="text" class="form-input" placeholder="Maria Santos">
+              </div>
+            </div>
+
+            <button type="submit" class="btn-main" style="padding:0.85rem 2rem;">Place Order</button>
+          </form>
+        </div>
+
+        <div class="checkout-order-box">
+          <div class="checkout-order-title">Order Summary</div>
+          <div id="checkout-order-items"></div>
+          <div style="margin-top:1.2rem;border-top:1px solid var(--border);padding-top:1rem;">
+            <div class="cart-summary-row"><span>Subtotal</span><span id="checkout-subtotal">₱0</span></div>
+            <div class="cart-summary-row"><span>Shipping</span><span id="checkout-shipping">₱0</span></div>
+            <div class="cart-summary-row total"><span>Total</span><span id="checkout-total">₱0</span></div>
+          </div>
+          <p style="margin-top:1rem;font-size:0.7rem;color:var(--text-lt);line-height:1.7;">
+            <i class="fas fa-shield-alt" style="color:var(--accent);margin-right:0.3rem;"></i>
+            Your information is safe and encrypted.
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer id="site-footer">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <div class="footer-logo">Amare Skincare</div>
+        <p>Where skin is seen and always keen.</p>
+        <p style="margin-top:0.5rem;"><a href="mailto:amareskincare@gmail.com">amareskincare@gmail.com</a></p>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="team.html">Team</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>More</h4>
+        <ul>
+          <li><a href="suppliers.html">Suppliers</a></li>
+          <li><a href="reviews.html">Reviews</a></li>
+          <li><a href="order-status.html">Order Status</a></li>
+          <li><a href="cart.html">Cart</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Follow Us</h4>
+        <ul>
+          <li><a href="https://www.instagram.com/amare_skincare" target="_blank"><i class="fab fa-instagram"></i> @amare_skincare</a></li>
+          <li><a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook"></i> Amare Skincare Main</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Amare Skincare. All rights reserved. | BSBA Class Project</p>
+    </div>
+  </footer>
+
+  <script src="js/toast.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
