@@ -83,7 +83,7 @@ const Cart = {
     } else {
       container.innerHTML = items.map(item => `
         <div class="mini-cart-item">
-          <img src="${item.image}" alt="${item.name}" onerror="this.src='https://placehold.co/70x70/ecdec1/a67c52?text=A'">
+          <img src="/${item.image}" alt="${item.name}" onerror="this.src='https://placehold.co/70x70/ecdec1/a67c52?text=A'">
           <div class="mini-cart-item-info">
             <div class="mini-cart-item-name">${item.name}</div>
             <div class="mini-cart-item-price">₱${(item.price * item.qty).toLocaleString()}</div>

@@ -280,7 +280,7 @@ function renderProductCard(p, index = 0) {
       <div class="product-card-img"
            data-img1="${p.image}"
            data-img2="${img2}">
-        <img src="${p.image}" alt="${p.name}" loading="lazy"
+        <img src="/${p.image}" alt="${p.name}" loading="lazy"
              onerror="this.src='https://placehold.co/400x500/dce8dc/6b8f71?text=A'">
         <span class="product-badge ${badgeClass}">${badgeText}</span>
         <button class="wishlist-btn card-action-btn ${wishlisted ? 'wishlisted' : ''}"
@@ -833,24 +833,28 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Determine current page and call appropriate init
-  const path = window.location.pathname;
-  if (path === '/' || path === '/index.html') initHome();
-  else if (path === '/products.html') initProducts();
-  else if (path === '/cart.html') initCart();
-  else if (path === '/checkout.html') initCheckout();
-  else if (path === '/order-status.html') initOrderStatus();
-  else if (path === '/reviews.html') initReviews();
-  else if (path === '/team.html') initTeam();
-  // About, Contact, Suppliers have no specific init (fade-ups already covered)
+  // Determine current page – strip .html if present
+  let path = window.location.pathname;
+  if (path.endsWith('.html')) path = path.slice(0, -5);
+  if (path === '') path = '/';  // root
+
+  // Call the appropriate init function
+  if (path === '/' || path === '/index') initHome();
+  else if (path === '/products') initProducts();
+  else if (path === '/cart') initCart();
+  else if (path === '/checkout') initCheckout();
+  else if (path === '/order-status') initOrderStatus();
+  else if (path === '/reviews') initReviews();
+  else if (path === '/team') initTeam();
+  // About, Contact, Suppliers have no specific init (fade-ups are universal)
 
   // Initial fade-ups
   initFadeUps();
 
   // Set active nav link
-  const currentPage = path.split('/').pop() || 'index.html';
+  const currentPage = path === '/' ? 'index' : path.split('/').pop();
   document.querySelectorAll('.nav-link').forEach(link => {
     const href = link.getAttribute('href');
-    if (href === currentPage) link.classList.add('active');
+    if (href === currentPage + '.html' || href === currentPage) link.classList.add('active');
   });
 });
