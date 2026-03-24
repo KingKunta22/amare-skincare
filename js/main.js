@@ -280,7 +280,7 @@ function renderProductCard(p, index = 0) {
       <div class="product-card-img"
            data-img1="${p.image}"
            data-img2="${img2}">
-        <img src="/${p.image}" alt="${p.name}" loading="lazy"
+        <img src="${p.image}" alt="${p.name}" loading="lazy"
              onerror="this.src='https://placehold.co/400x500/dce8dc/6b8f71?text=A'">
         <span class="product-badge ${badgeClass}">${badgeText}</span>
         <button class="wishlist-btn card-action-btn ${wishlisted ? 'wishlisted' : ''}"
@@ -833,10 +833,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Determine current page – strip .html if present
+  // ---------- Determine current page (works with both file:// and http://) ----------
   let path = window.location.pathname;
-  if (path.endsWith('.html')) path = path.slice(0, -5);
-  if (path === '') path = '/';  // root
+
+  // If running from file://, extract just the filename
+  if (window.location.protocol === 'file:') {
+    // path will be something like "/C:/Users/.../index.html"
+    // Get the last part (the file name)
+    const parts = path.split('/');
+    const fileName = parts[parts.length - 1];
+    if (fileName === 'index.html') path = '/';
+    else if (fileName.endsWith('.html')) path = '/' + fileName.slice(0, -5);
+    else path = '/';
+  } else {
+    // Normal web server (Netlify or localhost)
+    if (path.endsWith('.html')) path = path.slice(0, -5);
+    if (path === '') path = '/';
+  }
 
   // Call the appropriate init function
   if (path === '/' || path === '/index') initHome();
@@ -851,7 +864,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initial fade-ups
   initFadeUps();
 
-  // Set active nav link
+  // Set active nav link (handles both .html and clean URLs)
   const currentPage = path === '/' ? 'index' : path.split('/').pop();
   document.querySelectorAll('.nav-link').forEach(link => {
     const href = link.getAttribute('href');
