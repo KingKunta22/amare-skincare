@@ -1835,3 +1835,313 @@ table.cart-table { width: 100%; border-collapse: collapse; }
   .product-card-btns { flex-direction: column; gap: 0.3rem; }
   .view-details-btn, .add-to-cart-btn { flex: unset; width: 100%; }
 }
+
+/* Product card buttons layout */
+.product-card-btns {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+.view-details-btn {
+  flex: 1;
+  background: hsl(130, 14%, 57%);
+  color: white;
+  border: none;
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.view-details-btn:hover {
+  background: var(--accent);
+}
+.add-to-cart-icon {
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  padding: 0.5rem 0.6rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.add-to-cart-icon:hover:not(:disabled) {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+.add-to-cart-icon:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Expand image button inside modal */
+.expand-img-btn {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: rgba(0,0,0,0.5);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 10px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  z-index: 10;
+  transition: background 0.2s;
+}
+.expand-img-btn:hover {
+  background: rgba(0,0,0,0.7);
+}
+
+/* Image viewer lightbox */
+#image-viewer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.9);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s;
+}
+#image-viewer-overlay.visible {
+  opacity: 1;
+  visibility: visible;
+}
+.image-viewer {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+}
+.image-viewer img {
+  max-width: 100%;
+  max-height: 90vh;
+  object-fit: contain;
+}
+.image-viewer-close {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Team modal */
+#team-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s;
+}
+#team-modal-overlay.visible {
+  opacity: 1;
+  visibility: visible;
+}
+.team-modal {
+  background: var(--white);
+  max-width: 600px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 8px;
+  padding: 1.5rem;
+  position: relative;
+}
+.team-modal-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.3rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.team-modal-img {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.team-modal-img img {
+  max-width: 200px;
+  border-radius: 8px;
+}
+.team-modal-role {
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.3rem;
+}
+.team-modal-name {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+.team-modal-bio {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--text-mid);
+}
+.team-view-profile {
+  margin-top: 0.8rem;
+  font-size: 0.8rem;
+  background: none;
+  border: none;
+  color: var(--accent);
+  cursor: pointer;
+}
+.team-view-profile:hover {
+  text-decoration: underline;
+}
+
+/* Fix modal height on mobile */
+@media (max-width: 768px) {
+  .pm-modal {
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  .pm-images {
+    max-height: 200px;
+  }
+  .pm-info {
+    padding: 1rem;
+  }
+  .pm-name {
+    font-size: 1rem;
+  }
+  .team-modal {
+    padding: 1rem;
+  }
+  .team-modal-name {
+    font-size: 1.2rem;
+  }
+}
+
+/* Team modal – two-column layout */
+#team-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease;
+}
+#team-modal-overlay.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.team-modal {
+  background: var(--white);
+  max-width: 800px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 12px;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.team-modal-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 1.4rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+  color: var(--text-mid);
+  transition: color 0.2s;
+}
+.team-modal-close:hover {
+  color: var(--accent);
+}
+
+.team-modal-content {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  gap: 1rem;
+  padding: 1.5rem;
+}
+
+.team-modal-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.team-modal-image img {
+  width: 100%;
+  max-width: 280px;
+  border-radius: 12px;
+  object-fit: cover;
+  aspect-ratio: 3/4;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.team-modal-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  gap:1.5rem;
+}
+
+.team-modal-role {
+  font-size: 1.3rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 700;
+  text-align:center;
+  margin-bottom: 0.25rem;
+}
+
+.team-modal-name {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 0.25rem;
+  line-height: 1.2;text-align:center;
+}
+
+.team-modal-bio {
+  font-size: 1rem;
+  line-height: 1.7;
+  text-align:justify;
+  color: var(--text-mid);
+}
+
+/* Mobile: stack the two columns */
+@media (max-width: 640px) {
+  .team-modal-content {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1rem;
+  }
+  .team-modal-image {
+    max-width: 200px;
+    margin: 0 auto;
+  }
+  .team-modal-role {
+    font-size: 1rem;
+  }
+  .team-modal-name {
+    font-size: 1.6rem;
+  }
+  .team-modal-bio {
+    font-size: 0.9rem;
+  }
+}

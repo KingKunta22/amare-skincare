@@ -204,7 +204,7 @@ const TEAM = {
   executive: [
     {
       name: 'Mary Ann B. Dejoras',
-      role: 'Chief Executive Officer (CEO)',
+      role: 'Chief Executive Officer',
       bio: 'A results-driven leader with a strong background in business management and strategic planning. Equipped with proven experience in decision-making and brand development, she leads the company with clear vision and direction. Her expertise ensures that the business remains competitive and continuously growing in the skincare industry.',
       image: 'images/team/dejoras.jpg'
     },
@@ -213,7 +213,7 @@ const TEAM = {
     {
       name: 'Anarie V. Villarente',
       role: 'General Manager',
-      bio: `An experienced professional in operations management and team coordination. She is skilled in executing business strategies, managing workflows, and ensuring efficiency across all departments. Her ability to maintain consistency and high standards supports the company's daily performance.`,
+      bio: 'An experienced professional in operations management and team coordination. She is skilled in executing business strategies, managing workflows, and ensuring efficiency across all departments. Her ability to maintain consistency and high standards supports the company\'s daily performance.',
       image: 'images/team/villarente.jpg'
     },
   ],
@@ -277,9 +277,7 @@ function renderProductCard(p, index = 0) {
   const img2 = getImage2(p.image);
   return `
     <div class="product-card fade-up" style="transition-delay:${index * 0.05}s">
-      <div class="product-card-img"
-           data-img1="${p.image}"
-           data-img2="${img2}">
+      <div class="product-card-img" data-img1="${p.image}" data-img2="${img2}">
         <img src="${p.image}" alt="${p.name}" loading="lazy"
              onerror="this.src='https://placehold.co/400x500/dce8dc/6b8f71?text=A'">
         <span class="product-badge ${badgeClass}">${badgeText}</span>
@@ -297,8 +295,8 @@ function renderProductCard(p, index = 0) {
         </div>
         <div class="product-card-btns">
           <button class="view-details-btn" data-id="${p.id}">View Details</button>
-          <button class="add-to-cart-btn" data-id="${p.id}" ${p.stock === 0 ? 'disabled' : ''}>
-            ${p.stock === 0 ? 'Out of Stock' : 'Add to Bag'}
+          <button class="add-to-cart-icon" data-id="${p.id}" ${p.stock === 0 ? 'disabled' : ''}>
+            <i class="fas fa-shopping-cart"></i>
           </button>
         </div>
       </div>
@@ -307,8 +305,8 @@ function renderProductCard(p, index = 0) {
 }
 
 function bindProductCardEvents() {
-  // Add to cart
-  document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+  // Add to cart via icon button
+  document.querySelectorAll('.add-to-cart-icon').forEach(btn => {
     if (btn.disabled) return;
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -370,13 +368,8 @@ function openProductModal(id) {
   const stockLabel = p.stock === 0 ? 'Out of Stock' : p.stock <= 5 ? `Only ${p.stock} left` : 'In Stock';
   const stockClass = p.stock === 0 ? 'stock-out' : p.stock <= 5 ? 'stock-low' : '';
 
-  const ingTags = parsed.ingredients
-    ? parsed.ingredients.split(',').map(i => `<span class="pm-tag">${i.trim()}</span>`).join('')
-    : '';
-
-  const effTags = parsed.effects
-    ? parsed.effects.split(',').map(e => `<span class="pm-effect-tag"><i class="fas fa-check"></i> ${e.trim()}</span>`).join('')
-    : '';
+  const ingTags = parsed.ingredients ? parsed.ingredients.split(',').map(i => `<span class="pm-tag">${i.trim()}</span>`).join('') : '';
+  const effTags = parsed.effects ? parsed.effects.split(',').map(e => `<span class="pm-effect-tag"><i class="fas fa-check"></i> ${e.trim()}</span>`).join('') : '';
 
   const old = document.getElementById('product-modal-overlay');
   if (old) old.remove();
@@ -385,51 +378,26 @@ function openProductModal(id) {
   overlay.id = 'product-modal-overlay';
   overlay.innerHTML = `
     <div class="pm-modal" role="dialog" aria-modal="true">
-      <button class="pm-close" id="pm-close-btn" aria-label="Close">
-        <i class="fas fa-times"></i>
-      </button>
-
+      <button class="pm-close" id="pm-close-btn" aria-label="Close"><i class="fas fa-times"></i></button>
       <div class="pm-images">
-        <img class="pm-img-main" id="pm-main-img"
-             src="${p.image}"
-             alt="${p.name}"
-             onerror="this.src='https://placehold.co/500x600/dce8dc/6b8f71?text=Amare'">
+        <div style="position: relative;">
+          <img class="pm-img-main" id="pm-main-img" src="${p.image}" alt="${p.name}"
+               onerror="this.src='https://placehold.co/500x600/dce8dc/6b8f71?text=Amare'">
+          <button id="expand-image-btn" class="expand-img-btn" title="View full size"><i class="fas fa-expand"></i></button>
+        </div>
         <div class="pm-img-thumbs">
-          <img class="pm-thumb pm-thumb-active"
-               src="${p.image}"
-               alt="${p.name} view 1"
-               data-full="${p.image}"
-               onerror="this.style.display='none'">
-          <img class="pm-thumb"
-               src="${img2}"
-               alt="${p.name} view 2"
-               data-full="${img2}"
-               onerror="this.style.display='none'">
+          <img class="pm-thumb pm-thumb-active" src="${p.image}" alt="${p.name} view 1" data-full="${p.image}">
+          <img class="pm-thumb" src="${img2}" alt="${p.name} view 2" data-full="${img2}">
         </div>
       </div>
-
       <div class="pm-info">
         <div class="pm-category">${p.category}</div>
         <h2 class="pm-name">${p.name}</h2>
         <div class="pm-price">₱${p.price.toLocaleString()}</div>
-        <div class="pm-stock-row">
-          <span class="product-stock ${stockClass}">${stockLabel}</span>
-        </div>
-
+        <div class="pm-stock-row"><span class="product-stock ${stockClass}">${stockLabel}</span></div>
         <p class="pm-desc">${parsed.main}</p>
-
-        ${ingTags ? `
-        <div class="pm-section">
-          <div class="pm-section-label"><i class="fas fa-flask"></i> Key Ingredients</div>
-          <div class="pm-tags">${ingTags}</div>
-        </div>` : ''}
-
-        ${effTags ? `
-        <div class="pm-section">
-          <div class="pm-section-label"><i class="fas fa-star"></i> Effects & Benefits</div>
-          <div class="pm-effects">${effTags}</div>
-        </div>` : ''}
-
+        ${ingTags ? `<div class="pm-section"><div class="pm-section-label"><i class="fas fa-flask"></i> Key Ingredients</div><div class="pm-tags">${ingTags}</div></div>` : ''}
+        ${effTags ? `<div class="pm-section"><div class="pm-section-label"><i class="fas fa-star"></i> Effects & Benefits</div><div class="pm-effects">${effTags}</div></div>` : ''}
         <div class="pm-actions">
           <div class="qty-selector">
             <button class="qty-btn" id="pm-minus">−</button>
@@ -437,8 +405,7 @@ function openProductModal(id) {
             <button class="qty-btn" id="pm-plus">+</button>
           </div>
           <button class="btn-main pm-add-btn" id="pm-add-btn" ${p.stock === 0 ? 'disabled' : ''}>
-            <i class="fas fa-shopping-bag"></i>
-            ${p.stock === 0 ? 'Out of Stock' : 'Add to Bag'}
+            <i class="fas fa-shopping-bag"></i> ${p.stock === 0 ? 'Out of Stock' : 'Add to Bag'}
           </button>
         </div>
       </div>
@@ -446,6 +413,7 @@ function openProductModal(id) {
 
   document.body.appendChild(overlay);
 
+  // Thumb switching
   overlay.querySelectorAll('.pm-thumb').forEach(thumb => {
     thumb.addEventListener('click', () => {
       overlay.querySelectorAll('.pm-thumb').forEach(t => t.classList.remove('pm-thumb-active'));
@@ -454,10 +422,16 @@ function openProductModal(id) {
     });
   });
 
+  // Expand image button
+  document.getElementById('expand-image-btn').addEventListener('click', () => {
+    const currentSrc = document.getElementById('pm-main-img').src;
+    openImageViewer(currentSrc);
+  });
+
+  // Quantity handlers
   const qtyInput = document.getElementById('pm-qty');
   document.getElementById('pm-minus').onclick = () => { if (+qtyInput.value > 1) qtyInput.value--; };
   document.getElementById('pm-plus').onclick  = () => { if (+qtyInput.value < p.stock) qtyInput.value++; };
-
   document.getElementById('pm-add-btn').onclick = () => {
     Cart.addItem(p, parseInt(qtyInput.value) || 1);
     overlay.classList.remove('visible');
@@ -465,11 +439,23 @@ function openProductModal(id) {
 
   document.getElementById('pm-close-btn').onclick = () => overlay.classList.remove('visible');
   overlay.addEventListener('click', e => { if (e.target === overlay) overlay.classList.remove('visible'); });
-  document.addEventListener('keydown', function esc(e) {
-    if (e.key === 'Escape') { overlay.classList.remove('visible'); document.removeEventListener('keydown', esc); }
-  });
-
+  document.addEventListener('keydown', function esc(e) { if (e.key === 'Escape') { overlay.classList.remove('visible'); document.removeEventListener('keydown', esc); } });
   requestAnimationFrame(() => overlay.classList.add('visible'));
+}
+
+// Image lightbox
+function openImageViewer(src) {
+  const overlay = document.createElement('div');
+  overlay.id = 'image-viewer-overlay';
+  overlay.innerHTML = `
+    <div class="image-viewer">
+      <button class="image-viewer-close"><i class="fas fa-times"></i></button>
+      <img src="${src}" alt="Full size product image">
+    </div>`;
+  document.body.appendChild(overlay);
+  overlay.classList.add('visible');
+  overlay.querySelector('.image-viewer-close').addEventListener('click', () => overlay.remove());
+  overlay.addEventListener('click', e => { if (e.target === overlay) overlay.remove(); });
 }
 
 function openQuickView(id) { openProductModal(id); }
@@ -780,16 +766,53 @@ function initTeam() {
   if (exec) exec.innerHTML = TEAM.executive.map((m, i) => teamCard(m, i)).join('');
   if (mgmt) mgmt.innerHTML = TEAM.management.map((m, i) => teamCard(m, i)).join('');
   if (staff) staff.innerHTML = TEAM.staff.map((m, i) => teamCard(m, i)).join('');
+  document.querySelectorAll('.team-view-profile').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const member = {
+        name: btn.dataset.name,
+        role: btn.dataset.role,
+        bio: btn.dataset.bio,
+        image: btn.dataset.img
+      };
+      openTeamModal(member);
+    });
+  });
   initFadeUps();
 }
 
+function openTeamModal(member) {
+  const overlay = document.createElement('div');
+  overlay.id = 'team-modal-overlay';
+  overlay.innerHTML = `
+    <div class="team-modal">
+      <button class="team-modal-close"><i class="fas fa-times"></i></button>
+      <div class="team-modal-content">
+        <div class="team-modal-image">
+          <img src="${member.image}" alt="${member.name}">
+        </div>
+        <div class="team-modal-details">
+          <div class="team-modal-role">${member.role}</div>
+          <h2 class="team-modal-name">${member.name}</h2>
+          <div class="team-modal-bio">${member.bio}</div>
+        </div>
+      </div>
+    </div>`;
+  document.body.appendChild(overlay);
+  overlay.classList.add('visible');
+  overlay.querySelector('.team-modal-close').addEventListener('click', () => overlay.remove());
+  overlay.addEventListener('click', e => { if (e.target === overlay) overlay.remove(); });
+}
+
 function teamCard(m, i) {
+  // Truncate bio to 100 chars for card
+  const shortBio = m.bio.length > 100 ? m.bio.substring(0, 100) + '...' : m.bio;
   return `<div class="team-card fade-up" style="transition-delay:${i * 0.07}s">
     <div class="team-card-img"><img src="${m.image}" alt="${m.name}" loading="lazy" onerror="this.src='https://placehold.co/300x400/e4f0e4/6b8f71?text=A'"></div>
     <div class="team-card-info">
       <div class="team-role">${m.role}</div>
       <div class="team-name">${m.name}</div>
-      <div class="team-bio">${m.bio}</div>
+      <div class="team-bio">${shortBio}</div>
+      <button class="btn-text team-view-profile" data-name="${m.name}" data-role="${m.role}" data-bio="${m.bio.replace(/"/g, '&quot;')}" data-img="${m.image}">Read more <i class="fas fa-arrow-right"></i></button>
     </div>
   </div>`;
 }
