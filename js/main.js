@@ -280,6 +280,11 @@ const ORDER_STATUSES = {
   'AM-2025-004': { status: 'Order Placed', date: 'Mar 18, 2025', items: 'SPF 50+ Sunscreen (x2)', steps: [true, false, false, false] },
 };
 
+// Helper to generate unique order ID
+function generateOrderId() {
+  return 'AM-' + Date.now().toString().slice(-6) + '-' + Math.random().toString(36).substr(2, 4).toUpperCase();
+}
+
 // ============================================================
 // RENDER HELPERS (unchanged)
 // ============================================================
@@ -656,39 +661,57 @@ function initCheckout() {
   if (shippingEl) shippingEl.textContent = shipping === 0 ? 'FREE' : `₱${shipping}`;
   if (totalEl) totalEl.textContent = `₱${(subtotal + shipping).toLocaleString()}`;
 
-  if (form) {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const name = document.getElementById('co-name')?.value || 'Customer';
-      const orderId = 'AM-' + Date.now().toString().slice(-6);
+if (form) {
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('co-name')?.value || 'Customer';
+    const orderId = generateOrderId();
 
-      // --- Stock reduction ---
-      let currentProducts = getProducts();
-      items.forEach(item => {
-        const product = currentProducts.find(p => p.id === item.id);
-        if (product) {
-          product.stock = Math.max(0, product.stock - item.qty);
-        }
-      });
-      saveProducts(currentProducts);
-      // --- end stock reduction ---
+    // Build order object
+    const order = {
+      orderId,
+      date: new Date().toLocaleString(),
+      items: items.map(item => ({
+        name: item.name,
+        qty: item.qty,
+        price: item.price,
+        image: item.image
+      })),
+      total: Cart.getTotal() + (Cart.getTotal() >= 2000 ? 0 : 150),
+      status: 'Order Placed',
+      timeline: [{ status: 'Order Placed', date: new Date().toLocaleString() }]
+    };
 
-      Cart.clear();  // Cart is now empty
-      const app = document.getElementById('app');
-      if (app) {
-        app.innerHTML = `
-          <div class="order-confirm page-fade-in">
-            <div class="order-confirm-icon"><i class="fas fa-check-circle"></i></div>
-            <div class="order-confirm-title">Thank You, ${name.split(' ')[0]}!</div>
-            <div class="order-confirm-id">Order ID: <strong>${orderId}</strong></div>
-            <p style="color:var(--text-muted);font-size:.9rem;max-width:500px;margin:0 auto 2rem;">
-              Your order has been placed. You'll receive a confirmation shortly. Use your order ID to track your shipment.
-            </p>
-            <a href="order-status.html" class="btn-main" style="width:auto;display:inline-flex;">Track Order</a>
-          </div>`;
-      }
+    // Save order to localStorage
+    const orders = JSON.parse(localStorage.getItem('amare_orders') || '[]');
+    orders.unshift(order);
+    localStorage.setItem('amare_orders', JSON.stringify(orders));
+
+    // Reduce stock
+    let currentProducts = getProducts();
+    items.forEach(item => {
+      const product = currentProducts.find(p => p.id === item.id);
+      if (product) product.stock = Math.max(0, product.stock - item.qty);
     });
-  }
+    saveProducts(currentProducts);
+
+    Cart.clear();
+
+    const app = document.getElementById('app');
+    if (app) {
+      app.innerHTML = `
+        <div class="order-confirm page-fade-in">
+          <div class="order-confirm-icon"><i class="fas fa-check-circle"></i></div>
+          <div class="order-confirm-title">Thank You, ${name.split(' ')[0]}!</div>
+          <div class="order-confirm-id">Order ID: <strong>${orderId}</strong></div>
+          <p style="color:var(--text-muted);font-size:.9rem;max-width:500px;margin:0 auto 2rem;">
+            Your order has been placed. Use your order ID to track your shipment.
+          </p>
+          <a href="order-status.html" class="btn-main" style="width:auto;display:inline-flex;">Track Order</a>
+        </div>`;
+    }
+  });
+}
 }
 
 function initOrderStatus() {
@@ -935,3 +958,21 @@ document.addEventListener('DOMContentLoaded', () => {
     if (href === currentPage + '.html' || href === currentPage) link.classList.add('active');
   });
 });
+
+function updateOrderStatus(orderId, newStatus) {
+  const orders = JSON.parse(localStorage.getItem('amare_orders') || '[]');
+  const orderIndex = orders.findIndex(o => o.orderId === orderId);
+  if (orderIndex === -1) return false;
+
+  const order = orders[orderIndex];
+  const statusSteps = ['Order Placed', 'Processing', 'Out for Delivery', 'Delivered'];
+  const currentIndex = statusSteps.indexOf(order.status);
+  const newIndex = statusSteps.indexOf(newStatus);
+  if (newIndex <= currentIndex) return false;
+
+  order.status = newStatus;
+  order.timeline.push({ status: newStatus, date: new Date().toLocaleString() });
+  orders[orderIndex] = order;
+  localStorage.setItem('amare_orders', JSON.stringify(orders));
+  return true;
+}

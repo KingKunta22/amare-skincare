@@ -70,7 +70,7 @@
 
     <div class="order-status-outer">
       <div class="status-demo-note">
-        <strong style="color:var(--accent);">Demo Order IDs:</strong>
+        <strong style="color:var(--accent);">Demo Orders:</strong> You can also test with these IDs:
         AM-2024-001 · AM-2024-002 · AM-2025-003 · AM-2025-004
       </div>
       <form id="order-status-form">
@@ -128,5 +128,119 @@
   <script src="js/toast.js"></script>
   <script src="js/cart.js"></script>
   <script src="js/main.js"></script>
+    <script>
+    (function() {
+      const form = document.getElementById('order-status-form');
+      const resultDiv = document.getElementById('order-status-result');
+
+      function displayOrder(order) {
+        if (!order) return;
+        const steps = ['Order Placed', 'Processing', 'Out for Delivery', 'Delivered'];
+        const currentStepIndex = steps.indexOf(order.status);
+        resultDiv.innerHTML = `
+          <div class="status-result">
+            <div class="order-summary">
+              <div class="order-id">Order ID: <strong>${order.orderId}</strong></div>
+              <div class="order-date">Placed on: ${order.date}</div>
+              <div class="order-total">Total: ₱${order.total.toLocaleString()}</div>
+            </div>
+            <div class="order-items">
+              <h4>Items</h4>
+              <ul>
+                ${order.items.map(item => `<li>${item.name} (x${item.qty}) - ₱${(item.price * item.qty).toLocaleString()}</li>`).join('')}
+              </ul>
+            </div>
+            <div class="status-timeline">
+              ${steps.map((step, idx) => `
+                <div class="status-step ${idx <= currentStepIndex ? 'completed' : ''}">
+                  <div class="status-icon">
+                    ${idx === 0 ? '<i class="fas fa-shopping-cart"></i>' : idx === 1 ? '<i class="fas fa-cog"></i>' : idx === 2 ? '<i class="fas fa-truck"></i>' : '<i class="fas fa-check-circle"></i>'}
+                  </div>
+                  <div class="status-info">
+                    <div class="status-label">${step}</div>
+                    <div class="status-date">${idx <= currentStepIndex ? order.timeline.find(t => t.status === step)?.date || 'Completed' : 'Pending'}</div>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+            ${order.status !== 'Delivered' ? `
+              <button id="update-status-btn" class="btn-main" style="margin-top:1rem;">Simulate Next Step</button>
+            ` : ''}
+          </div>
+        `;
+
+        if (order.status !== 'Delivered') {
+          document.getElementById('update-status-btn').addEventListener('click', () => {
+            const nextStatus = steps[steps.indexOf(order.status) + 1];
+            if (nextStatus && window.updateOrderStatus(order.orderId, nextStatus)) {
+              showToast(`Order status updated to "${nextStatus}"`, 'fas fa-sync-alt');
+              // Re-fetch and display updated order
+              const orders = JSON.parse(localStorage.getItem('amare_orders') || '[]');
+              const updated = orders.find(o => o.orderId === order.orderId);
+              if (updated) displayOrder(updated);
+            } else {
+              showToast('Cannot update status', 'fas fa-exclamation');
+            }
+          });
+        }
+      }
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const id = document.getElementById('order-id-input').value.trim().toUpperCase();
+        // First check demo orders (static)
+        const demoOrder = ORDER_STATUSES[id];
+        if (demoOrder) {
+          const timelineSteps = ['Order Placed', 'Processing', 'Out for Delivery', 'Delivered'];
+          const currentStepIndex = demoOrder.steps.lastIndexOf(true);
+          const demoDisplay = {
+            orderId: id,
+            date: demoOrder.date,
+            total: '—',
+            items: demoOrder.items.split(',').map(i => ({ name: i.trim(), qty: 1, price: '—' })),
+            status: demoOrder.status,
+            timeline: timelineSteps.map((step, idx) => ({
+              status: step,
+              date: idx <= currentStepIndex ? (idx === 0 ? demoOrder.date : 'Completed') : 'Pending'
+            }))
+          };
+          resultDiv.innerHTML = `
+            <div class="status-result">
+              <div class="order-summary">
+                <div class="order-id">Order ID: <strong>${id}</strong></div>
+                <div class="order-date">Placed on: ${demoOrder.date}</div>
+              </div>
+              <div class="order-items">
+                <h4>Items</h4>
+                <ul><li>${demoOrder.items}</li></ul>
+              </div>
+              <div class="status-timeline">
+                ${timelineSteps.map((step, idx) => `
+                  <div class="status-step ${idx <= currentStepIndex ? 'completed' : ''}">
+                    <div class="status-icon">
+                      ${idx === 0 ? '<i class="fas fa-shopping-cart"></i>' : idx === 1 ? '<i class="fas fa-cog"></i>' : idx === 2 ? '<i class="fas fa-truck"></i>' : '<i class="fas fa-check-circle"></i>'}
+                    </div>
+                    <div class="status-info">
+                      <div class="status-label">${step}</div>
+                      <div class="status-date">${idx <= currentStepIndex ? (idx === 0 ? demoOrder.date : 'Completed') : 'Pending'}</div>
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>`;
+          return;
+        }
+
+        // Check real orders
+        const orders = JSON.parse(localStorage.getItem('amare_orders') || '[]');
+        const order = orders.find(o => o.orderId === id);
+        if (order) {
+          displayOrder(order);
+        } else {
+          resultDiv.innerHTML = `<div class="status-result" style="text-align:center;"><i class="fas fa-search" style="font-size:2rem;color:var(--border);margin-bottom:1rem;display:block;"></i><p>No order found with ID: <strong>${id}</strong></p><p style="color:var(--text-muted);font-size:.8rem;margin-top:.5rem;">Try: AM-2024-001, AM-2024-002, AM-2025-003, AM-2025-004 or a real order ID from checkout.</p></div>`;
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
