@@ -59,7 +59,7 @@
   <div id="toast-container"></div>
   <button id="back-to-top" title="Back to top"><i class="fas fa-arrow-up"></i></button>
 
-  <main id="app">
+ <main id="app">
     <div class="page-header">
       <div class="page-header-inner">
         <div class="section-label">Almost There</div>
@@ -71,6 +71,7 @@
       <div class="checkout-layout">
         <div>
           <form id="checkout-form">
+            <!-- Contact & Shipping sections unchanged -->
             <div class="checkout-section">
               <div class="checkout-section-title">Contact Information</div>
               <div class="form-row">
@@ -108,7 +109,7 @@
               <div class="form-row">
                 <div class="form-group">
                   <label class="form-label">Region</label>
-                  <select class="form-select">
+                  <select class="form-select" required>
                     <option value="">Select Region</option>
                     <option>NCR</option>
                     <option>Region I – Ilocos Region</option>
@@ -136,6 +137,7 @@
               </div>
             </div>
 
+            <!-- Payment section with dynamic fields -->
             <div class="checkout-section">
               <div class="checkout-section-title">Payment Details</div>
               <div style="background:var(--bg-soft);border:1px solid var(--border);padding:0.8rem 1rem;margin-bottom:1.2rem;font-size:0.76rem;color:var(--text-lt);">
@@ -144,31 +146,68 @@
               </div>
               <div class="form-group">
                 <label class="form-label">Payment Method</label>
-                <select class="form-select">
-                  <option>Credit / Debit Card</option>
-                  <option>GCash</option>
-                  <option>Maya (PayMaya)</option>
-                  <option>Bank Transfer</option>
-                  <option>Cash on Delivery</option>
+                <select id="payment-method" class="form-select" required>
+                  <option value="card">Credit / Debit Card</option>
+                  <option value="gcash">GCash</option>
+                  <option value="maya">Maya (PayMaya)</option>
+                  <option value="bank">Bank Transfer</option>
+                  <option value="cod">Cash on Delivery</option>
                 </select>
               </div>
-              <div class="form-group">
-                <label class="form-label">Card Number</label>
-                <input type="text" class="form-input" placeholder="•••• •••• •••• ••••" maxlength="19">
-              </div>
-              <div class="form-row">
+
+              <!-- Card details (visible by default) -->
+              <div id="card-fields">
                 <div class="form-group">
-                  <label class="form-label">Expiry</label>
-                  <input type="text" class="form-input" placeholder="MM / YY" maxlength="7">
+                  <label class="form-label">Card Number</label>
+                  <input type="text" class="form-input" placeholder="•••• •••• •••• ••••" maxlength="19">
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label">Expiry</label>
+                    <input type="text" class="form-input" placeholder="MM / YY" maxlength="7">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">CVV</label>
+                    <input type="text" class="form-input" placeholder="•••" maxlength="3">
+                  </div>
                 </div>
                 <div class="form-group">
-                  <label class="form-label">CVV</label>
-                  <input type="text" class="form-input" placeholder="•••" maxlength="3">
+                  <label class="form-label">Name on Card</label>
+                  <input type="text" class="form-input" placeholder="Maria Santos">
                 </div>
               </div>
-              <div class="form-group">
-                <label class="form-label">Name on Card</label>
-                <input type="text" class="form-input" placeholder="Maria Santos">
+
+              <!-- GCash / Maya fields (hidden initially) -->
+              <div id="mobile-money-fields" style="display: none;">
+                <div class="form-group">
+                  <label class="form-label">Mobile Number</label>
+                  <input type="tel" class="form-input" placeholder="09xx xxx xxxx">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Reference Number</label>
+                  <input type="text" class="form-input" placeholder="Optional">
+                </div>
+              </div>
+
+              <!-- Bank Transfer fields -->
+              <div id="bank-fields" style="display: none;">
+                <div class="form-group">
+                  <label class="form-label">Bank Name</label>
+                  <input type="text" class="form-input" placeholder="e.g., BDO, BPI">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Account Name</label>
+                  <input type="text" class="form-input" placeholder="Name on account">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Account Number</label>
+                  <input type="text" class="form-input" placeholder="xxxx xxxx xxxx">
+                </div>
+              </div>
+
+              <!-- Cash on Delivery: no extra fields -->
+              <div id="cod-fields" style="display: none;">
+                <p style="font-size:0.85rem; margin-top:0.5rem;">You will pay when the order arrives.</p>
               </div>
             </div>
 
@@ -236,5 +275,30 @@
   <script src="js/toast.js"></script>
   <script src="js/cart.js"></script>
   <script src="js/main.js"></script>
+  <script>
+    // Show/hide payment fields based on selection
+    const paymentSelect = document.getElementById('payment-method');
+    const cardDiv = document.getElementById('card-fields');
+    const mobileDiv = document.getElementById('mobile-money-fields');
+    const bankDiv = document.getElementById('bank-fields');
+    const codDiv = document.getElementById('cod-fields');
+
+    function updatePaymentFields() {
+      const method = paymentSelect.value;
+      cardDiv.style.display = 'none';
+      mobileDiv.style.display = 'none';
+      bankDiv.style.display = 'none';
+      codDiv.style.display = 'none';
+
+      if (method === 'card') cardDiv.style.display = 'block';
+      else if (method === 'gcash' || method === 'maya') mobileDiv.style.display = 'block';
+      else if (method === 'bank') bankDiv.style.display = 'block';
+      else if (method === 'cod') codDiv.style.display = 'block';
+    }
+    paymentSelect.addEventListener('change', updatePaymentFields);
+    updatePaymentFields();
+
+    // Optional: Mark required fields dynamically – you can add validation later
+  </script>
 </body>
 </html>
