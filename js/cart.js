@@ -17,10 +17,26 @@ const Cart = {
   },
 
   addItem(product, qty = 1) {
+    // Get current product data from live stock
+    const currentProducts = typeof getProducts === 'function' ? getProducts() : [];
+    const currentProduct = currentProducts.find(p => p.id === product.id);
+    if (!currentProduct) return;
+
+    // Check stock
+    if (currentProduct.stock < qty) {
+      showToast(`Only ${currentProduct.stock} left in stock`, 'fas fa-exclamation-circle');
+      return;
+    }
+
     const items = this.getItems();
     const idx = items.findIndex(i => i.id === product.id);
     if (idx > -1) {
-      items[idx].qty = Math.min(items[idx].qty + qty, product.stock);
+      const newQty = items[idx].qty + qty;
+      if (newQty > currentProduct.stock) {
+        showToast(`Cannot add more than ${currentProduct.stock} items`, 'fas fa-exclamation-circle');
+        return;
+      }
+      items[idx].qty = newQty;
     } else {
       items.push({ ...product, qty });
     }
@@ -38,9 +54,20 @@ const Cart = {
   updateQty(id, qty) {
     const items = this.getItems();
     const idx = items.findIndex(i => i.id === id);
-    if (idx > -1) {
-      if (qty <= 0) { items.splice(idx, 1); }
-      else { items[idx].qty = qty; }
+    if (idx === -1) return;
+
+    const currentProducts = typeof getProducts === 'function' ? getProducts() : [];
+    const product = currentProducts.find(p => p.id === id);
+    if (!product) return;
+
+    if (qty <= 0) {
+      items.splice(idx, 1);
+    } else {
+      if (qty > product.stock) {
+        showToast(`Only ${product.stock} available`, 'fas fa-exclamation');
+        qty = product.stock;
+      }
+      items[idx].qty = qty;
     }
     this.saveItems(items);
   },
@@ -49,6 +76,7 @@ const Cart = {
     localStorage.removeItem(this._key);
     this.refresh();
   },
+
 
   getTotal() {
     return this.getItems().reduce((sum, i) => sum + i.price * i.qty, 0);

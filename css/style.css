@@ -2145,3 +2145,61 @@ table.cart-table { width: 100%; border-collapse: collapse; }
     font-size: 0.9rem;
   }
 }
+
+/* Inventory page */
+.inventory-card {
+  transition: box-shadow 0.2s;
+}
+.inventory-card:hover {
+  box-shadow: var(--shadow-sm);
+}
+.inv-decr, .inv-incr {
+  transition: background 0.2s;
+}
+.inv-decr:hover, .inv-incr:hover {
+  background: var(--accent-lt);
+}
+
+/* Team hierarchy – clean vertical layout */
+.team-hierarchy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+.team-tier {
+  width: 100%;
+  max-width: 320px;
+  text-align: center;
+}
+.tier-label {
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+.team-cards {
+  display: flex;
+  justify-content: center;
+}
+.team-arrow {
+  font-size: 1.5rem;
+  color: var(--accent-lt);
+}
+.team-card {
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+}
+@media (max-width: 768px) {
+  .team-arrow {
+    display: block;  /* keep arrows on mobile */
+    transform: rotate(0deg);
+  }
+  .team-tier {
+    max-width: 280px;
+  }
+}

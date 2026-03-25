@@ -198,6 +198,35 @@ const PRODUCTS = [
 ];
 
 // ============================================================
+// Product data with localStorage persistence
+// ============================================================
+function getProducts() {
+  // Try to load from localStorage, otherwise use the hardcoded PRODUCTS
+  const saved = localStorage.getItem('amare_products');
+  if (saved) {
+    try {
+      const parsed = JSON.parse(saved);
+      // Ensure all products are present (in case new products were added)
+      // Merge with current PRODUCTS to keep any new product fields
+      const merged = PRODUCTS.map(p => {
+        const savedProduct = parsed.find(sp => sp.id === p.id);
+        return savedProduct ? { ...p, ...savedProduct } : { ...p };
+      });
+      return merged;
+    } catch(e) { console.warn(e); }
+  }
+  return [...PRODUCTS]; // return a copy
+}
+
+function saveProducts(products) {
+  localStorage.setItem('amare_products', JSON.stringify(products));
+}
+
+// Also override the global PRODUCTS constant for backward compatibility
+// (But we'll use getProducts() everywhere)
+// Replace all references to PRODUCTS with getProducts() where dynamic stock is needed.
+
+// ============================================================
 // TEAM DATA
 // ============================================================
 const TEAM = {
@@ -632,7 +661,19 @@ function initCheckout() {
       e.preventDefault();
       const name = document.getElementById('co-name')?.value || 'Customer';
       const orderId = 'AM-' + Date.now().toString().slice(-6);
-      Cart.clear();
+
+      // --- Stock reduction ---
+      let currentProducts = getProducts();
+      items.forEach(item => {
+        const product = currentProducts.find(p => p.id === item.id);
+        if (product) {
+          product.stock = Math.max(0, product.stock - item.qty);
+        }
+      });
+      saveProducts(currentProducts);
+      // --- end stock reduction ---
+
+      Cart.clear();  // Cart is now empty
       const app = document.getElementById('app');
       if (app) {
         app.innerHTML = `

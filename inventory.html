@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amare Skincare – Inventory</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo"><img src="images/logo.jpg" alt="Amare Skincare" style="height: 40px; width: auto;"></a>
+      <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="products.html" class="nav-link">Products</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+        <li><a href="team.html" class="nav-link">Team</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="https://www.instagram.com/amare_skincare" target="_blank" class="nav-icon"><i class="fab fa-instagram"></i></a>
+        <button class="nav-icon cart-icon-btn" id="cart-btn"><i class="fas fa-shopping-bag"></i><span class="cart-count" id="cart-count">0</span></button>
+      </div>
+    </div>
+  </nav>
+  <div id="mini-cart-overlay"></div>
+  <aside id="mini-cart">
+    <div class="mini-cart-header"><span>Your Bag</span><button id="close-mini-cart"><i class="fas fa-times"></i></button></div>
+    <div id="mini-cart-items"></div>
+    <div class="mini-cart-footer">
+      <div class="mini-cart-total"><span>Total</span><span id="mini-cart-total-price">₱0.00</span></div>
+      <a href="cart.html" class="btn-main" id="view-cart-btn">View Cart</a>
+      <a href="checkout.html" class="btn-outline">Checkout</a>
+    </div>
+  </aside>
+  <div id="toast-container"></div>
+  <button id="back-to-top" title="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+  <main id="app">
+    <div class="page-header">
+      <div class="page-header-inner">
+        <div class="section-label">Stock Control</div>
+        <h1>Inventory Management</h1>
+        <p>Adjust stock levels for all products. Changes are saved automatically.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="inventory-controls" style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <input type="text" id="inv-search" placeholder="Search products..." style="padding: 0.5rem; border: 1px solid var(--border); border-radius: 4px;">
+          <select id="inv-category" style="padding: 0.5rem; border: 1px solid var(--border); border-radius: 4px;">
+            <option value="">All Categories</option>
+            <!-- categories will be filled by JS -->
+          </select>
+        </div>
+        <button id="reset-stock-btn" class="btn-outline" style="background: #fff;">Reset to Original Stock</button>
+      </div>
+      <div id="inventory-grid" class="inventory-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem;"></div>
+    </div>
+  </main>
+
+  <footer id="site-footer">...</footer>  <!-- same footer as other pages -->
+
+  <script src="js/toast.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    (function() {
+      const grid = document.getElementById('inventory-grid');
+      const searchInput = document.getElementById('inv-search');
+      const categorySelect = document.getElementById('inv-category');
+      const resetBtn = document.getElementById('reset-stock-btn');
+      let currentFilter = { search: '', category: '' };
+
+      // Populate category dropdown
+      function populateCategories() {
+        const products = getProducts();
+        const categories = [...new Set(products.map(p => p.category))];
+        categories.forEach(cat => {
+          const opt = document.createElement('option');
+          opt.value = cat;
+          opt.textContent = cat;
+          categorySelect.appendChild(opt);
+        });
+      }
+
+      function displayInventory() {
+        let products = getProducts();
+        // Apply filters
+        if (currentFilter.search) {
+          products = products.filter(p => p.name.toLowerCase().includes(currentFilter.search.toLowerCase()));
+        }
+        if (currentFilter.category) {
+          products = products.filter(p => p.category === currentFilter.category);
+        }
+
+        grid.innerHTML = products.map(p => `
+          <div class="inventory-card" data-id="${p.id}" style="background: white; border: 1px solid var(--border); padding: 1rem;">
+            <div style="display: flex; gap: 1rem; align-items: center;">
+              <img src="${p.image}" alt="${p.name}" style="width: 60px; height: 60px; object-fit: cover;">
+              <div style="flex: 1;">
+                <div><strong>${p.name}</strong> (${p.category})</div>
+                <div>Price: ₱${p.price.toLocaleString()}</div>
+              </div>
+            </div>
+            <div style="margin-top: 1rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+              <button class="inv-decr" data-id="${p.id}" style="background: var(--bg-soft); border: 1px solid var(--border); padding: 0.3rem 0.8rem; cursor: pointer;">-</button>
+              <span class="inv-stock" data-id="${p.id}" style="font-weight: bold; min-width: 50px; text-align: center;">${p.stock}</span>
+              <button class="inv-incr" data-id="${p.id}" style="background: var(--bg-soft); border: 1px solid var(--border); padding: 0.3rem 0.8rem; cursor: pointer;">+</button>
+            </div>
+            <div style="margin-top: 0.5rem; font-size: 0.8rem; text-align: center; color: ${p.stock <= 5 ? '#c0392b' : 'var(--text-lt)'}">
+              ${p.stock === 0 ? 'Out of stock' : p.stock <= 5 ? `Low stock (${p.stock} left)` : 'In stock'}
+            </div>
+          </div>
+        `).join('');
+
+        // Attach event listeners with toast deduplication
+        let activeToasts = {}; // store timeout IDs per product id
+        function showSingleToast(productName, newStock) {
+          const message = `${productName} stock updated to ${newStock}`;
+          // Remove any existing toast for this product (by ID)
+          const existing = document.querySelector(`.toast[data-product-id="${productName}"]`);
+          if (existing) existing.remove();
+          // Clear timeout if exists
+          if (activeToasts[productName]) clearTimeout(activeToasts[productName]);
+          // Create new toast with a data attribute
+          const toast = document.createElement('div');
+          toast.className = 'toast';
+          toast.setAttribute('data-product-id', productName);
+          toast.innerHTML = `<div class="toast-icon"><i class="fas fa-boxes"></i></div><div class="toast-message">${message}</div>`;
+          document.getElementById('toast-container').appendChild(toast);
+          // Auto-remove after 2 seconds
+          activeToasts[productName] = setTimeout(() => {
+            toast.remove();
+            delete activeToasts[productName];
+          }, 2000);
+        }
+
+        document.querySelectorAll('.inv-decr').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const id = btn.dataset.id;
+            const stockSpan = document.querySelector(`.inv-stock[data-id="${id}"]`);
+            const product = getProducts().find(p => p.id === id);
+            if (!product) return;
+            let newStock = Math.max(0, product.stock - 1);
+            updateStock(id, newStock, product.name);
+          });
+        });
+        document.querySelectorAll('.inv-incr').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const id = btn.dataset.id;
+            const product = getProducts().find(p => p.id === id);
+            if (!product) return;
+            let newStock = product.stock + 1;
+            updateStock(id, newStock, product.name);
+          });
+        });
+      }
+
+      function updateStock(id, newStock, productName) {
+        const products = getProducts();
+        const product = products.find(p => p.id === id);
+        if (!product) return;
+        product.stock = newStock;
+        saveProducts(products);
+        displayInventory(); // refresh grid
+        showSingleToast(productName, newStock);
+        Cart.refresh(); // update mini cart if needed
+      }
+
+      resetBtn.addEventListener('click', () => {
+        // Reset to original hardcoded stock values
+        const originalProducts = [...PRODUCTS]; // the global constant
+        const currentProducts = getProducts();
+        const resetProducts = currentProducts.map(p => {
+          const original = originalProducts.find(op => op.id === p.id);
+          return { ...p, stock: original ? original.stock : p.stock };
+        });
+        saveProducts(resetProducts);
+        displayInventory();
+        showSingleToast('all products', 'reset to original stock'); // custom message
+      });
+
+      // Filter handlers
+      searchInput.addEventListener('input', () => {
+        currentFilter.search = searchInput.value;
+        displayInventory();
+      });
+      categorySelect.addEventListener('change', () => {
+        currentFilter.category = categorySelect.value;
+        displayInventory();
+      });
+
+      populateCategories();
+      displayInventory();
+    })();
+  </script>
+</body>
+</html>
